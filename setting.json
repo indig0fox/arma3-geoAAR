@@ -1,0 +1,10 @@
+{
+	"listen": "0.0.0.0:5001",
+	"secret": "anamaya23",
+	"logger": true,
+	"customize": {
+		"websiteURL": "",
+		"websiteLogo": "",
+		"disableKillCount": false
+	}
+}

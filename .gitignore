@@ -1,0 +1,17 @@
+# IDE
+.idea
+.vscode
+
+# builds
+ocap-webserver.exe
+
+# data
+data.db
+static/data
+static/images/maps
+/data/*.json.gz
+/data/*.json
+/maps/*/
+
+# logs
+ocap.log
