@@ -12,9 +12,16 @@
   "dependencies": {
     "@jamescoyle/svg-icon": "^0.1.1",
     "@mdi/js": "^7.1.96",
+    "@turf/turf": "^6.5.0",
+    "7.css": "^0.12.0",
+    "98.css": "^0.1.18",
+    "maplibre-gl": "^2.4.0",
     "pinia": "^2.0.32",
+    "pmtiles": "^2.7.0",
+    "proj4": "^2.9.0",
     "vue": "^3.2.47",
-    "vue-router": "^4.1.6"
+    "vue-router": "^4.1.6",
+    "xp.css": "^0.2.6"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.2.0",

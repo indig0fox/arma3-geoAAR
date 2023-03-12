@@ -13,6 +13,7 @@ import (
 	"time"
 
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 )
 
 const CacheDuration = 7 * 24 * time.Hour
@@ -44,6 +45,12 @@ func NewHandler(
 	}
 
 	e.Use(hdlr.errorHandler)
+
+	// enable CORS
+	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+		AllowOrigins: []string{"*"},
+		AllowMethods: []string{http.MethodGet, http.MethodHead, http.MethodPut, http.MethodPatch, http.MethodPost, http.MethodDelete},
+	}))
 
 	e.GET(
 		"/api/v1/operations",
