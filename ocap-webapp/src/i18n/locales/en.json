@@ -1,0 +1,42 @@
+{
+  "headings": {
+    "availableWorlds": {
+      "title": "Available Worlds",
+      "subtitle": "Select a world to view it in the Terrain Analyzer."
+    }
+  },
+  "app": {
+    "windowTitle": "Arma 3 GeoAAR",
+    "recording": "Recording",
+    "world": "Active World"
+  },
+  "mainMap": {
+    "windowTitle": "Main Map",
+    "layerControlsTitle": "Layer Controls",
+    "colorRelief": "Color Relief",
+    "satellite": "Satellite",
+    "hillshade": "Hillshade",
+    "contourLines": "Contour Lines",
+    "3dTerrain": "3D Terrain",
+    "3dBuildings": "3D Buildings"
+  },
+  "minimap": {
+    "windowTitle": "Minimap"
+  },
+  "viewer": {},
+  "windowTitles": {
+    "recordingViewer": "Recording Viewer",
+    "mapView": "Map View",
+    "viewer": {
+      "terrainWindow": "Terrain Analyzer",
+      "minimapWindow": "Minimap"
+    }
+  },
+  "worlds": {
+    "worldCard": {
+      "author": "Author",
+      "size": "Size",
+      "sizeValue": "{size}km&sup2;"
+    }
+  }
+}

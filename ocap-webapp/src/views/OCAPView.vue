@@ -3,6 +3,7 @@ import { Map, addProtocol, addControl, NavigationControl } from 'maplibre-gl'
 import * as pmtiles from 'pmtiles'
 
 import { mapState, mapWritableState } from 'pinia'
+import { useRecordingDataStore } from '@/stores/recordings.js'
 
 import { ref } from 'vue'
 import MainMap from '@/components/MainMap.vue'
@@ -22,7 +23,8 @@ import PlaybackManager from '@/components/PlaybackManager.vue'
   >
     <div class="title-bar">
       <div class="title-bar-text">
-        <img src="@/assets/terrain_icon.svg" class="title-bar-icon" />Recording Viewer
+        <img src="@/assets/img/terrain_icon.svg" class="title-bar-icon" />
+        {{ $t('windowTitles.recordingViewer') }}
       </div>
       <!-- <div class="title-bar-text">
         <img src="@/assets/terrain_icon.svg" class="title-bar-icon" />Recording Viewer -
@@ -58,7 +60,8 @@ import PlaybackManager from '@/components/PlaybackManager.vue'
             >
               <div class="title-bar">
                 <div class="title-bar-text">
-                  <img src="@/assets/terrain_icon.svg" class="title-bar-icon" />Map View
+                  <img src="@/assets/img/terrain_icon.svg" class="title-bar-icon" />
+                  {{ $t('mainMap.windowTitle') }}
                 </div>
                 <div class="title-bar-controls">
                   <button aria-label="Minimize"></button>
@@ -67,7 +70,7 @@ import PlaybackManager from '@/components/PlaybackManager.vue'
                 </div>
               </div>
               <div id="map-container-body" class="window-body">
-                <MainMap :worldname="worldname" />
+                <MainMap :key="activeWorld" />
               </div>
               <MapStateStatusBar />
             </div>
@@ -80,7 +83,7 @@ import PlaybackManager from '@/components/PlaybackManager.vue'
             >
               <div class="title-bar">
                 <div class="title-bar-text">
-                  <img src="@/assets/terrain_icon.svg" class="title-bar-icon" />Playback Manager
+                  <img src="@/assets/img/terrain_icon.svg" class="title-bar-icon" />Playback Manager
                 </div>
                 <div class="title-bar-controls">
                   <button aria-label="Minimize"></button>
@@ -111,7 +114,7 @@ import PlaybackManager from '@/components/PlaybackManager.vue'
                 </div>
               </div>
               <div id="minimap-container-body" class="window-body">
-                <MiniMap />
+                <MiniMap :key="activeWorld" />
               </div>
             </div>
             <h3>Right</h3>
@@ -128,7 +131,7 @@ import PlaybackManager from '@/components/PlaybackManager.vue'
         Running Maplibre v{{ maplibreVersion }}
       </p>
       <p class="status-bar-field" style="max-width: 128px">
-        CursorPos: {{ mousePosition }}<br />
+        CursorPos: {{ mousePositionXY }}<br />
         Zoom: {{ currentZoom }} -- Pitch: {{ currentPitch }}
       </p>
     </div>
@@ -146,15 +149,10 @@ export default {
   data() {
     return {}
   },
-  mounted() {
-    // const initialState = { lng: 0, lat: 0, zoom: 14 }
+  created() {
+    const recordingData = useRecordingDataStore()
   },
-  props: {
-    worldname: {
-      type: String,
-      required: true
-    }
-  },
+  mounted() {},
   computed: {
     ...mapState(useRecordingDataStore, ['playbackMap']),
     ...mapWritableState(useRecordingDataStore, ['recordingData', 'activeWorld']),
@@ -163,7 +161,7 @@ export default {
       'currentZoom',
       'currentPitch',
       'currentBearing',
-      'mousePosition',
+      'mousePositionXY',
       'maplibreVersion'
     ])
   },

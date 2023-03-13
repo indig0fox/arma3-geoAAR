@@ -66,13 +66,14 @@
                 <td>{{ recording.world_name }}</td>
                 <td>{{ recording.tag }}</td>
                 <td>
-                  <button
-                    class="material-icons"
-                    @click="recordingData.getRecordingData(recording.filename)"
+                  <router-link
+                    :to="{
+                      name: 'recordingViewer',
+                      query: { id: recording.id, world: recording.world_name }
+                    }"
                   >
-                    play_arrow
-                  </button>
-                  <button class="material-icons">delete</button>
+                    <button class="btn btn-primary">View</button>
+                  </router-link>
                 </td>
               </tr>
             </tbody>
@@ -86,8 +87,6 @@
 <script setup>
 import { mapState, mapWritableState } from 'pinia'
 import { useRecordingDataStore } from '../stores/recordings.js'
-const recordingData = useRecordingDataStore()
-recordingData.getRecordings()
 </script>
 
 <script>

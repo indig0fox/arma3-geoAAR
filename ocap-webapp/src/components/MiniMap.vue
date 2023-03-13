@@ -1,5 +1,12 @@
 <template>
-  <div id="minimap" ref="minimapContainer"></div>
+  <div id="minimap" ref="minimapContainer">
+    <!-- show zoom and cursor pos in corner -->
+    <div id="minimap-info" class="minimap-info">
+      Zoom: {{ currentZoom }}<br />
+      Cursor XY: {{ mousePositionXY }}<br />
+      Cursor MGRS: {{ mousePositionMGRS }}
+    </div>
+  </div>
 </template>
 
 <script setup>
@@ -23,11 +30,12 @@ export default {
   computed: {
     ...mapState(useRecordingDataStore, ['recordingData', 'activeWorld']),
     ...mapState(useRecordingDataStore, [
-      'viewBounds'
-      // 'currentZoom',
+      'viewBounds',
+      'currentZoom',
       // 'currentPitch',
       // 'currentBearing',
-      // 'mousePosition',
+      'mousePositionXY',
+      'mousePositionMGRS'
       // 'maplibreVersion'
     ])
   },
@@ -41,7 +49,7 @@ export default {
     addProtocol('pmtiles', protocol.tile)
     const map = new Map({
       container: this.$refs.minimapContainer,
-      style: `https://styles.ocap2.com/${this.activeWorld}.json`,
+      style: `https://styles.ocap2.com/${this.activeWorld.worldName}.json`,
       attributionControl: false,
       interactive: false,
       antialias: false
@@ -208,8 +216,24 @@ export default {
   align-self: auto;
   /* embedded/inset look */
   border: 1px solid #000;
-  border-radius: 5px;
-  box-shadow: 0 0 5px #000;
+  /* border-radius: 5px; */
+  /* box-shadow: 0 0 5px #000; */
   background: #252525;
+}
+
+#minimap-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  padding: 0 5px;
+  /* background: rgba(0, 0, 0, 0.5); */
+  color: #2c2c2c;
+  text-shadow: 0 0 1px #000;
+  font-size: 10px;
+  font-family: monospace;
+  line-height: 1em;
+  white-space: nowrap;
+  margin: 0px;
 }
 </style>

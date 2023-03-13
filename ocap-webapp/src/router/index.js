@@ -15,7 +15,7 @@ const router = createRouter({
     },
     {
       // path: "/world/:worldname",
-      path: "/world/:worldname",
+      path: "/viewer",
       name: "worldViewer",
       component: () => import("../views/WorldViewer.vue"),
       props: true,
@@ -26,12 +26,7 @@ const router = createRouter({
       component: () => import("../views/RecordingsList.vue"),
     },
     {
-      path: "/ocap",
-      name: "ocap",
-      component: () => import("../views/OCAPView.vue"),
-    },
-    {
-      path: "/recording/:recordingid",
+      path: "/playback",
       name: "recordingViewer",
       component: () => import("../views/OCAPView.vue"),
       props: true,

@@ -23,14 +23,6 @@ export default {
       hybridStyle: {}
     }
   },
-  props: {
-    worlds: Array,
-    worldname: {
-      type: String,
-      required: true,
-      default: 'stratis'
-    }
-  },
   computed: {
     ...mapWritableState(useRecordingDataStore, ['recordingData', 'activeWorld']),
     ...mapState(useRecordingDataStore, [
@@ -38,7 +30,7 @@ export default {
       'currentZoom',
       'currentPitch',
       'currentBearing',
-      'mousePosition',
+      'mousePositionXY',
       'maplibreVersion'
     ])
   },
@@ -257,11 +249,14 @@ export default {
     >
       <div class="title-bar">
         <div class="title-bar-text" v-if="!style.metadata">
-          <img src="@/assets/terrain_icon.svg" class="title-bar-icon" />Terrain Analyzer
+          <img src="@/assets/img/terrain_icon.svg" class="title-bar-icon" />
+          {{ $t('mainMap.windowTitle') }}
         </div>
         <div class="title-bar-text" v-if="style.metadata">
-          <img src="@/assets/terrain_icon.svg" class="title-bar-icon" /> Terrain Analyzer -
-          {{ activeWorld.displayName }} &lt;{{ activeWorld.worldName }}&gt;
+          <img src="@/assets/img/terrain_icon.svg" class="title-bar-icon" />
+          {{ $t('mainMap.windowTitle') }} - {{ activeWorld.displayName }} &lt;{{
+            activeWorld.worldName
+          }}&gt;
         </div>
 
         <div class="title-bar-controls">
@@ -272,7 +267,7 @@ export default {
       </div>
       <!-- <div id="map" v-show="mapLoaded"></div> -->
       <div id="map-container" class="window-body">
-        <MainMap :worldname="worldname" />
+        <MainMap />
       </div>
       <div id="map-container-bottom">
         <MapStateStatusBar />
@@ -286,7 +281,7 @@ export default {
         @mouseleave="adjustActiveState"
       >
         <div class="title-bar inactive">
-          <div class="title-bar-text">Minimap</div>
+          <div class="title-bar-text">{{ $t('minimap.windowTitle') }}</div>
           <div class="title-bar-controls">
             <button aria-label="Minimize"></button>
             <button aria-label="Maximize"></button>

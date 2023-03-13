@@ -3,28 +3,54 @@ import { RouterView } from 'vue-router'
 
 // pinia
 import { useRecordingDataStore } from './stores/recordings.js'
-
-// components
+import { mapState, mapWritableState } from 'pinia'
 const recordingData = useRecordingDataStore()
-recordingData.getRecordings()
+
+import LocaleChanger from '@/components/LocaleChanger.vue'
 </script>
 
 <template>
   <div class="window" id="interface">
-    <div id="top-navbar" class="title-bar">
+    <div id="top-navbar" class="title-bar" style="max-height: 16px">
       <div id="top-navbar-left">
         <router-link to="/">
-          <img src="@/assets/a3white.png" />
+          <img src="@/assets/img/a3white.png" />
         </router-link>
-        <div class="title-bar-text">Arma 3 World Viewer</div>
-      </div>
-      <div id="top-navbar-right">
-        <div class="title-bar-controls">
-          <button aria-label="Minimize"></button>
-          <button aria-label="Maximize"></button>
-          <button aria-label="Close"></button>
+        <div class="title-bar-text">{{ $t('app.windowTitle') }}</div>
+
+        <div class="title-bar-text">
+          <span>{{ $t('app.world') }}:&nbsp;</span>
+          <span v-if="recordingData.activeWorld" style="color: yellow; font-family: monospace">
+            {{ recordingData.activeWorld.displayName }} &lt;{{
+              recordingData.activeWorld.worldName
+            }}&gt;
+          </span>
         </div>
+        <div class="title-bar-text">
+          <span>{{ $t('app.recording') }}:&nbsp;</span>
+          <!-- add mission name, and add author but truncate if too long -->
+          <span
+            v-if="recordingData.activeRecording.missionAuthor"
+            style="color: yellow; font-family: monospace"
+          >
+            {{ recordingData.activeRecording.missionName }} &lt;{{
+              recordingData.activeRecording.missionAuthor.length > 30
+                ? recordingData.activeRecording.missionAuthor.substring(0, 30) + '...'
+                : recordingData.activeRecording.missionAuthor
+            }}&gt;
+          </span>
+        </div>
+        <LocaleChanger />
       </div>
+      <div id="top-navbar-center" style="display: flex; flex-direction: row; height: 80%"></div>
+      <!-- <div id="top-navbar-right" style="display: flex; flex-direction: row; height: 80%"> -->
+
+      <div class="title-bar-controls">
+        <button aria-label="Minimize"></button>
+        <button aria-label="Maximize"></button>
+        <button aria-label="Close"></button>
+      </div>
+      <!-- </div> -->
     </div>
     <div id="window-body" class="window-body">
       <menu role="tablist" aria-label="Component Tabs">
@@ -33,7 +59,7 @@ recordingData.getRecordings()
             Worlds
           </button>
         </router-link>
-        <router-link to="/world/stratis">
+        <router-link to="/viewer">
           <button role="tab" aria-controls="tab-B" :aria-selected="$route.name == 'worldViewer'">
             Viewer
           </button>
@@ -44,13 +70,17 @@ recordingData.getRecordings()
             Recordings
           </button>
         </router-link>
-        <router-link to="/recording/x">
-          <button role="tab" aria-controls="tab-D" :aria-selected="$route.name == 'recording'">
+        <router-link to="/playback">
+          <button
+            role="tab"
+            aria-controls="tab-E"
+            :aria-selected="$route.name == 'recordingViewer'"
+          >
             Recording Viewer
           </button>
         </router-link>
         <router-link to="/about">
-          <button role="tab" aria-controls="tab-E" :aria-selected="$route.name == 'about'">
+          <button role="tab" aria-controls="tab-F" :aria-selected="$route.name == 'about'">
             About
           </button>
         </router-link>
@@ -68,43 +98,60 @@ export default {
   name: 'App',
   components: {},
   data() {
-    return {
-      message: 'Hello World!',
-      recordings: [],
-      worlds: []
-    }
+    return {}
   },
   computed: {
+    ...mapWritableState(useRecordingDataStore, [
+      'availableWorlds',
+      'availableRecordings',
+      'activeWorld'
+    ]),
     sortedWorlds() {
-      return this.worlds.slice().sort((a, b) => {
+      return this.availableWorlds.slice().sort((a, b) => {
         return a.meta.displayName.localeCompare(b.meta.displayName)
       })
+    }
+  },
+  watch: {
+    $route: function (to, from) {
+      console.log({
+        event: 'route changed',
+        name: to.name,
+        query: to.query
+      })
+      const recordingData = useRecordingDataStore()
+
+      if (to.query.world) {
+        var worldObj = this.availableWorlds.find(
+          (world) => world.meta.worldName.toLowerCase() === to.query.world.toLowerCase()
+        )
+        if (worldObj) {
+          this.activeWorld = worldObj.meta
+        }
+      }
+
+      if (to.query.id) {
+        // console.log(this.availableRecordings)
+        var recordingObj = this.availableRecordings.find((recording) => {
+          // parse number from query param
+          return recording.id === parseInt(to.query.id)
+        })
+        if (recordingObj) {
+          console.log(recordingObj)
+          recordingData.getRecordingData(recordingObj)
+        }
+      }
     }
   },
   mounted() {
     // window.onerror = function (msg) {
     //   console.error(msg);
     // };
-
-    this.fetchWorlds()
+    const recordingData = useRecordingDataStore()
+    recordingData.getWorlds()
+    recordingData.getRecordings()
   },
-  methods: {
-    fetchWorlds: function () {
-      fetch('https://styles.ocap2.com/worlds.json')
-        .then((response) => {
-          return response.json()
-        })
-        .then((data) => {
-          var worlds = []
-          Object.keys(data.worlds).forEach(function (key) {
-            var item = data.worlds[key]
-            item.preview = 'https://styles.ocap2.com/previews/' + key + '_256px.png'
-            worlds.push(data.worlds[key])
-          })
-          this.availableMaps = worlds
-        })
-    }
-  }
+  methods: {}
 }
 </script>
 

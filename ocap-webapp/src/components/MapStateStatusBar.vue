@@ -6,10 +6,10 @@
       <span>Running Maplibre v{{ maplibreVersion }}</span>
     </div>
 
-    <p class="status-bar-field status-bar-short">
-      CursorPos: {{ mousePosition }}<br />
+    <!-- <p class="status-bar-field status-bar-short">
+      CursorPos: {{ mousePositionXY }}<br />
       Zoom: {{ currentZoom }} -- Pitch: {{ currentPitch }}
-    </p>
+    </p> -->
 
     <p
       class="status-bar-field"
@@ -35,7 +35,7 @@ export default {
   mounted() {
     // wait for map to load
     this.mapIsLoaded = false
-    this.playbackMap.once('render', () => {
+    this.playbackMap.once('styledata', () => {
       setTimeout(() => {
         this.mapIsLoaded = true
       }, 750)
@@ -48,7 +48,7 @@ export default {
       'currentZoom',
       'currentPitch',
       'currentBearing',
-      'mousePosition',
+      'mousePositionXY',
       'maplibreVersion'
     ])
   }

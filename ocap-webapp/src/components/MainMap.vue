@@ -4,7 +4,7 @@
       <div id="map" ref="maplibre"></div>
       <!-- <div id="style-button-container"> -->
       <fieldset id="style-button-container">
-        <legend>Layer Controls</legend>
+        <legend>{{ $t('mainMap.layerControlsTitle') }}</legend>
         <div class="field-row">
           <input
             type="checkbox"
@@ -12,7 +12,7 @@
             v-model="showColorRelief"
             @change="toggleColorRelief"
           />
-          <label for="showColorRelief">Color Relief</label>
+          <label for="showColorRelief">{{ $t('mainMap.colorRelief') }}</label>
         </div>
 
         <div class="field-row">
@@ -22,7 +22,7 @@
             v-model="showSatellite"
             @change="toggleSatellite"
           />
-          <label for="showSatellite">Satellite</label>
+          <label for="showSatellite">{{ $t('mainMap.satellite') }}</label>
         </div>
 
         <div class="field-row">
@@ -32,7 +32,7 @@
             v-model="showHillshade"
             @change="toggleHillshade"
           />
-          <label for="showHillshade">Hillshade</label>
+          <label for="showHillshade">{{ $t('mainMap.hillshade') }}</label>
         </div>
 
         <div class="field-row">
@@ -42,12 +42,12 @@
             v-model="showContourLines"
             @change="toggleContourLines"
           />
-          <label for="showContourLines">Contour Lines</label>
+          <label for="showContourLines">{{ $t('mainMap.contourLines') }}</label>
         </div>
 
         <div class="field-row">
           <input type="checkbox" id="showTerrain" v-model="showTerrain" @change="toggleTerrain" />
-          <label for="showTerrain">3D Terrain</label>
+          <label for="showTerrain">{{ $t('mainMap.3dTerrain') }}</label>
         </div>
 
         <div class="field-row">
@@ -57,7 +57,7 @@
             v-model="showHouseExtrusion"
             @change="toggleHouseExtrusion"
           />
-          <label for="showHouseExtrusion">3D Buildings</label>
+          <label for="showHouseExtrusion">{{ $t('mainMap.3dBuildings') }}</label>
         </div>
       </fieldset>
 
@@ -71,6 +71,7 @@ import { Map, addProtocol, addControl, NavigationControl, ScaleControl } from 'm
 import * as pmtiles from 'pmtiles'
 import * as turf from '@turf/turf'
 import proj4 from 'proj4'
+import { forward } from 'mgrs'
 </script>
 
 <script>
@@ -89,26 +90,17 @@ export default {
       showContourLines: true
     }
   },
-  props: {
-    worldname: {
-      type: String,
-      required: true,
-      default: 'stratis'
-    }
-  },
   unmounted() {
     this.playbackMap.remove()
   },
   mounted() {
     // const initialState = { lng: 0, lat: 0, zoom: 14 }
 
-    this.activeWorld = this.worldname
-
     let protocol = new pmtiles.Protocol()
     addProtocol('pmtiles', protocol.tile)
     const map = new Map({
       container: this.$refs.maplibre,
-      style: `https://styles.ocap2.com/${this.activeWorld}.json`,
+      style: `https://styles.ocap2.com/${this.activeWorld.worldName}.json`,
       attributionControl: false
     })
     map.addControl(new NavigationControl())
@@ -137,12 +129,16 @@ export default {
     this.playbackMap.once('render', () => {
       this.centerOnMap()
 
+      // this.activeWorld = this.playbackMap.getStyle().metadata
+
+      this.currentZoom = this.playbackMap.getZoom().toFixed(2)
+
       this.playbackMap.on('move', () => {
         this.viewBounds = this.playbackMap.getBounds()
       })
 
       this.playbackMap.on('zoom', this.updateCurrentZoom)
-      this.playbackMap.on('mousemove', this.updateMousePosition)
+      this.playbackMap.on('mousemove', this.updatemousePositionXY)
       this.playbackMap.on('pitch', this.updatePitchAndBearing)
 
       setTimeout(() => {
@@ -153,14 +149,16 @@ export default {
   },
   computed: {
     ...mapWritableState(useRecordingDataStore, ['playbackMap']),
-    ...mapWritableState(useRecordingDataStore, ['recordingData', 'activeWorld']),
+    ...mapState(useRecordingDataStore, ['recordingData', 'activeWorld']),
     ...mapWritableState(useRecordingDataStore, [
       'viewBounds',
       'currentZoom',
       'currentPitch',
       'currentBearing',
-      'mousePosition',
-      'maplibreVersion'
+      'mousePositionXY',
+      'mousePositionMGRS',
+      'maplibreVersion',
+      'activeWorld'
     ])
   },
   methods: {
@@ -200,7 +198,7 @@ export default {
       var zoom = e.target.getZoom()
       this.currentZoom = zoom.toFixed(2)
     },
-    async updateMousePosition(e) {
+    async updatemousePositionXY(e) {
       var coord_4326 = e.lngLat
       // console.log(coord_4326);
       // convert using proj
@@ -209,7 +207,48 @@ export default {
         coord_4326.lat
       ])
       // console.log(mercator);
-      this.mousePosition = `[${mercator[0].toFixed(0)}, ${mercator[1].toFixed(0)}]`
+      var mercatorStr = [
+        mercator[0].toFixed(0).toString().padStart(5, '0'),
+        mercator[1].toFixed(0).toString().padStart(5, '0')
+      ]
+      this.mousePositionXY = mercatorStr[0] + ' ' + mercatorStr[1]
+
+      // * calculate 8 digit MGRS grid from XY
+
+      // * add origin pos of world from metadata to mercator
+      // this is so Grid coords reflect 'real' position in world
+      var meta = this.activeWorld
+      var originLat = meta.latitude
+      var originLon = meta.longitude
+      var origin3857 = proj4(proj4.defs('EPSG:4326'), proj4.defs('EPSG:3857'), [
+        originLon,
+        originLat
+      ])
+      var originPlus3857 = [mercator[0] + origin3857[0], mercator[1] + origin3857[1]]
+      var originPlus4326 = proj4(proj4.defs('EPSG:3857'), proj4.defs('EPSG:4326'), [
+        originPlus3857[0],
+        originPlus3857[1]
+      ])
+
+      // console.log(mercator, [originLat, originLon], originPlus3857, originPlus4326)
+
+      // run through library
+      var mgrsStr = this.latlonToMGRS(originPlus4326[0], originPlus4326[1], 4)
+
+      this.mousePositionMGRS = mgrsStr
+    },
+    latlonToMGRS(lon, lat, precision) {
+      var mgrs = forward([lon, lat], precision)
+
+      // for zone, take first 3 digits of the MGRS string
+      var mgrsZone = mgrs.slice(0, 3)
+
+      // for numbers, take the last 8 digits of the MGRS string
+      var mgrsGrid = mgrs.slice(-8)
+      // split with space
+      mgrsGrid = mgrsGrid.slice(0, 4) + ' ' + mgrsGrid.slice(4, 8)
+
+      return mgrsZone + ' ' + mgrsGrid
     },
     async updatePitchAndBearing(e) {
       var pitch = e.target.getPitch()

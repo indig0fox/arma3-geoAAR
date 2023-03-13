@@ -8,15 +8,21 @@
         <table>
           <!-- author, size -->
           <tr>
-            <td>Author:</td>
+            <td>{{ $t('worlds.worldCard.author') }}</td>
             <td>{{ world.meta.author }}</td>
           </tr>
           <tr>
-            <td>Size:</td>
-            <td>{{ (world.meta.worldSize / 1000).toFixed(1) }}km&sup2;</td>
+            <td>{{ $t('worlds.worldCard.size') }}</td>
+            <td
+              v-html="
+                $t('worlds.worldCard.sizeValue', {
+                  size: (world.meta.worldSize / 1000).toFixed(1)
+                })
+              "
+            ></td>
           </tr>
         </table>
-        <router-link :to="'/world/' + world.meta.worldName.toLowerCase()">
+        <router-link :to="{ name: 'worldViewer', query: { world: world.meta.worldName } }">
           <button class="btn btn-primary">View</button>
         </router-link>
       </div>
@@ -25,6 +31,7 @@
           class="world-preview"
           :src="world.preview"
           :alt="world.meta.displayName"
+          v-if="world.preview"
         />
       </div>
     </div>
@@ -33,14 +40,14 @@
 
 <script>
 export default {
-  name: "WorldCard",
+  name: 'WorldCard',
   props: {
     world: {
       type: Object,
-      required: true,
-    },
-  },
-};
+      required: true
+    }
+  }
+}
 </script>
 
 <style scoped>

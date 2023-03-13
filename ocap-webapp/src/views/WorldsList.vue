@@ -1,6 +1,6 @@
 <template>
   <div id="worlds">
-    <h4
+    <h2
       style="
         padding: 10px;
 
@@ -8,13 +8,19 @@
         text-shadow: 0 0 2px black, 0 0 2px black, 0 0 10px black, 0 0 10px black;
       "
     >
-      Available Worlds
-    </h4>
+      {{ $t('headings.availableWorlds.title') }}
+    </h2>
+    <h4>{{ $t('headings.availableWorlds.subtitle') }}</h4>
     <div id="worlds-list" class="window-body">
       <WorldCard v-for="world in sortedWorlds" :key="world" :world="world" />
     </div>
   </div>
 </template>
+
+<script setup>
+import { mapState, mapWritableState } from 'pinia'
+import { useRecordingDataStore } from '@/stores/recordings.js'
+</script>
 
 <script>
 import WorldCard from '../components/WorldCard.vue'
@@ -22,34 +28,26 @@ import WorldCard from '../components/WorldCard.vue'
 export default {
   name: 'WorldsList',
   data() {
-    return {
-      message: 'Hello World!',
-      worlds: []
-    }
+    return {}
   },
   computed: {
+    ...mapState(useRecordingDataStore, [
+      'availableWorlds',
+      'viewBounds',
+      'currentZoom',
+      'currentPitch',
+      'currentBearing',
+      'mousePositionXY',
+      'maplibreVersion'
+    ]),
     sortedWorlds() {
-      return this.worlds.slice().sort((a, b) => {
+      return this.availableWorlds.slice().sort((a, b) => {
         return a.meta.displayName.localeCompare(b.meta.displayName)
       })
     }
   },
   mounted() {},
-  created() {
-    const fetchWorlds = async () => {
-      const response = await fetch('https://styles.ocap2.com/worlds.json')
-      const data = await response.json()
-      var worlds = []
-      Object.keys(data.worlds).forEach(function (key) {
-        var item = data.worlds[key]
-        item.preview = 'https://styles.ocap2.com/previews/' + key + '_256px.png'
-        worlds.push(data.worlds[key])
-      })
-      this.worlds = worlds
-      // console.log(this.worlds);
-    }
-    fetchWorlds()
-  },
+  created() {},
   methods: {},
   components: { WorldCard }
 }
