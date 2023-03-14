@@ -10,7 +10,6 @@
     >
       {{ $t('headings.availableWorlds.title') }}
     </h2>
-    <h4>{{ $t('headings.availableWorlds.subtitle') }}</h4>
     <div id="worlds-list" class="window-body">
       <WorldCard v-for="world in sortedWorlds" :key="world" :world="world" />
     </div>

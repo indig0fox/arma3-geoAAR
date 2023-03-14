@@ -65,7 +65,7 @@ import LocaleChanger from '@/components/LocaleChanger.vue'
           }"
         >
           <button role="tab" aria-controls="tab-A" :aria-selected="$route.name == 'worlds'">
-            Worlds
+            {{ $t('app.tabs.worldsList') }}
           </button>
         </router-link>
         <router-link
@@ -75,7 +75,7 @@ import LocaleChanger from '@/components/LocaleChanger.vue'
           }"
         >
           <button role="tab" aria-controls="tab-B" :aria-selected="$route.name == 'worldViewer'">
-            World Viewer
+            {{ $t('app.tabs.worldViewer') }}
           </button>
         </router-link>
         <button role="tab" aria-controls="tab-C">Planner</button>
@@ -86,7 +86,7 @@ import LocaleChanger from '@/components/LocaleChanger.vue'
           }"
         >
           <button role="tab" aria-controls="tab-D" :aria-selected="$route.name == 'recordings'">
-            Recordings
+            {{ $t('app.tabs.recordingsList') }}
           </button>
         </router-link>
         <router-link
@@ -100,12 +100,12 @@ import LocaleChanger from '@/components/LocaleChanger.vue'
             aria-controls="tab-E"
             :aria-selected="$route.name == 'recordingViewer'"
           >
-            Recording Viewer
+            {{ $t('app.tabs.recordingViewer') }}
           </button>
         </router-link>
         <router-link to="/about">
           <button role="tab" aria-controls="tab-F" :aria-selected="$route.name == 'about'">
-            About
+            {{ $t('app.tabs.about') }}
           </button>
         </router-link>
       </menu>
@@ -133,14 +133,7 @@ export default {
       'activeRecordingData'
     ])
   },
-  mounted() {
-    // window.onerror = function (msg) {
-    //   console.error(msg);
-    // };
-    const recordingData = useRecordingDataStore()
-    recordingData.getWorlds()
-    recordingData.getRecordings()
-  },
+  mounted() {},
   watch: {
     $route(to, from) {
       const recordingData = useRecordingDataStore()

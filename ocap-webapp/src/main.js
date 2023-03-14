@@ -18,12 +18,32 @@ const pinia = createPinia()
 app.use(pinia)
 
 import { useRecordingDataStore } from './stores/recordings.js'
-useRecordingDataStore().getWorlds()
-useRecordingDataStore().getRecordings()
+
 
 import i18n from '@/i18n'
 app.use(i18n)
 
 app.use(router)
+
+useRecordingDataStore().getWorlds()
+  .then((availableWorlds) => {
+    console.log('Loaded', availableWorlds.size, 'worlds')
+  })
+  .catch((error) => {
+    console.log('Error loading worlds data', error)
+    return alert(`Error loading worlds\nStatus: ${error.status} ${error.statusText}\nUrl: ${error.url}`)
+  })
+
+useRecordingDataStore().getRecordings()
+  .then((availableRecordings) => {
+    console.log('Loaded', availableRecordings.size, 'recordings')
+  })
+  .then(() => {
+
+  })
+  .catch((error) => {
+    console.log('Error loading recordings data', error)
+    return alert(`Error loading recordings\nStatus: ${error.status} ${error.statusText}\nUrl: ${error.url}`)
+  })
 
 app.mount('#app')

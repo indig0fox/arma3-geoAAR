@@ -1,14 +1,20 @@
 {
   "headings": {
     "availableWorlds": {
-      "title": "Available Worlds",
-      "subtitle": "Select a world to view it in the Terrain Analyzer."
+      "title": "Available Worlds"
     }
   },
   "app": {
     "windowTitle": "Arma 3 GeoAAR",
     "recording": "Recording",
     "world": "Active World",
+    "tabs": {
+      "worldsList": "Worlds",
+      "worldViewer": "World Viewer",
+      "recordingsList": "Recordings",
+      "recordingViewer": "Recording Viewer",
+      "about": "About"
+    },
     "noWorldLoaded": "No world loaded",
     "noRecordingLoaded": "No recording loaded"
   },

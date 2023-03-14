@@ -27,8 +27,8 @@ export const useRecordingDataStore = defineStore('recordingData', {
   // could also be defined as
   // state: () => ({ count: 0 })
   actions: {
-    getWorlds () {
-      fetch('https://styles.ocap2.com/worlds.json', {
+    async getWorlds () {
+      return fetch('https://styles.ocap2.com/worlds.json', {
         cache: "no-cache"
       })
         .then((response) => {
@@ -39,28 +39,36 @@ export const useRecordingDataStore = defineStore('recordingData', {
         })
         .then((data) => {
           this.availableWorlds = new Map(Object.entries(data.worlds))
-          console.log('worlds', this.availableWorlds.size, this.availableWorlds)
+          // console.log('worlds', this.availableWorlds.size, this.availableWorlds)
 
-          this.availableWorlds.forEach((value, key, map) => {
-
+          this.availableWorlds.forEach(async (value, key, map) => {
             var previewUri = 'https://styles.ocap2.com/previews/' + key + '_256px.png'
-            fetch(previewUri, { method: 'GET', async: false })
+            return fetch(previewUri, { method: 'GET' })
               .then((response) => {
                 // console.log(response)
 
-                if (response.ok) {
-                  value.preview = previewUri
+                if (!response.ok) {
+                  return Promise.reject(response)
                 }
-                // this.availableWorlds[key] = item
-                return Promise.resolve()
-              });
-          })
-        })
+                value.preview = previewUri
+                return Promise.resolve(response)
 
+              })
+              .catch((error) => {
+                console.log('Error loading preview for', value.meta.worldName, error)
+              })
+          })
+
+          return Promise.resolve(this.availableWorlds)
+        })
+        .catch((response) => {
+          // console.log('error', error)
+          return Promise.reject(response)
+        })
     },
-    getRecordings () {
-      const uri = 'http://127.0.0.1:5001'
-      // const uri = window.location.origin
+    async getRecordings () {
+      // const uri = 'http://127.0.0.1:5001'
+      const uri = window.location.origin
       return fetch(uri + `/api/v1/operations?tag=${this.searchFilterTag}&name=${this.searchFilterMissionName}&newer=${this.searchFilterOldest}&older=${this.searchFilterNewest}`, {
         cache: "no-cache"
       })
@@ -68,10 +76,12 @@ export const useRecordingDataStore = defineStore('recordingData', {
           if (!response.status === 200) {
             return Promise.reject(response);
           }
+          console.log(response)
           return Promise.resolve(response.json())
         })
         .then((data) => {
           const OpList = data;
+          // console.log(OpList)
           // sort by newest first, using yyyy-mm-dd format in Date field
           OpList.sort((a, b) => {
             return new Date(b.date) - new Date(a.date);
@@ -82,20 +92,20 @@ export const useRecordingDataStore = defineStore('recordingData', {
               return [item.id, item]
             })
           )
-          return Promise.resolve();
+          return Promise.resolve(this.availableRecordings);
         })
         .catch((error) => {
-          // console.error('Error:', error);
-          this.availableRecordings = new Map([
-            0, {
-              "id": 0,
-              "name": "Error",
-              "date": "2021-01-01",
-              "tag": "Error",
-              "mission_name": "Failed to get data from server",
-            }
-          ])
-          return
+          console.error(error);
+          // this.availableRecordings = new Map([
+          //   ['0', {
+          //     "id": 0,
+          //     "name": "Error",
+          //     "date": "2021-01-01",
+          //     "tag": "Error",
+          //     "mission_name": "Failed to get data from server",
+          //   }]
+          // ])
+          return Promise.reject(error);
         });
 
     },
@@ -109,8 +119,8 @@ export const useRecordingDataStore = defineStore('recordingData', {
         "missionName": "Loading...",
         "author": "",
       }
-      const uri = 'http://127.0.0.1:5001'
-      // const uri = window.location.origin
+      // const uri = 'http://127.0.0.1:5001'
+      const uri = window.location.origin
       const path = `/data/${operation.filename}`
       return fetch(uri + path, {
 

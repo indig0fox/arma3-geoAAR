@@ -158,7 +158,6 @@ export default {
         this.map.getStyle().layers.forEach((layer) => {
           if (
             [
-              'boundary',
               'background',
               'land',
               'sea',
