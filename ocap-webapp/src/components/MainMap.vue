@@ -96,11 +96,21 @@ export default {
   mounted() {
     // const initialState = { lng: 0, lat: 0, zoom: 14 }
 
+    // if (this.$route.query.world) {
+    //   console.log('world', this.$route.query.world)
+    //   console.log('world', this.availableWorlds)
+    //   this.activeWorld = this.availableWorlds[this.$route.query.world]
+    // } else {
+    //   if (this.availableWorlds.get('tanoa')) {
+    //     this.activeWorld = this.availableWorlds['tanoa']
+    //   }
+    // }
+
     let protocol = new pmtiles.Protocol()
     addProtocol('pmtiles', protocol.tile)
     const map = new Map({
       container: this.$refs.maplibre,
-      style: `https://styles.ocap2.com/${this.activeWorld.worldName}.json`,
+      style: `https://styles.ocap2.com/${this.activeWorld.meta.worldName}.json`,
       attributionControl: false
     })
     map.addControl(new NavigationControl())
@@ -149,7 +159,7 @@ export default {
   },
   computed: {
     ...mapWritableState(useRecordingDataStore, ['playbackMap']),
-    ...mapState(useRecordingDataStore, ['recordingData', 'activeWorld']),
+    ...mapState(useRecordingDataStore, ['recordingData', 'availableWorlds']),
     ...mapWritableState(useRecordingDataStore, [
       'viewBounds',
       'currentZoom',
@@ -207,24 +217,34 @@ export default {
         coord_4326.lat
       ])
       // console.log(mercator);
+
       var mercatorStr = [
-        mercator[0].toFixed(0).toString().padStart(5, '0'),
-        mercator[1].toFixed(0).toString().padStart(5, '0')
+        Math.abs(mercator[0]).toFixed(0).toString().padStart(5, '0'),
+        Math.abs(mercator[1]).toFixed(0).toString().padStart(5, '0')
       ]
+
+      // * add negative sign if needed
+      mercator[0] < 0 ? (mercatorStr[0] = '-' + mercatorStr[0]) : (mercatorStr[0] = mercatorStr[0])
+      mercator[1] < 0 ? (mercatorStr[1] = '-' + mercatorStr[1]) : (mercatorStr[1] = mercatorStr[1])
+
       this.mousePositionXY = mercatorStr[0] + ' ' + mercatorStr[1]
 
       // * calculate 8 digit MGRS grid from XY
 
       // * add origin pos of world from metadata to mercator
       // this is so Grid coords reflect 'real' position in world
-      var meta = this.activeWorld
+      var meta = this.activeWorld.meta
       var originLat = meta.latitude
       var originLon = meta.longitude
+      // console.log(originLat, originLon)
       var origin3857 = proj4(proj4.defs('EPSG:4326'), proj4.defs('EPSG:3857'), [
         originLon,
         originLat
       ])
       var originPlus3857 = [mercator[0] + origin3857[0], mercator[1] + origin3857[1]]
+
+      // console.log(origin3857, originPlus3857)
+
       var originPlus4326 = proj4(proj4.defs('EPSG:3857'), proj4.defs('EPSG:4326'), [
         originPlus3857[0],
         originPlus3857[1]
@@ -243,12 +263,15 @@ export default {
       // for zone, take first 3 digits of the MGRS string
       var mgrsZone = mgrs.slice(0, 3)
 
+      var mgrsGridZone = mgrs.slice(3, 5)
+
       // for numbers, take the last 8 digits of the MGRS string
       var mgrsGrid = mgrs.slice(-8)
       // split with space
       mgrsGrid = mgrsGrid.slice(0, 4) + ' ' + mgrsGrid.slice(4, 8)
 
-      return mgrsZone + ' ' + mgrsGrid
+      return mgrsZone + ' ' + mgrsGridZone + ' ' + mgrsGrid
+      return mgrs
     },
     async updatePitchAndBearing(e) {
       var pitch = e.target.getPitch()

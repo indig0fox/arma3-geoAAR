@@ -8,7 +8,9 @@
   "app": {
     "windowTitle": "Arma 3 GeoAAR",
     "recording": "Recording",
-    "world": "Active World"
+    "world": "Active World",
+    "noWorldLoaded": "No world loaded",
+    "noRecordingLoaded": "No recording loaded"
   },
   "mainMap": {
     "windowTitle": "Main Map",

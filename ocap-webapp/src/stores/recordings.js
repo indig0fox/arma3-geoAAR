@@ -3,12 +3,12 @@ import { defineStore } from 'pinia'
 export const useRecordingDataStore = defineStore('recordingData', {
   state: () => {
     return {
-      availableWorlds: [],
-      availableRecordings: [],
-      activeWorld: { worldName: 'tanoa', displayName: 'Tanoa' },
-      activeRecording: {},
+      availableWorlds: new Map(),
+      availableRecordings: new Map(),
+      activeWorld: null,
+      activeRecording: null,
+      activeRecordingData: null,
       recordingUrl: '',
-      recordingMetadata: {},
       viewBounds: {},
       currentZoom: 0,
       currentPitch: 0,
@@ -27,29 +27,36 @@ export const useRecordingDataStore = defineStore('recordingData', {
   // could also be defined as
   // state: () => ({ count: 0 })
   actions: {
-    async getWorlds () {
-      fetch('https://styles.ocap2.com/worlds.json')
+    getWorlds () {
+      fetch('https://styles.ocap2.com/worlds.json', {
+        cache: "no-cache"
+      })
         .then((response) => {
-          return response.json()
+          if (!response.ok) {
+            return Promise.reject(response)
+          }
+          return Promise.resolve(response.json())
         })
         .then((data) => {
-          var worlds = []
-          Object.keys(data.worlds).forEach(function (key) {
-            var item = data.worlds[key]
+          this.availableWorlds = new Map(Object.entries(data.worlds))
+          console.log('worlds', this.availableWorlds.size, this.availableWorlds)
+
+          this.availableWorlds.forEach((value, key, map) => {
+
             var previewUri = 'https://styles.ocap2.com/previews/' + key + '_256px.png'
-            fetch(previewUri)
+            fetch(previewUri, { method: 'GET', async: false })
               .then((response) => {
+                // console.log(response)
+
                 if (response.ok) {
-                  item.preview = previewUri
+                  value.preview = previewUri
                 }
-                worlds.push(data.worlds[key])
-              })
-              .catch((error) => {
-                console.error(error)
-              })
+                // this.availableWorlds[key] = item
+                return Promise.resolve()
+              });
           })
-          this.availableWorlds = worlds
         })
+
     },
     getRecordings () {
       const uri = 'http://127.0.0.1:5001'
@@ -70,30 +77,43 @@ export const useRecordingDataStore = defineStore('recordingData', {
             return new Date(b.date) - new Date(a.date);
           });
           // console.log('Success:', OpList);
-          this.availableRecordings = OpList
+          this.availableRecordings = new Map(
+            OpList.map((item) => {
+              return [item.id, item]
+            })
+          )
           return Promise.resolve();
         })
         .catch((error) => {
           // console.error('Error:', error);
-          this.availableRecordings = [
-            {
+          this.availableRecordings = new Map([
+            0, {
               "id": 0,
               "name": "Error",
               "date": "2021-01-01",
               "tag": "Error",
               "mission_name": "Failed to get data from server",
             }
-          ]
+          ])
           return
         });
 
     },
     getRecordingData (operation) {
+
+      // if already loaded & matching then return
+      if (this.activeRecordingData?.missionName === operation.mission_name) {
+        return
+      }
+      this.activeRecordingData = {
+        "missionName": "Loading...",
+        "author": "",
+      }
       const uri = 'http://127.0.0.1:5001'
       // const uri = window.location.origin
       const path = `/data/${operation.filename}`
       return fetch(uri + path, {
-        cache: "no-cache"
+
       })
         .then((response) => {
           if (!response.status === 200) {
@@ -104,14 +124,15 @@ export const useRecordingDataStore = defineStore('recordingData', {
         .then((data) => {
           const recordingData = data;
           console.log('Success: Retrieved recording data for', operation.filename);
-          this.activeRecording = recordingData
+          this.activeRecordingData = recordingData
           this.recordingUrl = uri + path
-          var recordingWorld = this.availableWorlds.find(world => world.meta.worldName.toLowerCase() === operation.world_name.toLowerCase())
-          console.log('recordingWorld', recordingWorld)
+          var recordingWorld = this.availableWorlds.get(operation.world_name.toLowerCase())
+          // console.log('recordingWorld', recordingWorld)
           if (recordingWorld) {
-            this.activeWorld = recordingWorld.meta
+            this.activeWorld = recordingWorld
           } else {
-            this.activeWorld = { worldName: 'vr', displayName: 'VR' }
+            this.activeWorld = null
+            alert('World data not available for ' + operation.world_name)
           }
 
           return Promise.resolve();

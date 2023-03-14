@@ -49,7 +49,7 @@ export default {
     addProtocol('pmtiles', protocol.tile)
     const map = new Map({
       container: this.$refs.minimapContainer,
-      style: `https://styles.ocap2.com/${this.activeWorld.worldName}.json`,
+      style: `https://styles.ocap2.com/${this.activeWorld.meta.worldName}.json`,
       attributionControl: false,
       interactive: false,
       antialias: false
@@ -158,11 +158,13 @@ export default {
         this.map.getStyle().layers.forEach((layer) => {
           if (
             [
+              'boundary',
               'background',
               'land',
               'sea',
               'hillshade',
               'forest',
+              'runway',
               'road',
               'main_road',
               'trackingRectFill',

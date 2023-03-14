@@ -133,7 +133,10 @@ export default {
       //   this.searchFilterNewest
       // )
 
-      return this.availableRecordings.filter((recording) => {
+      // filter by map values
+      const filteredRecordings = []
+
+      for (const recording of this.availableRecordings.values()) {
         const date = new Date(recording.date)
         const dateFilter =
           (this.searchFilterOldest === '' || date >= new Date(this.searchFilterOldest)) &&
@@ -148,8 +151,12 @@ export default {
           this.searchFilterTag === '' ||
           recording.tag.toLowerCase().includes(this.searchFilterTag.toLowerCase())
 
-        return dateFilter && missionNameFilter && worldNameFilter && tagFilter
-      })
+        if (dateFilter && missionNameFilter && worldNameFilter && tagFilter) {
+          filteredRecordings.push(recording)
+        }
+      }
+
+      return filteredRecordings
     }
   }
 }
@@ -182,7 +189,7 @@ export default {
   width: auto;
   height: 100%;
 
-  background: url('@/assets/arma3_screenshot_20.jpg');
+  background: url('@/assets/img/arma3_screenshot_20.jpg');
   border: 5px solid #000000;
 }
 
@@ -238,6 +245,7 @@ export default {
   height: 100%;
 }
 #recordings-list > thead {
+  /* width: 100%; */
   /* border: 1px solid #000; */
   background-color: black;
   color: white;

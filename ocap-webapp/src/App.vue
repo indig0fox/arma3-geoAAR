@@ -16,31 +16,35 @@ import LocaleChanger from '@/components/LocaleChanger.vue'
         <router-link to="/">
           <img src="@/assets/img/a3white.png" />
         </router-link>
-        <div class="title-bar-text">{{ $t('app.windowTitle') }}</div>
+        <div class="title-bar-text" style="margin-right: 0px">
+          {{ $t('app.windowTitle') }}
+        </div>
+
+        <LocaleChanger />
 
         <div class="title-bar-text">
           <span>{{ $t('app.world') }}:&nbsp;</span>
-          <span v-if="recordingData.activeWorld" style="color: yellow; font-family: monospace">
-            {{ recordingData.activeWorld.displayName }} &lt;{{
-              recordingData.activeWorld.worldName
-            }}&gt;
+          <span v-if="activeWorld" style="color: yellow; font-family: monospace">
+            {{ activeWorld.meta.displayName }} &lt;{{ activeWorld.meta.worldName }}&gt;
+          </span>
+          <span v-show="!activeWorld" style="color: yellow; font-family: monospace">
+            {{ $t('app.noWorldLoaded') }}
           </span>
         </div>
         <div class="title-bar-text">
           <span>{{ $t('app.recording') }}:&nbsp;</span>
           <!-- add mission name, and add author but truncate if too long -->
-          <span
-            v-if="recordingData.activeRecording.missionAuthor"
-            style="color: yellow; font-family: monospace"
-          >
-            {{ recordingData.activeRecording.missionName }} &lt;{{
-              recordingData.activeRecording.missionAuthor.length > 30
-                ? recordingData.activeRecording.missionAuthor.substring(0, 30) + '...'
-                : recordingData.activeRecording.missionAuthor
+          <span v-if="activeRecordingData" style="color: yellow; font-family: monospace">
+            {{ activeRecordingData.missionName }} &lt;{{
+              activeRecordingData.missionAuthor?.length > 30
+                ? activeRecordingData.missionAuthor.substring(0, 30) + '...'
+                : activeRecordingData.missionAuthor
             }}&gt;
           </span>
+          <span v-show="!activeRecordingData" style="color: yellow; font-family: monospace">
+            {{ $t('app.noRecordingLoaded') }}
+          </span>
         </div>
-        <LocaleChanger />
       </div>
       <div id="top-navbar-center" style="display: flex; flex-direction: row; height: 80%"></div>
       <!-- <div id="top-navbar-right" style="display: flex; flex-direction: row; height: 80%"> -->
@@ -54,23 +58,43 @@ import LocaleChanger from '@/components/LocaleChanger.vue'
     </div>
     <div id="window-body" class="window-body">
       <menu role="tablist" aria-label="Component Tabs">
-        <router-link to="/worlds">
+        <router-link
+          :to="{
+            name: 'worlds',
+            query: { id: activeRecording?.id, world: activeWorld?.meta.worldName }
+          }"
+        >
           <button role="tab" aria-controls="tab-A" :aria-selected="$route.name == 'worlds'">
             Worlds
           </button>
         </router-link>
-        <router-link to="/viewer">
+        <router-link
+          :to="{
+            name: 'worldViewer',
+            query: { id: activeRecording?.id, world: activeWorld?.meta.worldName }
+          }"
+        >
           <button role="tab" aria-controls="tab-B" :aria-selected="$route.name == 'worldViewer'">
-            Viewer
+            World Viewer
           </button>
         </router-link>
         <button role="tab" aria-controls="tab-C">Planner</button>
-        <router-link to="/recordings">
+        <router-link
+          :to="{
+            name: 'recordings',
+            query: { id: activeRecording?.id, world: activeWorld?.meta.worldName }
+          }"
+        >
           <button role="tab" aria-controls="tab-D" :aria-selected="$route.name == 'recordings'">
             Recordings
           </button>
         </router-link>
-        <router-link to="/playback">
+        <router-link
+          :to="{
+            name: 'recordingViewer',
+            query: { id: activeRecording?.id, world: activeWorld?.meta.worldName }
+          }"
+        >
           <button
             role="tab"
             aria-controls="tab-E"
@@ -104,44 +128,10 @@ export default {
     ...mapWritableState(useRecordingDataStore, [
       'availableWorlds',
       'availableRecordings',
-      'activeWorld'
-    ]),
-    sortedWorlds() {
-      return this.availableWorlds.slice().sort((a, b) => {
-        return a.meta.displayName.localeCompare(b.meta.displayName)
-      })
-    }
-  },
-  watch: {
-    $route: function (to, from) {
-      console.log({
-        event: 'route changed',
-        name: to.name,
-        query: to.query
-      })
-      const recordingData = useRecordingDataStore()
-
-      if (to.query.world) {
-        var worldObj = this.availableWorlds.find(
-          (world) => world.meta.worldName.toLowerCase() === to.query.world.toLowerCase()
-        )
-        if (worldObj) {
-          this.activeWorld = worldObj.meta
-        }
-      }
-
-      if (to.query.id) {
-        // console.log(this.availableRecordings)
-        var recordingObj = this.availableRecordings.find((recording) => {
-          // parse number from query param
-          return recording.id === parseInt(to.query.id)
-        })
-        if (recordingObj) {
-          console.log(recordingObj)
-          recordingData.getRecordingData(recordingObj)
-        }
-      }
-    }
+      'activeWorld',
+      'activeRecording',
+      'activeRecordingData'
+    ])
   },
   mounted() {
     // window.onerror = function (msg) {
@@ -150,6 +140,37 @@ export default {
     const recordingData = useRecordingDataStore()
     recordingData.getWorlds()
     recordingData.getRecordings()
+  },
+  watch: {
+    $route(to, from) {
+      const recordingData = useRecordingDataStore()
+
+      if (to.query.world) {
+        var worldObj = this.availableWorlds.get(to.query.world.toLowerCase())
+
+        if (worldObj) {
+          this.activeWorld = worldObj
+          // console.log(this.activeWorld)
+        }
+      }
+
+      if (to.query.id) {
+        // * load recording from provided ID
+        // console.log(this.availableRecordings)
+        var recordingObj = this.availableRecordings.get(parseInt(to.query.id))
+
+        if (recordingObj) {
+          // console.log(recordingObj)
+          this.activeRecording = recordingObj
+          recordingData.getRecordingData(recordingObj)
+        } else {
+          this.activeRecording = null
+          alert('Recording id ' + to.query.id + ' not found')
+        }
+      } else {
+        this.activeRecording = null
+      }
+    }
   },
   methods: {}
 }

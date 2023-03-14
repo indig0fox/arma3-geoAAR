@@ -24,7 +24,7 @@ export default {
     }
   },
   computed: {
-    ...mapWritableState(useRecordingDataStore, ['recordingData', 'activeWorld']),
+    ...mapState(useRecordingDataStore, ['recordingData', 'activeWorld']),
     ...mapState(useRecordingDataStore, [
       'viewBounds',
       'currentZoom',
@@ -248,17 +248,10 @@ export default {
       @mouseleave="adjustActiveState"
     >
       <div class="title-bar">
-        <div class="title-bar-text" v-if="!style.metadata">
+        <div class="title-bar-text">
           <img src="@/assets/img/terrain_icon.svg" class="title-bar-icon" />
           {{ $t('mainMap.windowTitle') }}
         </div>
-        <div class="title-bar-text" v-if="style.metadata">
-          <img src="@/assets/img/terrain_icon.svg" class="title-bar-icon" />
-          {{ $t('mainMap.windowTitle') }} - {{ activeWorld.displayName }} &lt;{{
-            activeWorld.worldName
-          }}&gt;
-        </div>
-
         <div class="title-bar-controls">
           <button aria-label="Minimize"></button>
           <button aria-label="Maximize"></button>
@@ -267,10 +260,10 @@ export default {
       </div>
       <!-- <div id="map" v-show="mapLoaded"></div> -->
       <div id="map-container" class="window-body">
-        <MainMap />
+        <MainMap v-if="activeWorld" />
       </div>
       <div id="map-container-bottom">
-        <MapStateStatusBar />
+        <MapStateStatusBar v-if="activeWorld" />
       </div>
     </div>
     <div id="right-panel" class="panel">
@@ -290,7 +283,7 @@ export default {
         </div>
         <div id="minimap-container-body" class="window-body">
           <!-- <div id="map-overview" v-if="style.metadata"></div> -->
-          <MiniMap />
+          <MiniMap v-if="activeWorld" />
           <!-- <div id="style-controls-group">
             <legend>Style Controls</legend> -->
 

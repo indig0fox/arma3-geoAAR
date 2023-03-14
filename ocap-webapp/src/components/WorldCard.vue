@@ -22,25 +22,40 @@
             ></td>
           </tr>
         </table>
+
         <router-link :to="{ name: 'worldViewer', query: { world: world.meta.worldName } }">
           <button class="btn btn-primary">View</button>
         </router-link>
       </div>
-      <div>
+      <div style="display: flex; justify-content: center; align-items: center">
         <img
           class="world-preview"
           :src="world.preview"
           :alt="world.meta.displayName"
-          v-if="world.preview"
+          v-show="world.preview"
         />
+        <div>
+          <!-- show blank 256px div if no preview -->
+          <ScaleLoader class="world-preview" v-if="!world.preview" :color="'#02108a'" />
+        </div>
       </div>
     </div>
   </div>
 </template>
 
+<script setup>
+import { ScaleLoader } from 'vue3-spinner'
+</script>
+
 <script>
 export default {
   name: 'WorldCard',
+  components: {
+    ScaleLoader
+  },
+  data() {
+    return {}
+  },
   props: {
     world: {
       type: Object,
@@ -88,7 +103,7 @@ export default {
 }
 
 .world-preview {
-  width: 100%;
-  height: auto;
+  width: 128px;
+  height: 128px;
 }
 </style>

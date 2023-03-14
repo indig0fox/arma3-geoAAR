@@ -70,9 +70,9 @@ import PlaybackManager from '@/components/PlaybackManager.vue'
                 </div>
               </div>
               <div id="map-container-body" class="window-body">
-                <MainMap :key="activeWorld" />
+                <MainMap :key="activeWorld" v-if="activeWorld" />
               </div>
-              <MapStateStatusBar />
+              <MapStateStatusBar v-if="activeWorld" />
             </div>
 
             <div
@@ -114,7 +114,7 @@ import PlaybackManager from '@/components/PlaybackManager.vue'
                 </div>
               </div>
               <div id="minimap-container-body" class="window-body">
-                <MiniMap :key="activeWorld" />
+                <MiniMap :key="activeWorld" v-if="activeWorld" />
               </div>
             </div>
             <h3>Right</h3>
@@ -154,8 +154,8 @@ export default {
   },
   mounted() {},
   computed: {
-    ...mapState(useRecordingDataStore, ['playbackMap']),
-    ...mapWritableState(useRecordingDataStore, ['recordingData', 'activeWorld']),
+    ...mapState(useRecordingDataStore, ['playbackMap', 'activeRecording', 'activeRecordingData']),
+    ...mapWritableState(useRecordingDataStore, ['activeWorld']),
     ...mapState(useRecordingDataStore, [
       'viewBounds',
       'currentZoom',

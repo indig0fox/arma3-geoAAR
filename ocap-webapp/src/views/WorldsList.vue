@@ -41,7 +41,11 @@ export default {
       'maplibreVersion'
     ]),
     sortedWorlds() {
-      return this.availableWorlds.slice().sort((a, b) => {
+      var sortedWorlds = []
+      this.availableWorlds.forEach((world, key) => {
+        sortedWorlds.push(world)
+      })
+      return sortedWorlds.sort((a, b) => {
         return a.meta.displayName.localeCompare(b.meta.displayName)
       })
     }
@@ -60,7 +64,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
 
-  background: url('@/assets/arma3_screenshot_20.jpg');
+  background: url('@/assets/img/arma3_screenshot_20.jpg');
   border: 5px solid #000000;
 }
 #worlds-list {
