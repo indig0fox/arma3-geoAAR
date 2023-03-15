@@ -1,5 +1,6 @@
 <script setup>
 import { Map, addProtocol, addControl, NavigationControl } from 'maplibre-gl'
+import 'maplibre-gl/dist/maplibre-gl.css'
 import * as pmtiles from 'pmtiles'
 
 import { mapState, mapWritableState } from 'pinia'
@@ -72,7 +73,9 @@ import PlaybackManager from '@/components/PlaybackManager.vue'
               <div id="map-container-body" class="window-body">
                 <MainMap :key="activeWorld" v-if="activeWorld" />
               </div>
-              <MapStateStatusBar v-if="activeWorld" />
+              <div id="map-container-bottom">
+                <MapStateStatusBar :key="activeWorld" v-if="activeWorld" />
+              </div>
             </div>
 
             <div
@@ -155,7 +158,7 @@ export default {
   mounted() {},
   computed: {
     ...mapState(useRecordingDataStore, ['playbackMap', 'activeRecording', 'activeRecordingData']),
-    ...mapWritableState(useRecordingDataStore, ['activeWorld']),
+    ...mapState(useRecordingDataStore, ['activeWorld']),
     ...mapState(useRecordingDataStore, [
       'viewBounds',
       'currentZoom',

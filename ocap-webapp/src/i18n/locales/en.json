@@ -47,6 +47,7 @@
     "viewer": {
       "terrainWindow": "Terrain Analyzer",
       "minimapWindow": "Minimap"
-    }
+    },
+    "errorWindow": "Error"
   }
 }

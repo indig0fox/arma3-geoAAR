@@ -2,11 +2,11 @@
 import { RouterView } from 'vue-router'
 
 // pinia
-import { useRecordingDataStore } from './stores/recordings.js'
+import { useRecordingDataStore } from '@/stores/recordings.js'
 import { mapState, mapWritableState } from 'pinia'
-const recordingData = useRecordingDataStore()
 
 import LocaleChanger from '@/components/LocaleChanger.vue'
+import { ScaleLoader } from 'vue3-spinner'
 </script>
 
 <template>
@@ -114,6 +114,7 @@ import LocaleChanger from '@/components/LocaleChanger.vue'
       </menu>
 
       <article role="tabpanel" id="main">
+        <ScaleLoader v-if="(!worldsLoaded || !recordingsLoaded) && !error" :color="'#02108a'" />
         <RouterView />
       </article>
     </div>
@@ -124,8 +125,14 @@ import LocaleChanger from '@/components/LocaleChanger.vue'
 export default {
   name: 'App',
   components: {},
+  // beforeRouteEnter: function (to, from, next) {
+
+  // },
   data() {
     return {}
+  },
+  components: {
+    ScaleLoader
   },
   computed: {
     ...mapWritableState(useRecordingDataStore, [
@@ -134,53 +141,10 @@ export default {
       'activeWorld',
       'activeRecording',
       'activeRecordingData'
-    ])
+    ]),
+    ...mapState(useRecordingDataStore, ['worldsLoaded', 'recordingsLoaded', 'error'])
   },
   mounted() {},
-  watch: {
-    availableWorlds: {
-      handler: function (val, oldVal) {
-        if (this.$route.query.world) {
-          var worldObj = val.get(this.$route.query.world.toLowerCase())
-
-          if (worldObj) {
-            this.activeWorld = worldObj
-            // console.log(this.activeWorld)
-          }
-        }
-      },
-      deep: false
-    },
-    $route(to, from) {
-      const recordingData = useRecordingDataStore()
-
-      if (to.query.world) {
-        var worldObj = this.availableWorlds.get(to.query.world.toLowerCase())
-
-        if (worldObj) {
-          this.activeWorld = worldObj
-          // console.log(this.activeWorld)
-        }
-      }
-
-      if (to.query.id) {
-        // * load recording from provided ID
-        // console.log(this.availableRecordings)
-        var recordingObj = this.availableRecordings.get(parseInt(to.query.id))
-
-        if (recordingObj) {
-          // console.log(recordingObj)
-          this.activeRecording = recordingObj
-          recordingData.getRecordingData(recordingObj)
-        } else {
-          this.activeRecording = null
-          alert('Recording id ' + to.query.id + ' not found')
-        }
-      } else {
-        this.activeRecording = null
-      }
-    }
-  },
   methods: {}
 }
 </script>

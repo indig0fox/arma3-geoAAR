@@ -25,25 +25,4 @@ app.use(i18n)
 
 app.use(router)
 
-useRecordingDataStore().getWorlds()
-  .then((availableWorlds) => {
-    console.log('Loaded', availableWorlds.size, 'worlds')
-  })
-  .catch((error) => {
-    console.log('Error loading worlds data', error)
-    return alert(`Error loading worlds\nStatus: ${error.status} ${error.statusText}\nUrl: ${error.url}`)
-  })
-
-useRecordingDataStore().getRecordings()
-  .then((availableRecordings) => {
-    console.log('Loaded', availableRecordings.size, 'recordings')
-  })
-  .then(() => {
-
-  })
-  .catch((error) => {
-    console.log('Error loading recordings data', error)
-    return alert(`Error loading recordings\nStatus: ${error.status} ${error.statusText}\nUrl: ${error.url}`)
-  })
-
 app.mount('#app')

@@ -25,6 +25,7 @@ export default {
   },
   computed: {
     ...mapState(useRecordingDataStore, ['recordingData', 'activeWorld']),
+    ...mapState(useRecordingDataStore, ['playbackMap']),
     ...mapState(useRecordingDataStore, [
       'viewBounds',
       'currentZoom',

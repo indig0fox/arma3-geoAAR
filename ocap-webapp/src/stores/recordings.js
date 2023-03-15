@@ -4,12 +4,16 @@ export const useRecordingDataStore = defineStore('recordingData', {
   state: () => {
     return {
       availableWorlds: new Map(),
+      worldsLoaded: false,
       availableRecordings: new Map(),
+      recordingsLoaded: false,
       activeWorld: null,
       activeRecording: null,
       activeRecordingData: null,
       // apiUrl: 'http://127.0.0.1:5001',
       apiUrl: window.location.origin,
+      // apiUrl: 'http://127.0.0.1:9999',
+      error: null,
       viewBounds: {},
       currentZoom: 0,
       currentPitch: 0,
@@ -29,86 +33,89 @@ export const useRecordingDataStore = defineStore('recordingData', {
   // state: () => ({ count: 0 })
   actions: {
     async getWorlds () {
-      return fetch('https://styles.ocap2.com/worlds.json', {
-      })
-        .then((response) => {
-          if (!response.ok) {
-            return Promise.reject(response)
-          }
-          return Promise.resolve(response.json())
-        })
-        .then((data) => {
-          this.availableWorlds = new Map(Object.entries(data))
-          // console.log('worlds', this.availableWorlds.size, this.availableWorlds)
-
-          this.availableWorlds.forEach(async (value, key, map) => {
-            var previewUri = 'https://styles.ocap2.com/previews/' + key + '_256px.png'
-            return fetch(previewUri, {
-              method: 'GET',
-            })
-              .then((response) => {
-                // console.log(response)
-
-                if (!response.ok) {
-                  return Promise.reject(response)
-                }
-                value.preview = previewUri
-                return Promise.resolve(response)
-
-              })
-              .catch((error) => {
-                console.log('Error loading preview for', value.worldName, error)
-              })
-          })
-
-          return Promise.resolve(this.availableWorlds)
-        })
-        .catch((response) => {
-          // console.log('error', error)
+      let response, data
+      try {
+        response = await fetch('https://styles.ocap2.com/worlds.json', {})
+        if (!response.ok) {
           return Promise.reject(response)
+        }
+      } catch (error) {
+        // console.log('Error loading worlds data', error)
+        return Promise.reject(error)
+      }
+
+      try {
+        data = await response.json()
+      } catch (error) {
+        // console.log('Error parsing worlds data', error)
+        return Promise.reject(error)
+      }
+
+
+      this.availableWorlds = new Map(Object.entries(data))
+      // console.log('worlds', this.availableWorlds.size, this.availableWorlds)
+
+      // load world previews async
+      this.availableWorlds.forEach(async (value, key, map) => {
+        var previewUri = 'https://styles.ocap2.com/previews/' + key + '_256px.png'
+        fetch(previewUri, {
+          method: 'GET',
         })
+          .then((response) => {
+            // console.log(response)
+
+            if (!response.ok) {
+              return Promise.reject(response)
+            }
+            value.preview = previewUri
+            return Promise.resolve()
+
+          })
+          .catch((error) => {
+            console.warn('Error loading preview for', value.worldName, error)
+          })
+      })
+
+      return Promise.resolve(this.availableWorlds)
     },
     async getRecordings () {
-      return fetch(this.apiUrl + `/api/v1/operations?tag=${this.searchFilterTag}&name=${this.searchFilterMissionName}&newer=${this.searchFilterOldest}&older=${this.searchFilterNewest}`, {
-        // do not cache available recordings
-        cache: "no-cache"
-      })
-        .then((response) => {
-          if (!response.status === 200) {
-            return Promise.reject(response);
-          }
-          // console.log(response)
-          return Promise.resolve(response.json())
+      let response, data
+      try {
+        response = await fetch(this.apiUrl + `/api/v1/operations?tag=${this.searchFilterTag}&name=${this.searchFilterMissionName}&newer=${this.searchFilterOldest}&older=${this.searchFilterNewest}`, {
+          // do not cache available recordings
+          cache: "no-cache"
         })
-        .then((data) => {
-          const OpList = data;
-          // console.log(OpList)
-          // sort by newest first, using yyyy-mm-dd format in Date field
-          OpList.sort((a, b) => {
-            return new Date(b.date) - new Date(a.date);
-          });
-          // console.log('Success:', OpList);
-          this.availableRecordings = new Map(
-            OpList.map((item) => {
-              return [item.id, item]
-            })
-          )
-          return Promise.resolve(this.availableRecordings);
-        })
-        .catch((error) => {
-          console.error(error);
-          // this.availableRecordings = new Map([
-          //   ['0', {
-          //     "id": 0,
-          //     "name": "Error",
-          //     "date": "2021-01-01",
-          //     "tag": "Error",
-          //     "mission_name": "Failed to get data from server",
-          //   }]
-          // ])
-          return Promise.reject(error);
-        });
+        if (!response.ok) {
+          return Promise.reject(response)
+        }
+      } catch (error) {
+        // console.error('Error loading recordings', error)
 
+        // reject with object containing both response and error
+        return Promise.reject(error)
+      }
+
+      try {
+        data = await response.json()
+      } catch (error) {
+        // console.error('Error parsing recordings')
+        return Promise.reject(error)
+      }
+
+
+      const OpList = data;
+      // console.log(OpList)
+      // sort by newest first, using yyyy-mm-dd format in Date field
+      OpList.sort((a, b) => {
+        return new Date(b.date) - new Date(a.date);
+      });
+      // console.log('Success:', OpList);
+      this.availableRecordings = new Map(
+        OpList.map((item) => {
+          return [item.id, item]
+        })
+      )
+      return Promise.resolve(this.availableRecordings);
     },
     getRecordingData (operation) {
 
@@ -133,7 +140,7 @@ export const useRecordingDataStore = defineStore('recordingData', {
           const recordingData = data;
           console.log('Success: Retrieved recording data for', operation.filename);
           this.activeRecordingData = recordingData
-          this.recordingUrl = uri + path
+          this.recordingUrl = this.apiUrl + path
           var recordingWorld = this.availableWorlds.get(operation.world_name.toLowerCase())
           // console.log('recordingWorld', recordingWorld)
           if (recordingWorld) {
@@ -146,8 +153,8 @@ export const useRecordingDataStore = defineStore('recordingData', {
           return Promise.resolve();
         })
         .catch((error) => {
-          console.error("Error retrieving recording data for", filename, error);
-          return
+          console.error("Error retrieving recording data for", operation.filename, error);
+          throw error
         });
     },
   }
