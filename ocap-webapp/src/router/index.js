@@ -119,6 +119,10 @@ router.beforeEach(async (to, from) => {
   } else {
     recordingData.activeRecording = null
   }
+
+  // if (to.query.mapHash) {
+  //   recordingData.activeMapHash = to.query.mapHash
+  // }
 })
 
 

@@ -64,7 +64,8 @@ import { ScaleLoader } from 'vue3-spinner'
         <router-link
           :to="{
             name: 'worlds',
-            query: { id: activeRecording?.id, world: activeWorld?.worldName }
+            query: { id: activeRecording?.id, world: activeWorld?.worldName, ...$route.query },
+            ...$route.query
           }"
         >
           <button role="tab" aria-controls="tab-A" :aria-selected="$route.name == 'worlds'">
@@ -74,7 +75,8 @@ import { ScaleLoader } from 'vue3-spinner'
         <router-link
           :to="{
             name: 'worldViewer',
-            query: { id: activeRecording?.id, world: activeWorld?.worldName }
+            query: { id: activeRecording?.id, world: activeWorld?.worldName, ...$route.query },
+            ...$route.query
           }"
         >
           <button role="tab" aria-controls="tab-B" :aria-selected="$route.name == 'worldViewer'">
@@ -85,7 +87,8 @@ import { ScaleLoader } from 'vue3-spinner'
         <router-link
           :to="{
             name: 'recordings',
-            query: { id: activeRecording?.id, world: activeWorld?.worldName }
+            query: { id: activeRecording?.id, world: activeWorld?.worldName, ...$route.query },
+            ...$route.query
           }"
         >
           <button role="tab" aria-controls="tab-D" :aria-selected="$route.name == 'recordings'">
@@ -95,7 +98,7 @@ import { ScaleLoader } from 'vue3-spinner'
         <router-link
           :to="{
             name: 'recordingViewer',
-            query: { id: activeRecording?.id, world: activeWorld?.worldName }
+            query: { id: activeRecording?.id, world: activeWorld?.worldName, ...$route.query }
           }"
         >
           <button
@@ -106,7 +109,12 @@ import { ScaleLoader } from 'vue3-spinner'
             {{ $t('app.tabs.recordingViewer') }}
           </button>
         </router-link>
-        <router-link to="/about">
+        <router-link
+          :to="{
+            name: 'about',
+            query: { id: activeRecording?.id, world: activeWorld?.worldName, ...$route.query }
+          }"
+        >
           <button role="tab" aria-controls="tab-F" :aria-selected="$route.name == 'about'">
             {{ $t('app.tabs.about') }}
           </button>

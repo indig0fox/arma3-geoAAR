@@ -10,11 +10,12 @@ export const useRecordingDataStore = defineStore('recordingData', {
       activeWorld: null,
       activeRecording: null,
       activeRecordingData: null,
-      // apiUrl: 'http://127.0.0.1:5001',
-      apiUrl: window.location.origin,
+      apiUrl: 'http://127.0.0.1:5001',
+      // apiUrl: window.location.origin,
       // apiUrl: 'http://127.0.0.1:9999',
       error: null,
       viewBounds: {},
+      currentCenter: [0, 0],
       currentZoom: 0,
       currentPitch: 0,
       currentBearing: 0,
@@ -29,6 +30,20 @@ export const useRecordingDataStore = defineStore('recordingData', {
       searchFilterWorld: '',
     }
   },
+  getters: {
+    mapHash (state) {
+      if (!state.currentCenter) {
+        return {}
+      }
+      return {
+        z: state.currentZoom,
+        cnt: state.currentCenter[0].toFixed(3) + ',' + state.currentCenter[1].toFixed(3),
+        b: state.currentBearing,
+        p: state.currentPitch
+      }
+    }
+  },
+
   // could also be defined as
   // state: () => ({ count: 0 })
   actions: {

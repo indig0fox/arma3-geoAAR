@@ -14,7 +14,7 @@
     <p
       class="status-bar-field"
       v-if="mapIsLoaded"
-      v-html="playbackMap.getSource('features').attribution"
+      v-html="playbackMap?.getSource('features').attribution"
     ></p>
   </div>
 </template>

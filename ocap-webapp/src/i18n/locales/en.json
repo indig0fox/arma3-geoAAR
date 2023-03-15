@@ -6,7 +6,7 @@
   },
   "app": {
     "version": "v",
-    "versionNumber": "0.1.1",
+    "versionNumber": "0.1.2",
     "windowTitle": "Arma 3 GeoAAR",
     "recording": "Recording",
     "world": "Active World",
@@ -36,7 +36,8 @@
     "hillshade": "Hillshade",
     "contourLines": "Contour Lines",
     "3dTerrain": "3D Terrain",
-    "3dBuildings": "3D Buildings"
+    "3dBuildings": "3D Buildings",
+    "gridlines": "Gridlines"
   },
   "miniMap": {
     "windowTitle": "Minimap"

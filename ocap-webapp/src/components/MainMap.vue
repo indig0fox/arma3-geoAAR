@@ -59,6 +59,16 @@
           />
           <label for="showHouseExtrusion">{{ $t('mainMap.3dBuildings') }}</label>
         </div>
+
+        <div class="field-row">
+          <input
+            type="checkbox"
+            id="showGridlines"
+            v-model="showGridlines"
+            @change="toggleGridlines"
+          />
+          <label for="showGridlines">{{ $t('mainMap.gridlines') }}</label>
+        </div>
       </fieldset>
 
       <!-- </div> -->
@@ -87,24 +97,20 @@ export default {
       showTerrain: false,
       showSatellite: false,
       showHouseExtrusion: true,
-      showContourLines: true
+      showContourLines: true,
+      showGridlines: false,
+      queryString: ''
     }
   },
   unmounted() {
     this.playbackMap.remove()
   },
   mounted() {
-    // const initialState = { lng: 0, lat: 0, zoom: 14 }
-
-    // if (this.$route.query.world) {
-    //   console.log('world', this.$route.query.world)
-    //   console.log('world', this.availableWorlds)
-    //   this.activeWorld = this.availableWorlds[this.$route.query.world]
-    // } else {
-    //   if (this.availableWorlds.get('tanoa')) {
-    //     this.activeWorld = this.availableWorlds['tanoa']
-    //   }
-    // }
+    var items = []
+    Object.entries(this.$route.query).forEach(([key, value]) => {
+      items.push(`${key}=${value}`)
+    })
+    this.queryString = items.join('&')
 
     let protocol = new pmtiles.Protocol()
     addProtocol('pmtiles', protocol.tile)
@@ -113,6 +119,9 @@ export default {
       style: `https://styles.ocap2.com/${this.activeWorld.worldName}.json`,
       attributionControl: false
     })
+
+    console.log(this.queryString)
+
     map.addControl(new NavigationControl())
 
     map.addControl(
@@ -149,6 +158,14 @@ export default {
         this.viewBounds = this.playbackMap.getBounds()
       })
 
+      this.playbackMap.on('moveend', () => {
+        var center = this.playbackMap.getCenter()
+        this.currentCenter = [center.lat, center.lng]
+        this.$router.push({
+          query: this.mapHash ? { ...this.$route.query, ...this.mapHash } : this.$route.query
+        })
+      })
+
       this.playbackMap.on('zoom', this.updateCurrentZoom)
       this.playbackMap.on('mousemove', this.updatemousePositionXY)
       this.playbackMap.on('pitch', this.updatePitchAndBearing)
@@ -156,6 +173,7 @@ export default {
       setTimeout(() => {
         this.playbackMap.resize()
         this.playbackMap.setPaintProperty('background', 'background-color', '#c0c0c0')
+        this.generateGrids()
       }, 1000)
     })
   },
@@ -171,9 +189,10 @@ export default {
       return proj4('EPSG:4326', 'EPSG:3857', this.worldOrigin4326)
     },
     ...mapWritableState(useRecordingDataStore, ['playbackMap']),
-    ...mapState(useRecordingDataStore, ['recordingData', 'availableWorlds']),
+    ...mapState(useRecordingDataStore, ['recordingData', 'availableWorlds', 'mapHash']),
     ...mapWritableState(useRecordingDataStore, [
       'viewBounds',
+      'currentCenter',
       'currentZoom',
       'currentPitch',
       'currentBearing',
@@ -209,6 +228,33 @@ export default {
       const polyBounds = turf.bbox(poly)
       this.worldBounds = polyBounds
       // console.log(polyBounds);
+
+      let customQuery = false
+
+      if (this.$route.query.z) {
+        customQuery = true
+        this.playbackMap.setZoom(this.$route.query.z)
+      }
+
+      if (this.$route.query.cnt) {
+        customQuery = true
+        var cnt = this.$route.query.cnt.split(',')
+        this.playbackMap.setCenter([cnt[1], cnt[0]])
+      }
+
+      if (this.$route.query.b) {
+        customQuery = true
+        this.playbackMap.setBearing(this.$route.query.b)
+      }
+
+      if (this.$route.query.p) {
+        customQuery = true
+        this.playbackMap.setPitch(this.$route.query.p)
+      }
+
+      if (customQuery) {
+        return
+      }
 
       var newCameraTransform = this.playbackMap.cameraForBounds(polyBounds, {
         padding: { top: 15, bottom: 15, left: 15, right: 15 }
@@ -356,6 +402,181 @@ export default {
         })
       }
       this.resetTerrain()
+    },
+    toggleGridlines: function () {
+      if (this.showGridlines) {
+        this.playbackMap.getStyle().layers.forEach((layer) => {
+          if (layer.id.startsWith('grid')) {
+            this.playbackMap.setLayoutProperty(layer.id, 'visibility', 'visible')
+          }
+        })
+      } else {
+        this.playbackMap.getStyle().layers.forEach((layer) => {
+          if (layer.id.startsWith('grid')) {
+            this.playbackMap.setLayoutProperty(layer.id, 'visibility', 'none')
+          }
+        })
+      }
+      this.resetTerrain()
+    },
+    generateGrids: function () {
+      // const gridOffsetX = this.map.getStyle().metadata.gridOffsetX;
+      // const gridOffsetY = this.map.getStyle().metadata.gridOffsetY;
+      const worldSize = this.playbackMap.getStyle().metadata.worldSize
+
+      this.playbackMap.getStyle().metadata.grids.forEach((grid) => {
+        // create a new multi-line string feature for each grid
+        const coords3857 = []
+        const labels3857 = []
+        // const linestrings3857 = [];
+
+        // add each line string to the feature
+        for (let x = 0; x <= worldSize; x += grid['stepX']) {
+          coords3857.push([
+            [x, 0],
+            [x, worldSize]
+          ])
+          // todo: add a point at y=gridOffsetY indicating X value
+          // label is length of formatX value
+          var xlength = grid['formatX'].length
+          var xlabel = x / grid['stepX']
+          xlabel = xlabel.toString().slice(0, xlength)
+          if (xlabel.length < xlength) {
+            xlabel = '0' + xlabel
+          }
+
+          labels3857.push(turf.point([x, worldSize], { label: xlabel }))
+          labels3857.push(turf.point([x, 0], { label: xlabel }))
+          // linestrings3857.push(turf.lineString([[x, gridOffsetX], [x, gridOffsetY]], { label: label }))
+        }
+        for (let y = 0; y <= worldSize; y += Math.abs(grid['stepY'])) {
+          coords3857.push([
+            [0, y],
+            [worldSize, y]
+          ])
+          // todo: add a point at x=gridOffsetX indicating Y value
+          // label is length of formatY value
+          var ylength = grid['formatY'].length
+          var ylabel = y / Math.abs(grid['stepY'])
+          ylabel = ylabel.toString().slice(0, ylength)
+          if (ylabel.length < ylength) {
+            ylabel = '0' + ylabel
+          }
+          labels3857.push(turf.point([0, y], { label: ylabel }))
+          labels3857.push(turf.point([worldSize, y], { label: ylabel }))
+          // linestrings3857.push(turf.lineString([[gridOffsetX, y], [gridOffsetY, y]], { label: label }))
+        }
+
+        const coords4326 = coords3857.map((coord) => {
+          return coord.map((c) => {
+            return proj4(proj4.defs('EPSG:3857'), proj4.defs('EPSG:4326'), [c[0], c[1]])
+          })
+        })
+        const labels4326 = labels3857.map((label) => {
+          return turf.point(
+            proj4(proj4.defs('EPSG:3857'), proj4.defs('EPSG:4326'), [
+              label.geometry.coordinates[0],
+              label.geometry.coordinates[1]
+            ]),
+            label.properties
+          )
+        })
+        // const linestrings4326 = linestrings3857.map(linestring => {
+        //   return turf.lineString(linestring.geometry.coordinates.map(coord => {
+        //     return proj4(proj4.defs('EPSG:3857'), proj4.defs('EPSG:4326'), [coord[0], coord[1]])
+        //   }), linestring.properties)
+        // })
+
+        // create a new geojson object
+        let featureCollection = turf.featureCollection([])
+
+        // create the features
+        const multiLineString = turf.multiLineString(coords4326)
+        featureCollection.features.push(multiLineString)
+
+        // add the labels
+        labels4326.forEach((label) => {
+          featureCollection.features.push(label)
+        })
+
+        // // add the linestrings
+        // linestrings4326.forEach(linestring => {
+        //   featureCollection.features.push(linestring)
+        // })
+
+        // add the feature to the source
+        // add new geojson source to contain grid linestrings
+        this.playbackMap.addSource(`grid-${grid['stepX']}`, {
+          type: 'geojson',
+          data: featureCollection
+        })
+
+        // get length of step
+        var minZoom
+        var maxZoom = 22
+        var width = 1
+        if (grid['stepX'] == 100) {
+          minZoom = 15
+          // maxZoom = 20
+          width = 0.5
+        }
+        if (grid['stepX'] == 1000) {
+          minZoom = 12
+          // maxZoom = 16
+          width = 1.5
+        }
+        if (grid['stepX'] == 10000) {
+          minZoom = 8
+          // maxZoom = 12
+          width = 2.5
+        }
+
+        // add a new lines layer for each grid
+        this.playbackMap.addLayer({
+          id: `grid-${grid['stepX']}`,
+          type: 'line',
+          source: `grid-${grid['stepX']}`,
+          minzoom: minZoom,
+          maxzoom: maxZoom,
+          layout: {
+            visibility: 'none'
+          },
+          paint: {
+            'line-color': '#000',
+            'line-width': width
+          }
+        })
+
+        // add labels layer
+        this.playbackMap.addLayer({
+          id: `grid-${grid['stepX']}-labels`,
+          type: 'symbol',
+          source: `grid-${grid['stepX']}`,
+          minzoom: minZoom,
+          maxzoom: maxZoom,
+          layout: {
+            visibility: 'none',
+            'text-field': ['get', 'label'],
+            'text-size': 14,
+            // 'text-allow-overlap': true,
+            // 'text-ignore-placement': true,
+            'text-font': ['Roboto Bold', 'Arial Unicode MS Regular'],
+            // 'symbol-placement': 'line',
+            'text-pitch-alignment': 'viewport',
+            'text-rotation-alignment': 'map',
+            'text-anchor': 'center',
+            // 'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+            // 'text-radial-offset': 0.5,
+            // 'text-justify': 'auto',
+            'text-keep-upright': true
+          },
+          paint: {
+            'text-color': '#fff',
+            'text-halo-color': '#000',
+            'text-halo-width': 1
+          }
+        })
+      })
     }
   }
 }
