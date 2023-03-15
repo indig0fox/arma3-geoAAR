@@ -110,7 +110,7 @@ export default {
     addProtocol('pmtiles', protocol.tile)
     const map = new Map({
       container: this.$refs.maplibre,
-      style: `https://styles.ocap2.com/${this.activeWorld.meta.worldName}.json`,
+      style: `https://styles.ocap2.com/${this.activeWorld.worldName}.json`,
       attributionControl: false
     })
     map.addControl(new NavigationControl())
@@ -139,6 +139,8 @@ export default {
     this.playbackMap.once('render', () => {
       this.centerOnMap()
 
+      this.playbackMap.transform._fov = 1
+
       // this.activeWorld = this.playbackMap.getStyle().metadata
 
       this.currentZoom = this.playbackMap.getZoom().toFixed(2)
@@ -158,6 +160,16 @@ export default {
     })
   },
   computed: {
+    worldOrigin4326() {
+      const meta = this.activeWorld
+      var originLat = meta.latitude
+      var originLon = meta.longitude
+      return [originLon, originLat]
+    },
+    worldOrigin3857() {
+      if (!this.worldOrigin4326) return
+      return proj4('EPSG:4326', 'EPSG:3857', this.worldOrigin4326)
+    },
     ...mapWritableState(useRecordingDataStore, ['playbackMap']),
     ...mapState(useRecordingDataStore, ['recordingData', 'availableWorlds']),
     ...mapWritableState(useRecordingDataStore, [
@@ -209,23 +221,28 @@ export default {
       this.currentZoom = zoom.toFixed(2)
     },
     async updatemousePositionXY(e) {
+      if (
+        this.playbackMap.isMoving() ||
+        this.playbackMap.isZooming() ||
+        this.playbackMap.isRotating()
+      ) {
+        return
+      }
       var coord_4326 = e.lngLat
-      // console.log(coord_4326);
-      // convert using proj
-      var mercator = proj4(proj4.defs('EPSG:4326'), proj4.defs('EPSG:3857'), [
-        coord_4326.lng,
-        coord_4326.lat
-      ])
-      // console.log(mercator);
+      var coord_3857 = proj4('EPSG:4326', 'EPSG:3857', [coord_4326.lng, coord_4326.lat])
 
       var mercatorStr = [
-        Math.abs(mercator[0]).toFixed(0).toString().padStart(5, '0'),
-        Math.abs(mercator[1]).toFixed(0).toString().padStart(5, '0')
+        Math.abs(coord_3857[0]).toFixed(0).toString().padStart(5, '0'),
+        Math.abs(coord_3857[1]).toFixed(0).toString().padStart(5, '0')
       ]
 
       // * add negative sign if needed
-      mercator[0] < 0 ? (mercatorStr[0] = '-' + mercatorStr[0]) : (mercatorStr[0] = mercatorStr[0])
-      mercator[1] < 0 ? (mercatorStr[1] = '-' + mercatorStr[1]) : (mercatorStr[1] = mercatorStr[1])
+      coord_3857[0] < 0
+        ? (mercatorStr[0] = '-' + mercatorStr[0])
+        : (mercatorStr[0] = mercatorStr[0])
+      coord_3857[1] < 0
+        ? (mercatorStr[1] = '-' + mercatorStr[1])
+        : (mercatorStr[1] = mercatorStr[1])
 
       this.mousePositionXY = mercatorStr[0] + ' ' + mercatorStr[1]
 
@@ -233,15 +250,14 @@ export default {
 
       // * add origin pos of world from metadata to mercator
       // this is so Grid coords reflect 'real' position in world
-      var meta = this.activeWorld.meta
-      var originLat = meta.latitude
-      var originLon = meta.longitude
+
+      if (!this.worldOrigin3857) return
+
       // console.log(originLat, originLon)
-      var origin3857 = proj4(proj4.defs('EPSG:4326'), proj4.defs('EPSG:3857'), [
-        originLon,
-        originLat
-      ])
-      var originPlus3857 = [mercator[0] + origin3857[0], mercator[1] + origin3857[1]]
+      var originPlus3857 = [
+        coord_3857[0] + this.worldOrigin3857[0],
+        coord_3857[1] + this.worldOrigin3857[1]
+      ]
 
       // console.log(origin3857, originPlus3857)
 

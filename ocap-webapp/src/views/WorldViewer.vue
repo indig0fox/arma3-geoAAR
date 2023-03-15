@@ -274,7 +274,7 @@ export default {
         @mouseleave="adjustActiveState"
       >
         <div class="title-bar inactive">
-          <div class="title-bar-text">{{ $t('minimap.windowTitle') }}</div>
+          <div class="title-bar-text">{{ $t('miniMap.windowTitle') }}</div>
           <div class="title-bar-controls">
             <button aria-label="Minimize"></button>
             <button aria-label="Maximize"></button>

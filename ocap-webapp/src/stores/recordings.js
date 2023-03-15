@@ -8,14 +8,15 @@ export const useRecordingDataStore = defineStore('recordingData', {
       activeWorld: null,
       activeRecording: null,
       activeRecordingData: null,
-      recordingUrl: '',
+      // apiUrl: 'http://127.0.0.1:5001',
+      apiUrl: window.location.origin,
       viewBounds: {},
       currentZoom: 0,
       currentPitch: 0,
       currentBearing: 0,
       playbackMap: null,
-      mousePositionXY: '0000, 0000',
-      mousePositionMGRS: '0000 0000',
+      mousePositionXY: '00000 00000',
+      mousePositionMGRS: '00000 00000',
       maplibreVersion: '',
       searchFilterOldest: '2017-06-01',
       searchFilterNewest: '2099-12-12',
@@ -29,7 +30,6 @@ export const useRecordingDataStore = defineStore('recordingData', {
   actions: {
     async getWorlds () {
       return fetch('https://styles.ocap2.com/worlds.json', {
-        cache: "no-cache"
       })
         .then((response) => {
           if (!response.ok) {
@@ -38,12 +38,14 @@ export const useRecordingDataStore = defineStore('recordingData', {
           return Promise.resolve(response.json())
         })
         .then((data) => {
-          this.availableWorlds = new Map(Object.entries(data.worlds))
+          this.availableWorlds = new Map(Object.entries(data))
           // console.log('worlds', this.availableWorlds.size, this.availableWorlds)
 
           this.availableWorlds.forEach(async (value, key, map) => {
             var previewUri = 'https://styles.ocap2.com/previews/' + key + '_256px.png'
-            return fetch(previewUri, { method: 'GET' })
+            return fetch(previewUri, {
+              method: 'GET',
+            })
               .then((response) => {
                 // console.log(response)
 
@@ -55,7 +57,7 @@ export const useRecordingDataStore = defineStore('recordingData', {
 
               })
               .catch((error) => {
-                console.log('Error loading preview for', value.meta.worldName, error)
+                console.log('Error loading preview for', value.worldName, error)
               })
           })
 
@@ -67,16 +69,15 @@ export const useRecordingDataStore = defineStore('recordingData', {
         })
     },
     async getRecordings () {
-      // const uri = 'http://127.0.0.1:5001'
-      const uri = window.location.origin
-      return fetch(uri + `/api/v1/operations?tag=${this.searchFilterTag}&name=${this.searchFilterMissionName}&newer=${this.searchFilterOldest}&older=${this.searchFilterNewest}`, {
+      return fetch(this.apiUrl + `/api/v1/operations?tag=${this.searchFilterTag}&name=${this.searchFilterMissionName}&newer=${this.searchFilterOldest}&older=${this.searchFilterNewest}`, {
+        // do not cache available recordings
         cache: "no-cache"
       })
         .then((response) => {
           if (!response.status === 200) {
             return Promise.reject(response);
           }
-          console.log(response)
+          // console.log(response)
           return Promise.resolve(response.json())
         })
         .then((data) => {
@@ -119,11 +120,8 @@ export const useRecordingDataStore = defineStore('recordingData', {
         "missionName": "Loading...",
         "author": "",
       }
-      // const uri = 'http://127.0.0.1:5001'
-      const uri = window.location.origin
       const path = `/data/${operation.filename}`
-      return fetch(uri + path, {
-
+      return fetch(this.apiUrl + path, {
       })
         .then((response) => {
           if (!response.status === 200) {

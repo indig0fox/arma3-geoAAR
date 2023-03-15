@@ -106,7 +106,7 @@ import PlaybackManager from '@/components/PlaybackManager.vue'
               @mouseleave="adjustActiveState"
             >
               <div class="title-bar inactive">
-                <div class="title-bar-text">Minimap</div>
+                <div class="title-bar-text">{{ $t('miniMap.windowTitle') }}</div>
                 <div class="title-bar-controls">
                   <button aria-label="Minimize"></button>
                   <button aria-label="Maximize"></button>

@@ -1,37 +1,43 @@
 <template>
   <div class="world-item window">
     <div class="title-bar">
-      <span class="title-bar-text">{{ world.meta.displayName }}</span>
+      <span class="title-bar-text">{{ world.displayName }}</span>
     </div>
     <div class="world-info window-body">
-      <div class="world-info-text">
-        <table>
-          <!-- author, size -->
-          <tr>
-            <td>{{ $t('worlds.worldCard.author') }}</td>
-            <td>{{ world.meta.author }}</td>
-          </tr>
-          <tr>
-            <td>{{ $t('worlds.worldCard.size') }}</td>
-            <td
-              v-html="
-                $t('worlds.worldCard.sizeValue', {
-                  size: (world.meta.worldSize / 1000).toFixed(1)
-                })
-              "
-            ></td>
-          </tr>
-        </table>
-
-        <router-link :to="{ name: 'worldViewer', query: { world: world.meta.worldName } }">
-          <button class="btn btn-primary">View</button>
-        </router-link>
+      <div class="world-info-left">
+        <div class="world-info-text">
+          <table>
+            <!-- author, size -->
+            <tr>
+              <td>{{ $t('worlds.worldCard.author') }}:</td>
+              <td>{{ world.author }}</td>
+            </tr>
+            <tr>
+              <td>{{ $t('worlds.worldCard.size') }}:</td>
+              <td
+                v-html="
+                  $t('worlds.worldCard.sizeValue', {
+                    size: (world.worldSize / 1000).toFixed(1)
+                  })
+                "
+              ></td>
+            </tr>
+          </table>
+        </div>
+        <div class="world-info-actions">
+          <PreviewMap :world="world" />
+          <router-link :to="{ name: 'worldViewer', query: { world: world.worldName } }">
+            <button class="btn btn-primary">
+              {{ $t('worlds.worldCard.selectWorld') }}
+            </button>
+          </router-link>
+        </div>
       </div>
       <div style="display: flex; justify-content: center; align-items: center">
         <img
           class="world-preview"
           :src="world.preview"
-          :alt="world.meta.displayName"
+          :alt="world.displayName"
           v-show="world.preview"
         />
         <div>
@@ -45,13 +51,15 @@
 
 <script setup>
 import { ScaleLoader } from 'vue3-spinner'
+import PreviewMap from '@/components/PreviewMap.vue'
 </script>
 
 <script>
 export default {
   name: 'WorldCard',
   components: {
-    ScaleLoader
+    ScaleLoader,
+    PreviewMap
   },
   data() {
     return {}
@@ -89,12 +97,21 @@ export default {
   align-items: stretch;
 }
 
-.world-info-text {
+.world-info-left {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: stretch;
   align-items: stretch;
+  flex: 1 auto;
+}
+
+.world-info-text {
+  /* display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: stretch;
+  align-items: stretch; */
 
   text-align: left;
   width: 100%;
@@ -102,8 +119,21 @@ export default {
   font-weight: bold;
 }
 
+.world-info-actions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: stretch;
+  align-items: center;
+  gap: 5px;
+}
+
 .world-preview {
-  width: 128px;
-  height: 128px;
+  /* width: 100%; */
+  max-width: 128px;
+  margin: 5px;
+  border: 1px solid #000;
+  border-radius: 4px;
 }
 </style>

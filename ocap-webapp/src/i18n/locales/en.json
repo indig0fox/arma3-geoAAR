@@ -5,6 +5,8 @@
     }
   },
   "app": {
+    "version": "v",
+    "versionNumber": "0.1.1",
     "windowTitle": "Arma 3 GeoAAR",
     "recording": "Recording",
     "world": "Active World",
@@ -18,6 +20,14 @@
     "noWorldLoaded": "No world loaded",
     "noRecordingLoaded": "No recording loaded"
   },
+  "worlds": {
+    "worldCard": {
+      "author": "Author",
+      "size": "Size",
+      "sizeValue": "{size}km&sup2;",
+      "selectWorld": "Select World"
+    }
+  },
   "mainMap": {
     "windowTitle": "Main Map",
     "layerControlsTitle": "Layer Controls",
@@ -28,23 +38,15 @@
     "3dTerrain": "3D Terrain",
     "3dBuildings": "3D Buildings"
   },
-  "minimap": {
+  "miniMap": {
     "windowTitle": "Minimap"
   },
-  "viewer": {},
   "windowTitles": {
     "recordingViewer": "Recording Viewer",
     "mapView": "Map View",
     "viewer": {
       "terrainWindow": "Terrain Analyzer",
       "minimapWindow": "Minimap"
-    }
-  },
-  "worlds": {
-    "worldCard": {
-      "author": "Author",
-      "size": "Size",
-      "sizeValue": "{size}km&sup2;"
     }
   }
 }

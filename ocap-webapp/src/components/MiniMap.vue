@@ -35,8 +35,9 @@ export default {
       // 'currentPitch',
       // 'currentBearing',
       'mousePositionXY',
-      'mousePositionMGRS'
-      // 'maplibreVersion'
+      'mousePositionMGRS',
+      // 'maplibreVersion',
+      'playbackMap'
     ])
   },
   unmounted() {
@@ -49,7 +50,7 @@ export default {
     addProtocol('pmtiles', protocol.tile)
     const map = new Map({
       container: this.$refs.minimapContainer,
-      style: `https://styles.ocap2.com/${this.activeWorld.meta.worldName}.json`,
+      style: `https://styles.ocap2.com/${this.activeWorld.worldName}.json`,
       attributionControl: false,
       interactive: false,
       antialias: false
@@ -113,9 +114,10 @@ export default {
         }
       })
 
-      // setInterval(() => {
-      //   console.log(recordingData)
-      // }, 2000)
+      this.map.on('click', (e) => {
+        const newCenter = e.lngLat
+        this.playbackMap.setCenter(newCenter)
+      })
     })
   },
   methods: {
@@ -181,6 +183,7 @@ export default {
   },
   watch: {
     viewBounds: function (newBounds) {
+      if (this.viewBounds === {}) return
       const source = this.map.getSource('trackingRect')
 
       // maplibre bounds object
@@ -236,5 +239,6 @@ export default {
   line-height: 1em;
   white-space: nowrap;
   margin: 0px;
+  pointer-events: none;
 }
 </style>

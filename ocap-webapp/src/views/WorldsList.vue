@@ -13,6 +13,15 @@
     <div id="worlds-list" class="window-body">
       <WorldCard v-for="world in sortedWorlds" :key="world" :world="world" />
     </div>
+    <div>
+      <p id="footer-text">
+        Map tiles for preview inserts provided by
+        <a href="http://stamen.com">Stamen Design</a>, under
+        <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by
+        <a href="http://openstreetmap.org">OpenStreetMap</a>, under
+        <a href="http://www.openstreetmap.org/copyright">ODbL</a>.
+      </p>
+    </div>
   </div>
 </template>
 
@@ -45,7 +54,7 @@ export default {
         sortedWorlds.push(world)
       })
       return sortedWorlds.sort((a, b) => {
-        return a.meta.displayName.localeCompare(b.meta.displayName)
+        return a.displayName.localeCompare(b.displayName)
       })
     }
   },
@@ -73,5 +82,32 @@ export default {
   /* align-items: center; */
   justify-content: center;
   /* background: inherit; */
+}
+#footer-text {
+  color: white;
+  text-shadow: 0 0 2px black, 0 0 2px black, 0 0 10px black, 0 0 10px black;
+  background: black;
+  padding: 10px;
+  font-style: italic;
+}
+#footer-text > a:link {
+  color: lightseagreen;
+  text-shadow: 0 0 2px black, 0 0 2px black, 0 0 10px black, 0 0 10px black;
+}
+#footer-text > a:visited {
+  color: lightgreen;
+  text-shadow: 0 0 2px black, 0 0 2px black, 0 0 10px black, 0 0 10px black;
+}
+#footer-text > a:hover {
+  color: white;
+  text-shadow: 0 0 2px black, 0 0 2px black, 0 0 10px black, 0 0 10px black;
+}
+#footer-text > a:active {
+  color: white;
+  text-shadow: 0 0 2px black, 0 0 2px black, 0 0 10px black, 0 0 10px black;
+}
+#footer-text > a:focus {
+  color: white;
+  text-shadow: 0 0 2px black, 0 0 2px black, 0 0 10px black, 0 0 10px black;
 }
 </style>

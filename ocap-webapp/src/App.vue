@@ -19,13 +19,16 @@ import LocaleChanger from '@/components/LocaleChanger.vue'
         <div class="title-bar-text" style="margin-right: 0px">
           {{ $t('app.windowTitle') }}
         </div>
+        <div class="title-bar-text" style="margin-right: 0px">
+          {{ $t('app.version') }}{{ $t('app.versionNumber') }}
+        </div>
 
         <LocaleChanger />
 
         <div class="title-bar-text">
           <span>{{ $t('app.world') }}:&nbsp;</span>
           <span v-if="activeWorld" style="color: yellow; font-family: monospace">
-            {{ activeWorld.meta.displayName }} &lt;{{ activeWorld.meta.worldName }}&gt;
+            {{ activeWorld.displayName }} &lt;{{ activeWorld.worldName }}&gt;
           </span>
           <span v-show="!activeWorld" style="color: yellow; font-family: monospace">
             {{ $t('app.noWorldLoaded') }}
@@ -61,7 +64,7 @@ import LocaleChanger from '@/components/LocaleChanger.vue'
         <router-link
           :to="{
             name: 'worlds',
-            query: { id: activeRecording?.id, world: activeWorld?.meta.worldName }
+            query: { id: activeRecording?.id, world: activeWorld?.worldName }
           }"
         >
           <button role="tab" aria-controls="tab-A" :aria-selected="$route.name == 'worlds'">
@@ -71,7 +74,7 @@ import LocaleChanger from '@/components/LocaleChanger.vue'
         <router-link
           :to="{
             name: 'worldViewer',
-            query: { id: activeRecording?.id, world: activeWorld?.meta.worldName }
+            query: { id: activeRecording?.id, world: activeWorld?.worldName }
           }"
         >
           <button role="tab" aria-controls="tab-B" :aria-selected="$route.name == 'worldViewer'">
@@ -82,7 +85,7 @@ import LocaleChanger from '@/components/LocaleChanger.vue'
         <router-link
           :to="{
             name: 'recordings',
-            query: { id: activeRecording?.id, world: activeWorld?.meta.worldName }
+            query: { id: activeRecording?.id, world: activeWorld?.worldName }
           }"
         >
           <button role="tab" aria-controls="tab-D" :aria-selected="$route.name == 'recordings'">
@@ -92,7 +95,7 @@ import LocaleChanger from '@/components/LocaleChanger.vue'
         <router-link
           :to="{
             name: 'recordingViewer',
-            query: { id: activeRecording?.id, world: activeWorld?.meta.worldName }
+            query: { id: activeRecording?.id, world: activeWorld?.worldName }
           }"
         >
           <button
@@ -135,6 +138,19 @@ export default {
   },
   mounted() {},
   watch: {
+    availableWorlds: {
+      handler: function (val, oldVal) {
+        if (this.$route.query.world) {
+          var worldObj = val.get(this.$route.query.world.toLowerCase())
+
+          if (worldObj) {
+            this.activeWorld = worldObj
+            // console.log(this.activeWorld)
+          }
+        }
+      },
+      deep: false
+    },
     $route(to, from) {
       const recordingData = useRecordingDataStore()
 
