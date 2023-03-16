@@ -27,7 +27,7 @@
 
 <script setup>
 import { mapState, mapWritableState } from 'pinia'
-import { useRecordingDataStore } from '@/stores/recordings.js'
+import { useRecordingDataStore } from '@/stores/dataStore.js'
 </script>
 
 <script>

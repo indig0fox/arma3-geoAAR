@@ -1,0 +1,3702 @@
+[
+    {
+        "markerType": "aaf_airforce_marker_co",
+        "markerPath": "markers/3cb/aaf_airforce_marker_co.png"
+    },
+    {
+        "markerType": "aaf_army_marker_co",
+        "markerPath": "markers/3cb/aaf_army_marker_co.png"
+    },
+    {
+        "markerType": "aaf_navy_marker_co",
+        "markerPath": "markers/3cb/aaf_navy_marker_co.png"
+    },
+    {
+        "markerType": "aaf_sf_marker_co",
+        "markerPath": "markers/3cb/aaf_sf_marker_co.png"
+    },
+    {
+        "markerType": "ada_army_flag_marker_co",
+        "markerPath": "markers/3cb/ada_army_flag_marker_co.png"
+    },
+    {
+        "markerType": "adc_flag_marker_co",
+        "markerPath": "markers/3cb/adc_flag_marker_co.png"
+    },
+    {
+        "markerType": "ade_flag_marker_co",
+        "markerPath": "markers/3cb/ade_flag_marker_co.png"
+    },
+    {
+        "markerType": "adg_flag_marker_co",
+        "markerPath": "markers/3cb/adg_flag_marker_co.png"
+    },
+    {
+        "markerType": "adm_flag_marker_co",
+        "markerPath": "markers/3cb/adm_flag_marker_co.png"
+    },
+    {
+        "markerType": "adp_flag_marker_co",
+        "markerPath": "markers/3cb/adp_flag_marker_co.png"
+    },
+    {
+        "markerType": "adr_flag_marker_co",
+        "markerPath": "markers/3cb/adr_flag_marker_co.png"
+    },
+    {
+        "markerType": "afg_04_marker_co",
+        "markerPath": "markers/3cb/afg_04_marker_co.png"
+    },
+    {
+        "markerType": "afg_13_marker_co",
+        "markerPath": "markers/3cb/afg_13_marker_co.png"
+    },
+    {
+        "markerType": "afg_pres_marker_co",
+        "markerPath": "markers/3cb/afg_pres_marker_co.png"
+    },
+    {
+        "markerType": "ana_air_marker_co",
+        "markerPath": "markers/3cb/ana_air_marker_co.png"
+    },
+    {
+        "markerType": "ana_com_marker_co",
+        "markerPath": "markers/3cb/ana_com_marker_co.png"
+    },
+    {
+        "markerType": "ana_marker_co",
+        "markerPath": "markers/3cb/ana_marker_co.png"
+    },
+    {
+        "markerType": "anp_marker_co",
+        "markerPath": "markers/3cb/anp_marker_co.png"
+    },
+    {
+        "markerType": "ard_flag_marker_co",
+        "markerPath": "markers/3cb/ard_flag_marker_co.png"
+    },
+    {
+        "markerType": "ccm_b_marker_co",
+        "markerPath": "markers/3cb/ccm_b_marker_co.png"
+    },
+    {
+        "markerType": "ccm_i_marker_co",
+        "markerPath": "markers/3cb/ccm_i_marker_co.png"
+    },
+    {
+        "markerType": "ccm_o_marker_co",
+        "markerPath": "markers/3cb/ccm_o_marker_co.png"
+    },
+    {
+        "markerType": "chc_marker_co",
+        "markerPath": "markers/3cb/chc_marker_co.png"
+    },
+    {
+        "markerType": "chd_flag_blue_marker_co",
+        "markerPath": "markers/3cb/chd_flag_blue_marker_co.png"
+    },
+    {
+        "markerType": "chd_flag_green_marker_co",
+        "markerPath": "markers/3cb/chd_flag_green_marker_co.png"
+    },
+    {
+        "markerType": "chd_flag_red_marker_co",
+        "markerPath": "markers/3cb/chd_flag_red_marker_co.png"
+    },
+    {
+        "markerType": "chd_flag_sf_marker_co",
+        "markerPath": "markers/3cb/chd_flag_sf_marker_co.png"
+    },
+    {
+        "markerType": "CPD_marker_co",
+        "markerPath": "markers/3cb/CPD_marker_co.png"
+    },
+    {
+        "markerType": "cw_sov_airforce_flag_marker_co",
+        "markerPath": "markers/3cb/cw_sov_airforce_flag_marker_co.png"
+    },
+    {
+        "markerType": "cw_sov_army_flag_marker_co",
+        "markerPath": "markers/3cb/cw_sov_army_flag_marker_co.png"
+    },
+    {
+        "markerType": "cw_sov_flag_marker_co",
+        "markerPath": "markers/3cb/cw_sov_flag_marker_co.png"
+    },
+    {
+        "markerType": "cw_sov_vdv_flag_marker_co",
+        "markerPath": "markers/3cb/cw_sov_vdv_flag_marker_co.png"
+    },
+    {
+        "markerType": "cw_us_airforce_flag_marker_co",
+        "markerPath": "markers/3cb/cw_us_airforce_flag_marker_co.png"
+    },
+    {
+        "markerType": "cw_us_army_flag_marker_co",
+        "markerPath": "markers/3cb/cw_us_army_flag_marker_co.png"
+    },
+    {
+        "markerType": "cw_us_marines_flag_marker_co",
+        "markerPath": "markers/3cb/cw_us_marines_flag_marker_co.png"
+    },
+    {
+        "markerType": "cw_us_navy_flag_marker_co",
+        "markerPath": "markers/3cb/cw_us_navy_flag_marker_co.png"
+    },
+    {
+        "markerType": "kdf_flag_marker_co",
+        "markerPath": "markers/3cb/kdf_flag_marker_co.png"
+    },
+    {
+        "markerType": "mal_flag_marker_co",
+        "markerPath": "markers/3cb/mal_flag_marker_co.png"
+    },
+    {
+        "markerType": "mdf_flag_marker_co",
+        "markerPath": "markers/3cb/mdf_flag_marker_co.png"
+    },
+    {
+        "markerType": "mdf_navy_flag_marker_co",
+        "markerPath": "markers/3cb/mdf_navy_flag_marker_co.png"
+    },
+    {
+        "markerType": "nap_flag_marker_co",
+        "markerPath": "markers/3cb/nap_flag_marker_co.png"
+    },
+    {
+        "markerType": "nfa_flag_marker_co",
+        "markerPath": "markers/3cb/nfa_flag_marker_co.png"
+    },
+    {
+        "markerType": "npd_marker_co",
+        "markerPath": "markers/3cb/npd_marker_co.png"
+    },
+    {
+        "markerType": "tka_b_air_marker_co",
+        "markerPath": "markers/3cb/tka_b_air_marker_co.png"
+    },
+    {
+        "markerType": "tka_b_army_marker_co",
+        "markerPath": "markers/3cb/tka_b_army_marker_co.png"
+    },
+    {
+        "markerType": "tka_b_navy_marker_co",
+        "markerPath": "markers/3cb/tka_b_navy_marker_co.png"
+    },
+    {
+        "markerType": "tka_flag_marker_co",
+        "markerPath": "markers/3cb/tka_flag_marker_co.png"
+    },
+    {
+        "markerType": "tka_o_air_marker_co",
+        "markerPath": "markers/3cb/tka_o_air_marker_co.png"
+    },
+    {
+        "markerType": "tka_o_army_marker_co",
+        "markerPath": "markers/3cb/tka_o_army_marker_co.png"
+    },
+    {
+        "markerType": "tka_o_navy_marker_co",
+        "markerPath": "markers/3cb/tka_o_navy_marker_co.png"
+    },
+    {
+        "markerType": "tkc_marker_co",
+        "markerPath": "markers/3cb/tkc_marker_co.png"
+    },
+    {
+        "markerType": "tkm_b_marker_co",
+        "markerPath": "markers/3cb/tkm_b_marker_co.png"
+    },
+    {
+        "markerType": "tkm_i_marker_co",
+        "markerPath": "markers/3cb/tkm_i_marker_co.png"
+    },
+    {
+        "markerType": "tkm_o_marker_co",
+        "markerPath": "markers/3cb/tkm_o_marker_co.png"
+    },
+    {
+        "markerType": "tkp_marker_co",
+        "markerPath": "markers/3cb/tkp_marker_co.png"
+    },
+    {
+        "markerType": "un_marker_co",
+        "markerPath": "markers/3cb/un_marker_co.png"
+    },
+    {
+        "markerType": "b_air",
+        "markerPath": "markers/a3/b_air.png"
+    },
+    {
+        "markerType": "b_antiair",
+        "markerPath": "markers/a3/b_antiair.png"
+    },
+    {
+        "markerType": "b_armor",
+        "markerPath": "markers/a3/b_armor.png"
+    },
+    {
+        "markerType": "b_art",
+        "markerPath": "markers/a3/b_art.png"
+    },
+    {
+        "markerType": "b_hq",
+        "markerPath": "markers/a3/b_hq.png"
+    },
+    {
+        "markerType": "b_inf",
+        "markerPath": "markers/a3/b_inf.png"
+    },
+    {
+        "markerType": "b_installation",
+        "markerPath": "markers/a3/b_installation.png"
+    },
+    {
+        "markerType": "b_maint",
+        "markerPath": "markers/a3/b_maint.png"
+    },
+    {
+        "markerType": "b_mech_inf",
+        "markerPath": "markers/a3/b_mech_inf.png"
+    },
+    {
+        "markerType": "b_med",
+        "markerPath": "markers/a3/b_med.png"
+    },
+    {
+        "markerType": "b_mortar",
+        "markerPath": "markers/a3/b_mortar.png"
+    },
+    {
+        "markerType": "b_motor_inf",
+        "markerPath": "markers/a3/b_motor_inf.png"
+    },
+    {
+        "markerType": "b_naval",
+        "markerPath": "markers/a3/b_naval.png"
+    },
+    {
+        "markerType": "b_Ordnance",
+        "markerPath": "markers/a3/b_Ordnance.png"
+    },
+    {
+        "markerType": "b_plane",
+        "markerPath": "markers/a3/b_plane.png"
+    },
+    {
+        "markerType": "b_recon",
+        "markerPath": "markers/a3/b_recon.png"
+    },
+    {
+        "markerType": "b_service",
+        "markerPath": "markers/a3/b_service.png"
+    },
+    {
+        "markerType": "b_support",
+        "markerPath": "markers/a3/b_support.png"
+    },
+    {
+        "markerType": "b_uav",
+        "markerPath": "markers/a3/b_uav.png"
+    },
+    {
+        "markerType": "b_unknown",
+        "markerPath": "markers/a3/b_unknown.png"
+    },
+    {
+        "markerType": "c_air",
+        "markerPath": "markers/a3/c_air.png"
+    },
+    {
+        "markerType": "c_car",
+        "markerPath": "markers/a3/c_car.png"
+    },
+    {
+        "markerType": "c_plane",
+        "markerPath": "markers/a3/c_plane.png"
+    },
+    {
+        "markerType": "c_ship",
+        "markerPath": "markers/a3/c_ship.png"
+    },
+    {
+        "markerType": "c_unknown",
+        "markerPath": "markers/a3/c_unknown.png"
+    },
+    {
+        "markerType": "Empty",
+        "markerPath": "markers/a3/Empty.png"
+    },
+    {
+        "markerType": "flag_AAF",
+        "markerPath": "markers/a3/flag_AAF.png"
+    },
+    {
+        "markerType": "flag_Altis",
+        "markerPath": "markers/a3/flag_Altis.png"
+    },
+    {
+        "markerType": "flag_AltisColonial",
+        "markerPath": "markers/a3/flag_AltisColonial.png"
+    },
+    {
+        "markerType": "flag_Belgium",
+        "markerPath": "markers/a3/flag_Belgium.png"
+    },
+    {
+        "markerType": "flag_Canada",
+        "markerPath": "markers/a3/flag_Canada.png"
+    },
+    {
+        "markerType": "flag_Catalonia",
+        "markerPath": "markers/a3/flag_Catalonia.png"
+    },
+    {
+        "markerType": "flag_Croatia",
+        "markerPath": "markers/a3/flag_Croatia.png"
+    },
+    {
+        "markerType": "flag_CSAT",
+        "markerPath": "markers/a3/flag_CSAT.png"
+    },
+    {
+        "markerType": "flag_CTRG",
+        "markerPath": "markers/a3/flag_CTRG.png"
+    },
+    {
+        "markerType": "flag_CzechRepublic",
+        "markerPath": "markers/a3/flag_CzechRepublic.png"
+    },
+    {
+        "markerType": "flag_Denmark",
+        "markerPath": "markers/a3/flag_Denmark.png"
+    },
+    {
+        "markerType": "flag_EU",
+        "markerPath": "markers/a3/flag_EU.png"
+    },
+    {
+        "markerType": "flag_FIA",
+        "markerPath": "markers/a3/flag_FIA.png"
+    },
+    {
+        "markerType": "flag_France",
+        "markerPath": "markers/a3/flag_France.png"
+    },
+    {
+        "markerType": "flag_Georgia",
+        "markerPath": "markers/a3/flag_Georgia.png"
+    },
+    {
+        "markerType": "flag_Germany",
+        "markerPath": "markers/a3/flag_Germany.png"
+    },
+    {
+        "markerType": "flag_Greece",
+        "markerPath": "markers/a3/flag_Greece.png"
+    },
+    {
+        "markerType": "flag_Hungary",
+        "markerPath": "markers/a3/flag_Hungary.png"
+    },
+    {
+        "markerType": "flag_Iceland",
+        "markerPath": "markers/a3/flag_Iceland.png"
+    },
+    {
+        "markerType": "flag_IDAP",
+        "markerPath": "markers/a3/flag_IDAP.png"
+    },
+    {
+        "markerType": "flag_Italy",
+        "markerPath": "markers/a3/flag_Italy.png"
+    },
+    {
+        "markerType": "flag_Luxembourg",
+        "markerPath": "markers/a3/flag_Luxembourg.png"
+    },
+    {
+        "markerType": "flag_NATO",
+        "markerPath": "markers/a3/flag_NATO.png"
+    },
+    {
+        "markerType": "flag_Netherlands",
+        "markerPath": "markers/a3/flag_Netherlands.png"
+    },
+    {
+        "markerType": "flag_Norway",
+        "markerPath": "markers/a3/flag_Norway.png"
+    },
+    {
+        "markerType": "flag_Poland",
+        "markerPath": "markers/a3/flag_Poland.png"
+    },
+    {
+        "markerType": "flag_Portugal",
+        "markerPath": "markers/a3/flag_Portugal.png"
+    },
+    {
+        "markerType": "flag_Slovakia",
+        "markerPath": "markers/a3/flag_Slovakia.png"
+    },
+    {
+        "markerType": "flag_Slovenia",
+        "markerPath": "markers/a3/flag_Slovenia.png"
+    },
+    {
+        "markerType": "flag_Spain",
+        "markerPath": "markers/a3/flag_Spain.png"
+    },
+    {
+        "markerType": "flag_Syndicat",
+        "markerPath": "markers/a3/flag_Syndicat.png"
+    },
+    {
+        "markerType": "flag_Tanoa",
+        "markerPath": "markers/a3/flag_Tanoa.png"
+    },
+    {
+        "markerType": "flag_TanoaGendarmerie",
+        "markerPath": "markers/a3/flag_TanoaGendarmerie.png"
+    },
+    {
+        "markerType": "flag_UK",
+        "markerPath": "markers/a3/flag_UK.png"
+    },
+    {
+        "markerType": "flag_UN",
+        "markerPath": "markers/a3/flag_UN.png"
+    },
+    {
+        "markerType": "flag_USA",
+        "markerPath": "markers/a3/flag_USA.png"
+    },
+    {
+        "markerType": "flag_Viper",
+        "markerPath": "markers/a3/flag_Viper.png"
+    },
+    {
+        "markerType": "GroundSupport_ARTY_EAST",
+        "markerPath": "markers/a3/GroundSupport_ARTY_EAST.png"
+    },
+    {
+        "markerType": "GroundSupport_ARTY_RESISTANCE",
+        "markerPath": "markers/a3/GroundSupport_ARTY_RESISTANCE.png"
+    },
+    {
+        "markerType": "GroundSupport_ARTY_WEST",
+        "markerPath": "markers/a3/GroundSupport_ARTY_WEST.png"
+    },
+    {
+        "markerType": "GroundSupport_CAS_EAST",
+        "markerPath": "markers/a3/GroundSupport_CAS_EAST.png"
+    },
+    {
+        "markerType": "GroundSupport_CAS_RESISTANCE",
+        "markerPath": "markers/a3/GroundSupport_CAS_RESISTANCE.png"
+    },
+    {
+        "markerType": "GroundSupport_CAS_WEST",
+        "markerPath": "markers/a3/GroundSupport_CAS_WEST.png"
+    },
+    {
+        "markerType": "group_0",
+        "markerPath": "markers/a3/group_0.png"
+    },
+    {
+        "markerType": "group_1",
+        "markerPath": "markers/a3/group_1.png"
+    },
+    {
+        "markerType": "group_10",
+        "markerPath": "markers/a3/group_10.png"
+    },
+    {
+        "markerType": "group_11",
+        "markerPath": "markers/a3/group_11.png"
+    },
+    {
+        "markerType": "group_2",
+        "markerPath": "markers/a3/group_2.png"
+    },
+    {
+        "markerType": "group_3",
+        "markerPath": "markers/a3/group_3.png"
+    },
+    {
+        "markerType": "group_4",
+        "markerPath": "markers/a3/group_4.png"
+    },
+    {
+        "markerType": "group_5",
+        "markerPath": "markers/a3/group_5.png"
+    },
+    {
+        "markerType": "group_6",
+        "markerPath": "markers/a3/group_6.png"
+    },
+    {
+        "markerType": "group_7",
+        "markerPath": "markers/a3/group_7.png"
+    },
+    {
+        "markerType": "group_8",
+        "markerPath": "markers/a3/group_8.png"
+    },
+    {
+        "markerType": "group_9",
+        "markerPath": "markers/a3/group_9.png"
+    },
+    {
+        "markerType": "hd_ambush",
+        "markerPath": "markers/a3/hd_ambush.png"
+    },
+    {
+        "markerType": "hd_ambush_noShadow",
+        "markerPath": "markers/a3/hd_ambush_noShadow.png"
+    },
+    {
+        "markerType": "hd_arrow",
+        "markerPath": "markers/a3/hd_arrow.png"
+    },
+    {
+        "markerType": "hd_arrow_noShadow",
+        "markerPath": "markers/a3/hd_arrow_noShadow.png"
+    },
+    {
+        "markerType": "hd_destroy",
+        "markerPath": "markers/a3/hd_destroy.png"
+    },
+    {
+        "markerType": "hd_destroy_noShadow",
+        "markerPath": "markers/a3/hd_destroy_noShadow.png"
+    },
+    {
+        "markerType": "hd_dot",
+        "markerPath": "markers/a3/hd_dot.png"
+    },
+    {
+        "markerType": "hd_dot_noShadow",
+        "markerPath": "markers/a3/hd_dot_noShadow.png"
+    },
+    {
+        "markerType": "hd_end",
+        "markerPath": "markers/a3/hd_end.png"
+    },
+    {
+        "markerType": "hd_end_noShadow",
+        "markerPath": "markers/a3/hd_end_noShadow.png"
+    },
+    {
+        "markerType": "hd_flag",
+        "markerPath": "markers/a3/hd_flag.png"
+    },
+    {
+        "markerType": "hd_flag_noShadow",
+        "markerPath": "markers/a3/hd_flag_noShadow.png"
+    },
+    {
+        "markerType": "hd_join",
+        "markerPath": "markers/a3/hd_join.png"
+    },
+    {
+        "markerType": "hd_join_noShadow",
+        "markerPath": "markers/a3/hd_join_noShadow.png"
+    },
+    {
+        "markerType": "hd_objective",
+        "markerPath": "markers/a3/hd_objective.png"
+    },
+    {
+        "markerType": "hd_objective_noShadow",
+        "markerPath": "markers/a3/hd_objective_noShadow.png"
+    },
+    {
+        "markerType": "hd_pickup",
+        "markerPath": "markers/a3/hd_pickup.png"
+    },
+    {
+        "markerType": "hd_pickup_noShadow",
+        "markerPath": "markers/a3/hd_pickup_noShadow.png"
+    },
+    {
+        "markerType": "hd_start",
+        "markerPath": "markers/a3/hd_start.png"
+    },
+    {
+        "markerType": "hd_start_noShadow",
+        "markerPath": "markers/a3/hd_start_noShadow.png"
+    },
+    {
+        "markerType": "hd_unknown",
+        "markerPath": "markers/a3/hd_unknown.png"
+    },
+    {
+        "markerType": "hd_unknown_noShadow",
+        "markerPath": "markers/a3/hd_unknown_noShadow.png"
+    },
+    {
+        "markerType": "hd_warning",
+        "markerPath": "markers/a3/hd_warning.png"
+    },
+    {
+        "markerType": "hd_warning_noShadow",
+        "markerPath": "markers/a3/hd_warning_noShadow.png"
+    },
+    {
+        "markerType": "KIA",
+        "markerPath": "markers/a3/KIA.png"
+    },
+    {
+        "markerType": "loc_Ambush",
+        "markerPath": "markers/a3/loc_Ambush.png"
+    },
+    {
+        "markerType": "loc_Attack",
+        "markerPath": "markers/a3/loc_Attack.png"
+    },
+    {
+        "markerType": "loc_boat",
+        "markerPath": "markers/a3/loc_boat.png"
+    },
+    {
+        "markerType": "loc_Box",
+        "markerPath": "markers/a3/loc_Box.png"
+    },
+    {
+        "markerType": "loc_Bunker",
+        "markerPath": "markers/a3/loc_Bunker.png"
+    },
+    {
+        "markerType": "loc_Bush",
+        "markerPath": "markers/a3/loc_Bush.png"
+    },
+    {
+        "markerType": "loc_BusStop",
+        "markerPath": "markers/a3/loc_BusStop.png"
+    },
+    {
+        "markerType": "loc_car",
+        "markerPath": "markers/a3/loc_car.png"
+    },
+    {
+        "markerType": "loc_Chapel",
+        "markerPath": "markers/a3/loc_Chapel.png"
+    },
+    {
+        "markerType": "loc_Church",
+        "markerPath": "markers/a3/loc_Church.png"
+    },
+    {
+        "markerType": "loc_CivilDefense",
+        "markerPath": "markers/a3/loc_CivilDefense.png"
+    },
+    {
+        "markerType": "loc_container",
+        "markerPath": "markers/a3/loc_container.png"
+    },
+    {
+        "markerType": "loc_Cross",
+        "markerPath": "markers/a3/loc_Cross.png"
+    },
+    {
+        "markerType": "loc_CulturalProperty",
+        "markerPath": "markers/a3/loc_CulturalProperty.png"
+    },
+    {
+        "markerType": "loc_DangerousForces",
+        "markerPath": "markers/a3/loc_DangerousForces.png"
+    },
+    {
+        "markerType": "loc_defend",
+        "markerPath": "markers/a3/loc_defend.png"
+    },
+    {
+        "markerType": "loc_destroy",
+        "markerPath": "markers/a3/loc_destroy.png"
+    },
+    {
+        "markerType": "loc_download",
+        "markerPath": "markers/a3/loc_download.png"
+    },
+    {
+        "markerType": "loc_Fortress",
+        "markerPath": "markers/a3/loc_Fortress.png"
+    },
+    {
+        "markerType": "loc_Fountain",
+        "markerPath": "markers/a3/loc_Fountain.png"
+    },
+    {
+        "markerType": "loc_Frame",
+        "markerPath": "markers/a3/loc_Frame.png"
+    },
+    {
+        "markerType": "loc_Fuelstation",
+        "markerPath": "markers/a3/loc_Fuelstation.png"
+    },
+    {
+        "markerType": "loc_heal",
+        "markerPath": "markers/a3/loc_heal.png"
+    },
+    {
+        "markerType": "loc_heli",
+        "markerPath": "markers/a3/loc_heli.png"
+    },
+    {
+        "markerType": "loc_help",
+        "markerPath": "markers/a3/loc_help.png"
+    },
+    {
+        "markerType": "loc_Hospital",
+        "markerPath": "markers/a3/loc_Hospital.png"
+    },
+    {
+        "markerType": "loc_interact",
+        "markerPath": "markers/a3/loc_interact.png"
+    },
+    {
+        "markerType": "loc_LetterA",
+        "markerPath": "markers/a3/loc_LetterA.png"
+    },
+    {
+        "markerType": "loc_LetterB",
+        "markerPath": "markers/a3/loc_LetterB.png"
+    },
+    {
+        "markerType": "loc_LetterC",
+        "markerPath": "markers/a3/loc_LetterC.png"
+    },
+    {
+        "markerType": "loc_LetterD",
+        "markerPath": "markers/a3/loc_LetterD.png"
+    },
+    {
+        "markerType": "loc_LetterE",
+        "markerPath": "markers/a3/loc_LetterE.png"
+    },
+    {
+        "markerType": "loc_LetterF",
+        "markerPath": "markers/a3/loc_LetterF.png"
+    },
+    {
+        "markerType": "loc_LetterG",
+        "markerPath": "markers/a3/loc_LetterG.png"
+    },
+    {
+        "markerType": "loc_LetterH",
+        "markerPath": "markers/a3/loc_LetterH.png"
+    },
+    {
+        "markerType": "loc_LetterI",
+        "markerPath": "markers/a3/loc_LetterI.png"
+    },
+    {
+        "markerType": "loc_LetterJ",
+        "markerPath": "markers/a3/loc_LetterJ.png"
+    },
+    {
+        "markerType": "loc_LetterK",
+        "markerPath": "markers/a3/loc_LetterK.png"
+    },
+    {
+        "markerType": "loc_LetterL",
+        "markerPath": "markers/a3/loc_LetterL.png"
+    },
+    {
+        "markerType": "loc_LetterM",
+        "markerPath": "markers/a3/loc_LetterM.png"
+    },
+    {
+        "markerType": "loc_LetterN",
+        "markerPath": "markers/a3/loc_LetterN.png"
+    },
+    {
+        "markerType": "loc_LetterO",
+        "markerPath": "markers/a3/loc_LetterO.png"
+    },
+    {
+        "markerType": "loc_LetterP",
+        "markerPath": "markers/a3/loc_LetterP.png"
+    },
+    {
+        "markerType": "loc_LetterQ",
+        "markerPath": "markers/a3/loc_LetterQ.png"
+    },
+    {
+        "markerType": "loc_LetterR",
+        "markerPath": "markers/a3/loc_LetterR.png"
+    },
+    {
+        "markerType": "loc_LetterS",
+        "markerPath": "markers/a3/loc_LetterS.png"
+    },
+    {
+        "markerType": "loc_LetterT",
+        "markerPath": "markers/a3/loc_LetterT.png"
+    },
+    {
+        "markerType": "loc_LetterU",
+        "markerPath": "markers/a3/loc_LetterU.png"
+    },
+    {
+        "markerType": "loc_LetterV",
+        "markerPath": "markers/a3/loc_LetterV.png"
+    },
+    {
+        "markerType": "loc_LetterW",
+        "markerPath": "markers/a3/loc_LetterW.png"
+    },
+    {
+        "markerType": "loc_LetterX",
+        "markerPath": "markers/a3/loc_LetterX.png"
+    },
+    {
+        "markerType": "loc_LetterY",
+        "markerPath": "markers/a3/loc_LetterY.png"
+    },
+    {
+        "markerType": "loc_LetterZ",
+        "markerPath": "markers/a3/loc_LetterZ.png"
+    },
+    {
+        "markerType": "loc_Lighthouse",
+        "markerPath": "markers/a3/loc_Lighthouse.png"
+    },
+    {
+        "markerType": "loc_meet",
+        "markerPath": "markers/a3/loc_meet.png"
+    },
+    {
+        "markerType": "loc_mine",
+        "markerPath": "markers/a3/loc_mine.png"
+    },
+    {
+        "markerType": "loc_move",
+        "markerPath": "markers/a3/loc_move.png"
+    },
+    {
+        "markerType": "loc_Pick",
+        "markerPath": "markers/a3/loc_Pick.png"
+    },
+    {
+        "markerType": "loc_plane",
+        "markerPath": "markers/a3/loc_plane.png"
+    },
+    {
+        "markerType": "loc_Power",
+        "markerPath": "markers/a3/loc_Power.png"
+    },
+    {
+        "markerType": "loc_PowerSolar",
+        "markerPath": "markers/a3/loc_PowerSolar.png"
+    },
+    {
+        "markerType": "loc_PowerWave",
+        "markerPath": "markers/a3/loc_PowerWave.png"
+    },
+    {
+        "markerType": "loc_PowerWind",
+        "markerPath": "markers/a3/loc_PowerWind.png"
+    },
+    {
+        "markerType": "loc_Quay",
+        "markerPath": "markers/a3/loc_Quay.png"
+    },
+    {
+        "markerType": "loc_radio",
+        "markerPath": "markers/a3/loc_radio.png"
+    },
+    {
+        "markerType": "loc_rearm",
+        "markerPath": "markers/a3/loc_rearm.png"
+    },
+    {
+        "markerType": "loc_refuel",
+        "markerPath": "markers/a3/loc_refuel.png"
+    },
+    {
+        "markerType": "loc_repair",
+        "markerPath": "markers/a3/loc_repair.png"
+    },
+    {
+        "markerType": "loc_Rifle",
+        "markerPath": "markers/a3/loc_Rifle.png"
+    },
+    {
+        "markerType": "loc_Rock",
+        "markerPath": "markers/a3/loc_Rock.png"
+    },
+    {
+        "markerType": "loc_Ruin",
+        "markerPath": "markers/a3/loc_Ruin.png"
+    },
+    {
+        "markerType": "loc_SafetyZone",
+        "markerPath": "markers/a3/loc_SafetyZone.png"
+    },
+    {
+        "markerType": "loc_save",
+        "markerPath": "markers/a3/loc_save.png"
+    },
+    {
+        "markerType": "loc_sdv",
+        "markerPath": "markers/a3/loc_sdv.png"
+    },
+    {
+        "markerType": "loc_search",
+        "markerPath": "markers/a3/loc_search.png"
+    },
+    {
+        "markerType": "loc_SmallTree",
+        "markerPath": "markers/a3/loc_SmallTree.png"
+    },
+    {
+        "markerType": "loc_Stack",
+        "markerPath": "markers/a3/loc_Stack.png"
+    },
+    {
+        "markerType": "loc_talk",
+        "markerPath": "markers/a3/loc_talk.png"
+    },
+    {
+        "markerType": "loc_Tourism",
+        "markerPath": "markers/a3/loc_Tourism.png"
+    },
+    {
+        "markerType": "loc_Transmitter",
+        "markerPath": "markers/a3/loc_Transmitter.png"
+    },
+    {
+        "markerType": "loc_Tree",
+        "markerPath": "markers/a3/loc_Tree.png"
+    },
+    {
+        "markerType": "loc_Truck",
+        "markerPath": "markers/a3/loc_Truck.png"
+    },
+    {
+        "markerType": "loc_use",
+        "markerPath": "markers/a3/loc_use.png"
+    },
+    {
+        "markerType": "loc_ViewTower",
+        "markerPath": "markers/a3/loc_ViewTower.png"
+    },
+    {
+        "markerType": "loc_WaterTower",
+        "markerPath": "markers/a3/loc_WaterTower.png"
+    },
+    {
+        "markerType": "MemoryFragment",
+        "markerPath": "markers/a3/MemoryFragment.png"
+    },
+    {
+        "markerType": "mil_ambush",
+        "markerPath": "markers/a3/mil_ambush.png"
+    },
+    {
+        "markerType": "mil_ambush_noShadow",
+        "markerPath": "markers/a3/mil_ambush_noShadow.png"
+    },
+    {
+        "markerType": "mil_arrow",
+        "markerPath": "markers/a3/mil_arrow.png"
+    },
+    {
+        "markerType": "mil_arrow2",
+        "markerPath": "markers/a3/mil_arrow2.png"
+    },
+    {
+        "markerType": "mil_arrow2_noShadow",
+        "markerPath": "markers/a3/mil_arrow2_noShadow.png"
+    },
+    {
+        "markerType": "mil_arrow_noShadow",
+        "markerPath": "markers/a3/mil_arrow_noShadow.png"
+    },
+    {
+        "markerType": "mil_box",
+        "markerPath": "markers/a3/mil_box.png"
+    },
+    {
+        "markerType": "mil_box_noShadow",
+        "markerPath": "markers/a3/mil_box_noShadow.png"
+    },
+    {
+        "markerType": "mil_circle",
+        "markerPath": "markers/a3/mil_circle.png"
+    },
+    {
+        "markerType": "mil_circle_noShadow",
+        "markerPath": "markers/a3/mil_circle_noShadow.png"
+    },
+    {
+        "markerType": "mil_destroy",
+        "markerPath": "markers/a3/mil_destroy.png"
+    },
+    {
+        "markerType": "mil_destroy_noShadow",
+        "markerPath": "markers/a3/mil_destroy_noShadow.png"
+    },
+    {
+        "markerType": "mil_dot",
+        "markerPath": "markers/a3/mil_dot.png"
+    },
+    {
+        "markerType": "mil_dot_noShadow",
+        "markerPath": "markers/a3/mil_dot_noShadow.png"
+    },
+    {
+        "markerType": "mil_end",
+        "markerPath": "markers/a3/mil_end.png"
+    },
+    {
+        "markerType": "mil_end_noShadow",
+        "markerPath": "markers/a3/mil_end_noShadow.png"
+    },
+    {
+        "markerType": "mil_flag",
+        "markerPath": "markers/a3/mil_flag.png"
+    },
+    {
+        "markerType": "mil_flag_noShadow",
+        "markerPath": "markers/a3/mil_flag_noShadow.png"
+    },
+    {
+        "markerType": "mil_join",
+        "markerPath": "markers/a3/mil_join.png"
+    },
+    {
+        "markerType": "mil_join_noShadow",
+        "markerPath": "markers/a3/mil_join_noShadow.png"
+    },
+    {
+        "markerType": "mil_marker",
+        "markerPath": "markers/a3/mil_marker.png"
+    },
+    {
+        "markerType": "mil_marker_noShadow",
+        "markerPath": "markers/a3/mil_marker_noShadow.png"
+    },
+    {
+        "markerType": "mil_objective",
+        "markerPath": "markers/a3/mil_objective.png"
+    },
+    {
+        "markerType": "mil_objective_noShadow",
+        "markerPath": "markers/a3/mil_objective_noShadow.png"
+    },
+    {
+        "markerType": "mil_pickup",
+        "markerPath": "markers/a3/mil_pickup.png"
+    },
+    {
+        "markerType": "mil_pickup_noShadow",
+        "markerPath": "markers/a3/mil_pickup_noShadow.png"
+    },
+    {
+        "markerType": "mil_start",
+        "markerPath": "markers/a3/mil_start.png"
+    },
+    {
+        "markerType": "mil_start_noShadow",
+        "markerPath": "markers/a3/mil_start_noShadow.png"
+    },
+    {
+        "markerType": "mil_triangle",
+        "markerPath": "markers/a3/mil_triangle.png"
+    },
+    {
+        "markerType": "mil_triangle_noShadow",
+        "markerPath": "markers/a3/mil_triangle_noShadow.png"
+    },
+    {
+        "markerType": "mil_unknown",
+        "markerPath": "markers/a3/mil_unknown.png"
+    },
+    {
+        "markerType": "mil_unknown_noShadow",
+        "markerPath": "markers/a3/mil_unknown_noShadow.png"
+    },
+    {
+        "markerType": "mil_warning",
+        "markerPath": "markers/a3/mil_warning.png"
+    },
+    {
+        "markerType": "mil_warning_noShadow",
+        "markerPath": "markers/a3/mil_warning_noShadow.png"
+    },
+    {
+        "markerType": "Minefield",
+        "markerPath": "markers/a3/Minefield.png"
+    },
+    {
+        "markerType": "MinefieldAP",
+        "markerPath": "markers/a3/MinefieldAP.png"
+    },
+    {
+        "markerType": "moduleCoverMap",
+        "markerPath": "markers/a3/moduleCoverMap.png"
+    },
+    {
+        "markerType": "n_air",
+        "markerPath": "markers/a3/n_air.png"
+    },
+    {
+        "markerType": "n_antiair",
+        "markerPath": "markers/a3/n_antiair.png"
+    },
+    {
+        "markerType": "n_armor",
+        "markerPath": "markers/a3/n_armor.png"
+    },
+    {
+        "markerType": "n_art",
+        "markerPath": "markers/a3/n_art.png"
+    },
+    {
+        "markerType": "n_hq",
+        "markerPath": "markers/a3/n_hq.png"
+    },
+    {
+        "markerType": "n_inf",
+        "markerPath": "markers/a3/n_inf.png"
+    },
+    {
+        "markerType": "n_installation",
+        "markerPath": "markers/a3/n_installation.png"
+    },
+    {
+        "markerType": "n_maint",
+        "markerPath": "markers/a3/n_maint.png"
+    },
+    {
+        "markerType": "n_mech_inf",
+        "markerPath": "markers/a3/n_mech_inf.png"
+    },
+    {
+        "markerType": "n_med",
+        "markerPath": "markers/a3/n_med.png"
+    },
+    {
+        "markerType": "n_mortar",
+        "markerPath": "markers/a3/n_mortar.png"
+    },
+    {
+        "markerType": "n_motor_inf",
+        "markerPath": "markers/a3/n_motor_inf.png"
+    },
+    {
+        "markerType": "n_naval",
+        "markerPath": "markers/a3/n_naval.png"
+    },
+    {
+        "markerType": "n_Ordnance",
+        "markerPath": "markers/a3/n_Ordnance.png"
+    },
+    {
+        "markerType": "n_plane",
+        "markerPath": "markers/a3/n_plane.png"
+    },
+    {
+        "markerType": "n_recon",
+        "markerPath": "markers/a3/n_recon.png"
+    },
+    {
+        "markerType": "n_service",
+        "markerPath": "markers/a3/n_service.png"
+    },
+    {
+        "markerType": "n_support",
+        "markerPath": "markers/a3/n_support.png"
+    },
+    {
+        "markerType": "n_uav",
+        "markerPath": "markers/a3/n_uav.png"
+    },
+    {
+        "markerType": "n_unknown",
+        "markerPath": "markers/a3/n_unknown.png"
+    },
+    {
+        "markerType": "ObjectMarker",
+        "markerPath": "markers/a3/ObjectMarker.png"
+    },
+    {
+        "markerType": "o_air",
+        "markerPath": "markers/a3/o_air.png"
+    },
+    {
+        "markerType": "o_antiair",
+        "markerPath": "markers/a3/o_antiair.png"
+    },
+    {
+        "markerType": "o_armor",
+        "markerPath": "markers/a3/o_armor.png"
+    },
+    {
+        "markerType": "o_art",
+        "markerPath": "markers/a3/o_art.png"
+    },
+    {
+        "markerType": "o_hq",
+        "markerPath": "markers/a3/o_hq.png"
+    },
+    {
+        "markerType": "o_inf",
+        "markerPath": "markers/a3/o_inf.png"
+    },
+    {
+        "markerType": "o_installation",
+        "markerPath": "markers/a3/o_installation.png"
+    },
+    {
+        "markerType": "o_maint",
+        "markerPath": "markers/a3/o_maint.png"
+    },
+    {
+        "markerType": "o_mech_inf",
+        "markerPath": "markers/a3/o_mech_inf.png"
+    },
+    {
+        "markerType": "o_med",
+        "markerPath": "markers/a3/o_med.png"
+    },
+    {
+        "markerType": "o_mortar",
+        "markerPath": "markers/a3/o_mortar.png"
+    },
+    {
+        "markerType": "o_motor_inf",
+        "markerPath": "markers/a3/o_motor_inf.png"
+    },
+    {
+        "markerType": "o_naval",
+        "markerPath": "markers/a3/o_naval.png"
+    },
+    {
+        "markerType": "o_Ordnance",
+        "markerPath": "markers/a3/o_Ordnance.png"
+    },
+    {
+        "markerType": "o_plane",
+        "markerPath": "markers/a3/o_plane.png"
+    },
+    {
+        "markerType": "o_recon",
+        "markerPath": "markers/a3/o_recon.png"
+    },
+    {
+        "markerType": "o_service",
+        "markerPath": "markers/a3/o_service.png"
+    },
+    {
+        "markerType": "o_support",
+        "markerPath": "markers/a3/o_support.png"
+    },
+    {
+        "markerType": "o_uav",
+        "markerPath": "markers/a3/o_uav.png"
+    },
+    {
+        "markerType": "o_unknown",
+        "markerPath": "markers/a3/o_unknown.png"
+    },
+    {
+        "markerType": "RedCrystal",
+        "markerPath": "markers/a3/RedCrystal.png"
+    },
+    {
+        "markerType": "respawn_air",
+        "markerPath": "markers/a3/respawn_air.png"
+    },
+    {
+        "markerType": "respawn_armor",
+        "markerPath": "markers/a3/respawn_armor.png"
+    },
+    {
+        "markerType": "respawn_inf",
+        "markerPath": "markers/a3/respawn_inf.png"
+    },
+    {
+        "markerType": "respawn_motor",
+        "markerPath": "markers/a3/respawn_motor.png"
+    },
+    {
+        "markerType": "respawn_naval",
+        "markerPath": "markers/a3/respawn_naval.png"
+    },
+    {
+        "markerType": "respawn_para",
+        "markerPath": "markers/a3/respawn_para.png"
+    },
+    {
+        "markerType": "respawn_plane",
+        "markerPath": "markers/a3/respawn_plane.png"
+    },
+    {
+        "markerType": "respawn_unknown",
+        "markerPath": "markers/a3/respawn_unknown.png"
+    },
+    {
+        "markerType": "safeStart",
+        "markerPath": "markers/a3/safeStart.png"
+    },
+    {
+        "markerType": "Select",
+        "markerPath": "markers/a3/Select.png"
+    },
+    {
+        "markerType": "selector_selectable",
+        "markerPath": "markers/a3/selector_selectable.png"
+    },
+    {
+        "markerType": "selector_selectedEnemy",
+        "markerPath": "markers/a3/selector_selectedEnemy.png"
+    },
+    {
+        "markerType": "selector_selectedFriendly",
+        "markerPath": "markers/a3/selector_selectedFriendly.png"
+    },
+    {
+        "markerType": "selector_selectedMission",
+        "markerPath": "markers/a3/selector_selectedMission.png"
+    },
+    {
+        "markerType": "u_installation",
+        "markerPath": "markers/a3/u_installation.png"
+    },
+    {
+        "markerType": "waypoint",
+        "markerPath": "markers/a3/waypoint.png"
+    },
+    {
+        "markerType": "White",
+        "markerPath": "markers/a3/White.png"
+    },
+    {
+        "markerType": "Faction_BLUFOR_EP1",
+        "markerPath": "markers/ca/Faction_BLUFOR_EP1.png"
+    },
+    {
+        "markerType": "Faction_CzechRepublic_EP1",
+        "markerPath": "markers/ca/Faction_CzechRepublic_EP1.png"
+    },
+    {
+        "markerType": "Faction_Germany_EP1",
+        "markerPath": "markers/ca/Faction_Germany_EP1.png"
+    },
+    {
+        "markerType": "Faction_GUE",
+        "markerPath": "markers/ca/Faction_GUE.png"
+    },
+    {
+        "markerType": "Faction_INDFOR_EP1",
+        "markerPath": "markers/ca/Faction_INDFOR_EP1.png"
+    },
+    {
+        "markerType": "Faction_INS",
+        "markerPath": "markers/ca/Faction_INS.png"
+    },
+    {
+        "markerType": "Faction_NATO_EP1",
+        "markerPath": "markers/ca/Faction_NATO_EP1.png"
+    },
+    {
+        "markerType": "Faction_OPFOR_EP1",
+        "markerPath": "markers/ca/Faction_OPFOR_EP1.png"
+    },
+    {
+        "markerType": "Faction_RU",
+        "markerPath": "markers/ca/Faction_RU.png"
+    },
+    {
+        "markerType": "Faction_TKA_EP1",
+        "markerPath": "markers/ca/Faction_TKA_EP1.png"
+    },
+    {
+        "markerType": "Faction_TKG_EP1",
+        "markerPath": "markers/ca/Faction_TKG_EP1.png"
+    },
+    {
+        "markerType": "Faction_TKM_EP1",
+        "markerPath": "markers/ca/Faction_TKM_EP1.png"
+    },
+    {
+        "markerType": "Faction_UNO_EP1",
+        "markerPath": "markers/ca/Faction_UNO_EP1.png"
+    },
+    {
+        "markerType": "Faction_US",
+        "markerPath": "markers/ca/Faction_US.png"
+    },
+    {
+        "markerType": "flag_bis_co",
+        "markerPath": "markers/cup/flag_bis_co.png"
+    },
+    {
+        "markerType": "flag_blufor_co",
+        "markerPath": "markers/cup/flag_blufor_co.png"
+    },
+    {
+        "markerType": "flag_cdf_co",
+        "markerPath": "markers/cup/flag_cdf_co.png"
+    },
+    {
+        "markerType": "flag_chdkz_co",
+        "markerPath": "markers/cup/flag_chdkz_co.png"
+    },
+    {
+        "markerType": "flag_chernarus_co",
+        "markerPath": "markers/cup/flag_chernarus_co.png"
+    },
+    {
+        "markerType": "flag_cr_co",
+        "markerPath": "markers/cup/flag_cr_co.png"
+    },
+    {
+        "markerType": "flag_cz_co",
+        "markerPath": "markers/cup/flag_cz_co.png"
+    },
+    {
+        "markerType": "flag_ger_co",
+        "markerPath": "markers/cup/flag_ger_co.png"
+    },
+    {
+        "markerType": "flag_indfor_co",
+        "markerPath": "markers/cup/flag_indfor_co.png"
+    },
+    {
+        "markerType": "flag_ion_black_co",
+        "markerPath": "markers/cup/flag_ion_black_co.png"
+    },
+    {
+        "markerType": "flag_ion_white_co",
+        "markerPath": "markers/cup/flag_ion_white_co.png"
+    },
+    {
+        "markerType": "flag_knight_co",
+        "markerPath": "markers/cup/flag_knight_co.png"
+    },
+    {
+        "markerType": "flag_napa_co",
+        "markerPath": "markers/cup/flag_napa_co.png"
+    },
+    {
+        "markerType": "flag_nato_co",
+        "markerPath": "markers/cup/flag_nato_co.png"
+    },
+    {
+        "markerType": "flag_opfor_co",
+        "markerPath": "markers/cup/flag_opfor_co.png"
+    },
+    {
+        "markerType": "flag_pow_co",
+        "markerPath": "markers/cup/flag_pow_co.png"
+    },
+    {
+        "markerType": "flag_rcrescent_co",
+        "markerPath": "markers/cup/flag_rcrescent_co.png"
+    },
+    {
+        "markerType": "flag_rcross_co",
+        "markerPath": "markers/cup/flag_rcross_co.png"
+    },
+    {
+        "markerType": "flag_rcrystal_co",
+        "markerPath": "markers/cup/flag_rcrystal_co.png"
+    },
+    {
+        "markerType": "flag_rus_co",
+        "markerPath": "markers/cup/flag_rus_co.png"
+    },
+    {
+        "markerType": "flag_tka_co",
+        "markerPath": "markers/cup/flag_tka_co.png"
+    },
+    {
+        "markerType": "flag_tkg_co",
+        "markerPath": "markers/cup/flag_tkg_co.png"
+    },
+    {
+        "markerType": "flag_tkm_co",
+        "markerPath": "markers/cup/flag_tkm_co.png"
+    },
+    {
+        "markerType": "flag_uno_co",
+        "markerPath": "markers/cup/flag_uno_co.png"
+    },
+    {
+        "markerType": "flag_usarmy_co",
+        "markerPath": "markers/cup/flag_usarmy_co.png"
+    },
+    {
+        "markerType": "flag_usa_co",
+        "markerPath": "markers/cup/flag_usa_co.png"
+    },
+    {
+        "markerType": "flag_usmc_co",
+        "markerPath": "markers/cup/flag_usmc_co.png"
+    },
+    {
+        "markerType": "flag_us_co",
+        "markerPath": "markers/cup/flag_us_co.png"
+    },
+    {
+        "markerType": "flag_white_co",
+        "markerPath": "markers/cup/flag_white_co.png"
+    },
+    {
+        "markerType": "gils_mm_w_aag",
+        "markerPath": "markers/gils/gils_mm_w_aag.png"
+    },
+    {
+        "markerType": "gils_mm_w_aagml",
+        "markerPath": "markers/gils/gils_mm_w_aagml.png"
+    },
+    {
+        "markerType": "gils_mm_w_aaml",
+        "markerPath": "markers/gils/gils_mm_w_aaml.png"
+    },
+    {
+        "markerType": "gils_mm_w_afv",
+        "markerPath": "markers/gils/gils_mm_w_afv.png"
+    },
+    {
+        "markerType": "gils_mm_w_afvam",
+        "markerPath": "markers/gils/gils_mm_w_afvam.png"
+    },
+    {
+        "markerType": "gils_mm_w_ags",
+        "markerPath": "markers/gils/gils_mm_w_ags.png"
+    },
+    {
+        "markerType": "gils_mm_w_am",
+        "markerPath": "markers/gils/gils_mm_w_am.png"
+    },
+    {
+        "markerType": "gils_mm_w_amamb",
+        "markerPath": "markers/gils/gils_mm_w_amamb.png"
+    },
+    {
+        "markerType": "gils_mm_w_amr",
+        "markerPath": "markers/gils/gils_mm_w_amr.png"
+    },
+    {
+        "markerType": "gils_mm_w_apcma",
+        "markerPath": "markers/gils/gils_mm_w_apcma.png"
+    },
+    {
+        "markerType": "gils_mm_w_apcmaatgm",
+        "markerPath": "markers/gils/gils_mm_w_apcmaatgm.png"
+    },
+    {
+        "markerType": "gils_mm_w_apcmar",
+        "markerPath": "markers/gils/gils_mm_w_apcmar.png"
+    },
+    {
+        "markerType": "gils_mm_w_atg",
+        "markerPath": "markers/gils/gils_mm_w_atg.png"
+    },
+    {
+        "markerType": "gils_mm_w_atgm",
+        "markerPath": "markers/gils/gils_mm_w_atgm.png"
+    },
+    {
+        "markerType": "gils_mm_w_atl",
+        "markerPath": "markers/gils/gils_mm_w_atl.png"
+    },
+    {
+        "markerType": "gils_mm_w_bnk",
+        "markerPath": "markers/gils/gils_mm_w_bnk.png"
+    },
+    {
+        "markerType": "gils_mm_w_bnkc",
+        "markerPath": "markers/gils/gils_mm_w_bnkc.png"
+    },
+    {
+        "markerType": "gils_mm_w_bnkr",
+        "markerPath": "markers/gils/gils_mm_w_bnkr.png"
+    },
+    {
+        "markerType": "gils_mm_w_cp",
+        "markerPath": "markers/gils/gils_mm_w_cp.png"
+    },
+    {
+        "markerType": "gils_mm_w_fg",
+        "markerPath": "markers/gils/gils_mm_w_fg.png"
+    },
+    {
+        "markerType": "gils_mm_w_fp",
+        "markerPath": "markers/gils/gils_mm_w_fp.png"
+    },
+    {
+        "markerType": "gils_mm_w_frog",
+        "markerPath": "markers/gils/gils_mm_w_frog.png"
+    },
+    {
+        "markerType": "gils_mm_w_hatlrr",
+        "markerPath": "markers/gils/gils_mm_w_hatlrr.png"
+    },
+    {
+        "markerType": "gils_mm_w_hl",
+        "markerPath": "markers/gils/gils_mm_w_hl.png"
+    },
+    {
+        "markerType": "gils_mm_w_hla",
+        "markerPath": "markers/gils/gils_mm_w_hla.png"
+    },
+    {
+        "markerType": "gils_mm_w_hlamb",
+        "markerPath": "markers/gils/gils_mm_w_hlamb.png"
+    },
+    {
+        "markerType": "gils_mm_w_hlr",
+        "markerPath": "markers/gils/gils_mm_w_hlr.png"
+    },
+    {
+        "markerType": "gils_mm_w_hlt",
+        "markerPath": "markers/gils/gils_mm_w_hlt.png"
+    },
+    {
+        "markerType": "gils_mm_w_hmg",
+        "markerPath": "markers/gils/gils_mm_w_hmg.png"
+    },
+    {
+        "markerType": "gils_mm_w_ifv",
+        "markerPath": "markers/gils/gils_mm_w_ifv.png"
+    },
+    {
+        "markerType": "gils_mm_w_lmg",
+        "markerPath": "markers/gils/gils_mm_w_lmg.png"
+    },
+    {
+        "markerType": "gils_mm_w_mc",
+        "markerPath": "markers/gils/gils_mm_w_mc.png"
+    },
+    {
+        "markerType": "gils_mm_w_mlrs",
+        "markerPath": "markers/gils/gils_mm_w_mlrs.png"
+    },
+    {
+        "markerType": "gils_mm_w_mmg",
+        "markerPath": "markers/gils/gils_mm_w_mmg.png"
+    },
+    {
+        "markerType": "gils_mm_w_mor",
+        "markerPath": "markers/gils/gils_mm_w_mor.png"
+    },
+    {
+        "markerType": "gils_mm_w_op",
+        "markerPath": "markers/gils/gils_mm_w_op.png"
+    },
+    {
+        "markerType": "gils_mm_w_plb",
+        "markerPath": "markers/gils/gils_mm_w_plb.png"
+    },
+    {
+        "markerType": "gils_mm_w_plf",
+        "markerPath": "markers/gils/gils_mm_w_plf.png"
+    },
+    {
+        "markerType": "gils_mm_w_plga",
+        "markerPath": "markers/gils/gils_mm_w_plga.png"
+    },
+    {
+        "markerType": "gils_mm_w_plr",
+        "markerPath": "markers/gils/gils_mm_w_plr.png"
+    },
+    {
+        "markerType": "gils_mm_w_spaag",
+        "markerPath": "markers/gils/gils_mm_w_spaag.png"
+    },
+    {
+        "markerType": "gils_mm_w_spaagml",
+        "markerPath": "markers/gils/gils_mm_w_spaagml.png"
+    },
+    {
+        "markerType": "gils_mm_w_spaaml",
+        "markerPath": "markers/gils/gils_mm_w_spaaml.png"
+    },
+    {
+        "markerType": "gils_mm_w_spatg",
+        "markerPath": "markers/gils/gils_mm_w_spatg.png"
+    },
+    {
+        "markerType": "gils_mm_w_spg",
+        "markerPath": "markers/gils/gils_mm_w_spg.png"
+    },
+    {
+        "markerType": "gils_mm_w_spm",
+        "markerPath": "markers/gils/gils_mm_w_spm.png"
+    },
+    {
+        "markerType": "marker_afp",
+        "markerPath": "markers/nato/marker_afp.png"
+    },
+    {
+        "markerType": "marker_block",
+        "markerPath": "markers/nato/marker_block.png"
+    },
+    {
+        "markerType": "marker_catk",
+        "markerPath": "markers/nato/marker_catk.png"
+    },
+    {
+        "markerType": "marker_cbf",
+        "markerPath": "markers/nato/marker_cbf.png"
+    },
+    {
+        "markerType": "marker_ccp",
+        "markerPath": "markers/nato/marker_ccp.png"
+    },
+    {
+        "markerType": "marker_cp",
+        "markerPath": "markers/nato/marker_cp.png"
+    },
+    {
+        "markerType": "marker_cp1",
+        "markerPath": "markers/nato/marker_cp1.png"
+    },
+    {
+        "markerType": "marker_ds",
+        "markerPath": "markers/nato/marker_ds.png"
+    },
+    {
+        "markerType": "marker_dz",
+        "markerPath": "markers/nato/marker_dz.png"
+    },
+    {
+        "markerType": "marker_erp",
+        "markerPath": "markers/nato/marker_erp.png"
+    },
+    {
+        "markerType": "marker_ez",
+        "markerPath": "markers/nato/marker_ez.png"
+    },
+    {
+        "markerType": "marker_fd",
+        "markerPath": "markers/nato/marker_fd.png"
+    },
+    {
+        "markerType": "marker_fh",
+        "markerPath": "markers/nato/marker_fh.png"
+    },
+    {
+        "markerType": "marker_fix",
+        "markerPath": "markers/nato/marker_fix.png"
+    },
+    {
+        "markerType": "marker_fss",
+        "markerPath": "markers/nato/marker_fss.png"
+    },
+    {
+        "markerType": "marker_fup",
+        "markerPath": "markers/nato/marker_fup.png"
+    },
+    {
+        "markerType": "marker_lu",
+        "markerPath": "markers/nato/marker_lu.png"
+    },
+    {
+        "markerType": "marker_lz",
+        "markerPath": "markers/nato/marker_lz.png"
+    },
+    {
+        "markerType": "marker_neutralize",
+        "markerPath": "markers/nato/marker_neutralize.png"
+    },
+    {
+        "markerType": "marker_nt",
+        "markerPath": "markers/nato/marker_nt.png"
+    },
+    {
+        "markerType": "marker_op",
+        "markerPath": "markers/nato/marker_op.png"
+    },
+    {
+        "markerType": "marker_pn",
+        "markerPath": "markers/nato/marker_pn.png"
+    },
+    {
+        "markerType": "marker_poi",
+        "markerPath": "markers/nato/marker_poi.png"
+    },
+    {
+        "markerType": "marker_pp",
+        "markerPath": "markers/nato/marker_pp.png"
+    },
+    {
+        "markerType": "marker_pz",
+        "markerPath": "markers/nato/marker_pz.png"
+    },
+    {
+        "markerType": "marker_rly",
+        "markerPath": "markers/nato/marker_rly.png"
+    },
+    {
+        "markerType": "marker_rp",
+        "markerPath": "markers/nato/marker_rp.png"
+    },
+    {
+        "markerType": "marker_sfp",
+        "markerPath": "markers/nato/marker_sfp.png"
+    },
+    {
+        "markerType": "marker_sp",
+        "markerPath": "markers/nato/marker_sp.png"
+    },
+    {
+        "markerType": "marker_wp",
+        "markerPath": "markers/nato/marker_wp.png"
+    },
+    {
+        "markerType": "apc",
+        "markerPath": "markers/ocap/apc.svg"
+    },
+    {
+        "markerType": "car",
+        "markerPath": "markers/ocap/car.svg"
+    },
+    {
+        "markerType": "heli",
+        "markerPath": "markers/ocap/heli.svg"
+    },
+    {
+        "markerType": "man",
+        "markerPath": "markers/ocap/man.svg"
+    },
+    {
+        "markerType": "parachute",
+        "markerPath": "markers/ocap/parachute.svg"
+    },
+    {
+        "markerType": "plane",
+        "markerPath": "markers/ocap/plane.svg"
+    },
+    {
+        "markerType": "ship",
+        "markerPath": "markers/ocap/ship.svg"
+    },
+    {
+        "markerType": "tank",
+        "markerPath": "markers/ocap/tank.svg"
+    },
+    {
+        "markerType": "truck",
+        "markerPath": "markers/ocap/truck.svg"
+    },
+    {
+        "markerType": "unknown",
+        "markerPath": "markers/ocap/unknown.svg"
+    },
+    {
+        "markerType": "vkpng2",
+        "markerPath": "markers/vk/vkpng2.zip"
+    },
+    {
+        "markerType": "vk_ABF",
+        "markerPath": "markers/vk/vk_ABF.png"
+    },
+    {
+        "markerType": "vk_b_aa",
+        "markerPath": "markers/vk/vk_b_aa.png"
+    },
+    {
+        "markerType": "vk_b_airunit",
+        "markerPath": "markers/vk/vk_b_airunit.png"
+    },
+    {
+        "markerType": "vk_b_amphib",
+        "markerPath": "markers/vk/vk_b_amphib.png"
+    },
+    {
+        "markerType": "vk_b_at",
+        "markerPath": "markers/vk/vk_b_at.png"
+    },
+    {
+        "markerType": "vk_b_box",
+        "markerPath": "markers/vk/vk_b_box.png"
+    },
+    {
+        "markerType": "vk_b_empty",
+        "markerPath": "markers/vk/vk_b_empty.png"
+    },
+    {
+        "markerType": "vk_b_groundunit",
+        "markerPath": "markers/vk/vk_b_groundunit.png"
+    },
+    {
+        "markerType": "vk_b_group_0",
+        "markerPath": "markers/vk/vk_b_group_0.png"
+    },
+    {
+        "markerType": "vk_b_group_1",
+        "markerPath": "markers/vk/vk_b_group_1.png"
+    },
+    {
+        "markerType": "vk_b_group_10",
+        "markerPath": "markers/vk/vk_b_group_10.png"
+    },
+    {
+        "markerType": "vk_b_group_11",
+        "markerPath": "markers/vk/vk_b_group_11.png"
+    },
+    {
+        "markerType": "vk_b_group_2",
+        "markerPath": "markers/vk/vk_b_group_2.png"
+    },
+    {
+        "markerType": "vk_b_group_3",
+        "markerPath": "markers/vk/vk_b_group_3.png"
+    },
+    {
+        "markerType": "vk_b_group_4",
+        "markerPath": "markers/vk/vk_b_group_4.png"
+    },
+    {
+        "markerType": "vk_b_group_5",
+        "markerPath": "markers/vk/vk_b_group_5.png"
+    },
+    {
+        "markerType": "vk_b_group_6",
+        "markerPath": "markers/vk/vk_b_group_6.png"
+    },
+    {
+        "markerType": "vk_b_group_7",
+        "markerPath": "markers/vk/vk_b_group_7.png"
+    },
+    {
+        "markerType": "vk_b_group_8",
+        "markerPath": "markers/vk/vk_b_group_8.png"
+    },
+    {
+        "markerType": "vk_b_group_9",
+        "markerPath": "markers/vk/vk_b_group_9.png"
+    },
+    {
+        "markerType": "vk_b_hq",
+        "markerPath": "markers/vk/vk_b_hq.png"
+    },
+    {
+        "markerType": "vk_b_ifv",
+        "markerPath": "markers/vk/vk_b_ifv.png"
+    },
+    {
+        "markerType": "vk_b_inf",
+        "markerPath": "markers/vk/vk_b_inf.png"
+    },
+    {
+        "markerType": "vk_b_inst",
+        "markerPath": "markers/vk/vk_b_inst.png"
+    },
+    {
+        "markerType": "vk_b_medic",
+        "markerPath": "markers/vk/vk_b_medic.png"
+    },
+    {
+        "markerType": "vk_b_motor",
+        "markerPath": "markers/vk/vk_b_motor.png"
+    },
+    {
+        "markerType": "vk_b_recon",
+        "markerPath": "markers/vk/vk_b_recon.png"
+    },
+    {
+        "markerType": "vk_b_sat",
+        "markerPath": "markers/vk/vk_b_sat.png"
+    },
+    {
+        "markerType": "vk_b_signals",
+        "markerPath": "markers/vk/vk_b_signals.png"
+    },
+    {
+        "markerType": "vk_b_supply",
+        "markerPath": "markers/vk/vk_b_supply.png"
+    },
+    {
+        "markerType": "vk_clear",
+        "markerPath": "markers/vk/vk_clear.png"
+    },
+    {
+        "markerType": "vk_destroy",
+        "markerPath": "markers/vk/vk_destroy.png"
+    },
+    {
+        "markerType": "vk_hd_smallDot",
+        "markerPath": "markers/vk/vk_hd_smallDot.png"
+    },
+    {
+        "markerType": "vk_igConvert",
+        "markerPath": "markers/vk/vk_igConvert.png"
+    },
+    {
+        "markerType": "vk_neutralize",
+        "markerPath": "markers/vk/vk_neutralize.png"
+    },
+    {
+        "markerType": "vk_n_aa",
+        "markerPath": "markers/vk/vk_n_aa.png"
+    },
+    {
+        "markerType": "vk_n_airassault",
+        "markerPath": "markers/vk/vk_n_airassault.png"
+    },
+    {
+        "markerType": "vk_n_airunit",
+        "markerPath": "markers/vk/vk_n_airunit.png"
+    },
+    {
+        "markerType": "vk_n_amphib",
+        "markerPath": "markers/vk/vk_n_amphib.png"
+    },
+    {
+        "markerType": "vk_n_armor",
+        "markerPath": "markers/vk/vk_n_armor.png"
+    },
+    {
+        "markerType": "vk_n_at",
+        "markerPath": "markers/vk/vk_n_at.png"
+    },
+    {
+        "markerType": "vk_n_box",
+        "markerPath": "markers/vk/vk_n_box.png"
+    },
+    {
+        "markerType": "vk_n_empty",
+        "markerPath": "markers/vk/vk_n_empty.png"
+    },
+    {
+        "markerType": "vk_n_engarmor",
+        "markerPath": "markers/vk/vk_n_engarmor.png"
+    },
+    {
+        "markerType": "vk_n_fixed",
+        "markerPath": "markers/vk/vk_n_fixed.png"
+    },
+    {
+        "markerType": "vk_n_groundunit",
+        "markerPath": "markers/vk/vk_n_groundunit.png"
+    },
+    {
+        "markerType": "vk_n_group_0",
+        "markerPath": "markers/vk/vk_n_group_0.png"
+    },
+    {
+        "markerType": "vk_n_group_1",
+        "markerPath": "markers/vk/vk_n_group_1.png"
+    },
+    {
+        "markerType": "vk_n_group_10",
+        "markerPath": "markers/vk/vk_n_group_10.png"
+    },
+    {
+        "markerType": "vk_n_group_11",
+        "markerPath": "markers/vk/vk_n_group_11.png"
+    },
+    {
+        "markerType": "vk_n_group_2",
+        "markerPath": "markers/vk/vk_n_group_2.png"
+    },
+    {
+        "markerType": "vk_n_group_3",
+        "markerPath": "markers/vk/vk_n_group_3.png"
+    },
+    {
+        "markerType": "vk_n_group_4",
+        "markerPath": "markers/vk/vk_n_group_4.png"
+    },
+    {
+        "markerType": "vk_n_group_5",
+        "markerPath": "markers/vk/vk_n_group_5.png"
+    },
+    {
+        "markerType": "vk_n_group_6",
+        "markerPath": "markers/vk/vk_n_group_6.png"
+    },
+    {
+        "markerType": "vk_n_group_7",
+        "markerPath": "markers/vk/vk_n_group_7.png"
+    },
+    {
+        "markerType": "vk_n_group_8",
+        "markerPath": "markers/vk/vk_n_group_8.png"
+    },
+    {
+        "markerType": "vk_n_group_9",
+        "markerPath": "markers/vk/vk_n_group_9.png"
+    },
+    {
+        "markerType": "vk_n_hq",
+        "markerPath": "markers/vk/vk_n_hq.png"
+    },
+    {
+        "markerType": "vk_n_ifv",
+        "markerPath": "markers/vk/vk_n_ifv.png"
+    },
+    {
+        "markerType": "vk_n_inf",
+        "markerPath": "markers/vk/vk_n_inf.png"
+    },
+    {
+        "markerType": "vk_n_inst",
+        "markerPath": "markers/vk/vk_n_inst.png"
+    },
+    {
+        "markerType": "vk_n_maintarmor",
+        "markerPath": "markers/vk/vk_n_maintarmor.png"
+    },
+    {
+        "markerType": "vk_n_medic",
+        "markerPath": "markers/vk/vk_n_medic.png"
+    },
+    {
+        "markerType": "vk_n_motor",
+        "markerPath": "markers/vk/vk_n_motor.png"
+    },
+    {
+        "markerType": "vk_n_recon",
+        "markerPath": "markers/vk/vk_n_recon.png"
+    },
+    {
+        "markerType": "vk_n_rotary",
+        "markerPath": "markers/vk/vk_n_rotary.png"
+    },
+    {
+        "markerType": "vk_n_signals",
+        "markerPath": "markers/vk/vk_n_signals.png"
+    },
+    {
+        "markerType": "vk_n_supply",
+        "markerPath": "markers/vk/vk_n_supply.png"
+    },
+    {
+        "markerType": "vk_o_aa",
+        "markerPath": "markers/vk/vk_o_aa.png"
+    },
+    {
+        "markerType": "vk_o_airunit",
+        "markerPath": "markers/vk/vk_o_airunit.png"
+    },
+    {
+        "markerType": "vk_o_amphib",
+        "markerPath": "markers/vk/vk_o_amphib.png"
+    },
+    {
+        "markerType": "vk_o_at",
+        "markerPath": "markers/vk/vk_o_at.png"
+    },
+    {
+        "markerType": "vk_o_box",
+        "markerPath": "markers/vk/vk_o_box.png"
+    },
+    {
+        "markerType": "vk_o_empty",
+        "markerPath": "markers/vk/vk_o_empty.png"
+    },
+    {
+        "markerType": "vk_o_groundunit",
+        "markerPath": "markers/vk/vk_o_groundunit.png"
+    },
+    {
+        "markerType": "vk_o_group_0",
+        "markerPath": "markers/vk/vk_o_group_0.png"
+    },
+    {
+        "markerType": "vk_o_group_1",
+        "markerPath": "markers/vk/vk_o_group_1.png"
+    },
+    {
+        "markerType": "vk_o_group_10",
+        "markerPath": "markers/vk/vk_o_group_10.png"
+    },
+    {
+        "markerType": "vk_o_group_11",
+        "markerPath": "markers/vk/vk_o_group_11.png"
+    },
+    {
+        "markerType": "vk_o_group_2",
+        "markerPath": "markers/vk/vk_o_group_2.png"
+    },
+    {
+        "markerType": "vk_o_group_3",
+        "markerPath": "markers/vk/vk_o_group_3.png"
+    },
+    {
+        "markerType": "vk_o_group_4",
+        "markerPath": "markers/vk/vk_o_group_4.png"
+    },
+    {
+        "markerType": "vk_o_group_5",
+        "markerPath": "markers/vk/vk_o_group_5.png"
+    },
+    {
+        "markerType": "vk_o_group_6",
+        "markerPath": "markers/vk/vk_o_group_6.png"
+    },
+    {
+        "markerType": "vk_o_group_7",
+        "markerPath": "markers/vk/vk_o_group_7.png"
+    },
+    {
+        "markerType": "vk_o_group_8",
+        "markerPath": "markers/vk/vk_o_group_8.png"
+    },
+    {
+        "markerType": "vk_o_group_9",
+        "markerPath": "markers/vk/vk_o_group_9.png"
+    },
+    {
+        "markerType": "vk_o_hq",
+        "markerPath": "markers/vk/vk_o_hq.png"
+    },
+    {
+        "markerType": "vk_o_ifv",
+        "markerPath": "markers/vk/vk_o_ifv.png"
+    },
+    {
+        "markerType": "vk_o_inf",
+        "markerPath": "markers/vk/vk_o_inf.png"
+    },
+    {
+        "markerType": "vk_o_inst",
+        "markerPath": "markers/vk/vk_o_inst.png"
+    },
+    {
+        "markerType": "vk_o_medic",
+        "markerPath": "markers/vk/vk_o_medic.png"
+    },
+    {
+        "markerType": "vk_o_motor",
+        "markerPath": "markers/vk/vk_o_motor.png"
+    },
+    {
+        "markerType": "vk_o_recon",
+        "markerPath": "markers/vk/vk_o_recon.png"
+    },
+    {
+        "markerType": "vk_o_sat",
+        "markerPath": "markers/vk/vk_o_sat.png"
+    },
+    {
+        "markerType": "vk_o_signals",
+        "markerPath": "markers/vk/vk_o_signals.png"
+    },
+    {
+        "markerType": "vk_o_supply",
+        "markerPath": "markers/vk/vk_o_supply.png"
+    },
+    {
+        "markerType": "vk_SBF",
+        "markerPath": "markers/vk/vk_SBF.png"
+    },
+    {
+        "markerType": "vk_s_1",
+        "markerPath": "markers/vk/vk_s_1.png"
+    },
+    {
+        "markerType": "vk_s_2",
+        "markerPath": "markers/vk/vk_s_2.png"
+    },
+    {
+        "markerType": "vk_s_3",
+        "markerPath": "markers/vk/vk_s_3.png"
+    },
+    {
+        "markerType": "vk_s_4",
+        "markerPath": "markers/vk/vk_s_4.png"
+    },
+    {
+        "markerType": "vk_s_5",
+        "markerPath": "markers/vk/vk_s_5.png"
+    },
+    {
+        "markerType": "vk_s_6",
+        "markerPath": "markers/vk/vk_s_6.png"
+    },
+    {
+        "markerType": "vk_s_7",
+        "markerPath": "markers/vk/vk_s_7.png"
+    },
+    {
+        "markerType": "vk_s_8",
+        "markerPath": "markers/vk/vk_s_8.png"
+    },
+    {
+        "markerType": "vk_s_9",
+        "markerPath": "markers/vk/vk_s_9.png"
+    },
+    {
+        "markerType": "vk_s_a",
+        "markerPath": "markers/vk/vk_s_a.png"
+    },
+    {
+        "markerType": "vk_s_aaa",
+        "markerPath": "markers/vk/vk_s_aaa.png"
+    },
+    {
+        "markerType": "vk_s_ABF",
+        "markerPath": "markers/vk/vk_s_ABF.png"
+    },
+    {
+        "markerType": "vk_s_airassault",
+        "markerPath": "markers/vk/vk_s_airassault.png"
+    },
+    {
+        "markerType": "vk_s_airborne",
+        "markerPath": "markers/vk/vk_s_airborne.png"
+    },
+    {
+        "markerType": "vk_s_airmed",
+        "markerPath": "markers/vk/vk_s_airmed.png"
+    },
+    {
+        "markerType": "vk_s_airsof",
+        "markerPath": "markers/vk/vk_s_airsof.png"
+    },
+    {
+        "markerType": "vk_s_armor",
+        "markerPath": "markers/vk/vk_s_armor.png"
+    },
+    {
+        "markerType": "vk_s_armoraa",
+        "markerPath": "markers/vk/vk_s_armoraa.png"
+    },
+    {
+        "markerType": "vk_s_arty",
+        "markerPath": "markers/vk/vk_s_arty.png"
+    },
+    {
+        "markerType": "vk_s_attack",
+        "markerPath": "markers/vk/vk_s_attack.png"
+    },
+    {
+        "markerType": "vk_s_b",
+        "markerPath": "markers/vk/vk_s_b.png"
+    },
+    {
+        "markerType": "vk_s_bp",
+        "markerPath": "markers/vk/vk_s_bp.png"
+    },
+    {
+        "markerType": "vk_s_bpp",
+        "markerPath": "markers/vk/vk_s_bpp.png"
+    },
+    {
+        "markerType": "vk_s_c",
+        "markerPath": "markers/vk/vk_s_c.png"
+    },
+    {
+        "markerType": "vk_s_cargo",
+        "markerPath": "markers/vk/vk_s_cargo.png"
+    },
+    {
+        "markerType": "vk_s_d",
+        "markerPath": "markers/vk/vk_s_d.png"
+    },
+    {
+        "markerType": "vk_s_damaged",
+        "markerPath": "markers/vk/vk_s_damaged.png"
+    },
+    {
+        "markerType": "vk_s_destroyed",
+        "markerPath": "markers/vk/vk_s_destroyed.png"
+    },
+    {
+        "markerType": "vk_s_e",
+        "markerPath": "markers/vk/vk_s_e.png"
+    },
+    {
+        "markerType": "vk_s_eng",
+        "markerPath": "markers/vk/vk_s_eng.png"
+    },
+    {
+        "markerType": "vk_s_engarmor",
+        "markerPath": "markers/vk/vk_s_engarmor.png"
+    },
+    {
+        "markerType": "vk_s_f",
+        "markerPath": "markers/vk/vk_s_f.png"
+    },
+    {
+        "markerType": "vk_s_fixed",
+        "markerPath": "markers/vk/vk_s_fixed.png"
+    },
+    {
+        "markerType": "vk_s_g",
+        "markerPath": "markers/vk/vk_s_g.png"
+    },
+    {
+        "markerType": "vk_s_h",
+        "markerPath": "markers/vk/vk_s_h.png"
+    },
+    {
+        "markerType": "vk_s_heavy",
+        "markerPath": "markers/vk/vk_s_heavy.png"
+    },
+    {
+        "markerType": "vk_s_I",
+        "markerPath": "markers/vk/vk_s_I.png"
+    },
+    {
+        "markerType": "vk_s_II",
+        "markerPath": "markers/vk/vk_s_II.png"
+    },
+    {
+        "markerType": "vk_s_III",
+        "markerPath": "markers/vk/vk_s_III.png"
+    },
+    {
+        "markerType": "vk_s_IV",
+        "markerPath": "markers/vk/vk_s_IV.png"
+    },
+    {
+        "markerType": "vk_s_j",
+        "markerPath": "markers/vk/vk_s_j.png"
+    },
+    {
+        "markerType": "vk_s_k",
+        "markerPath": "markers/vk/vk_s_k.png"
+    },
+    {
+        "markerType": "vk_s_l",
+        "markerPath": "markers/vk/vk_s_l.png"
+    },
+    {
+        "markerType": "vk_s_light",
+        "markerPath": "markers/vk/vk_s_light.png"
+    },
+    {
+        "markerType": "vk_s_m",
+        "markerPath": "markers/vk/vk_s_m.png"
+    },
+    {
+        "markerType": "vk_s_maint",
+        "markerPath": "markers/vk/vk_s_maint.png"
+    },
+    {
+        "markerType": "vk_s_maintarmor",
+        "markerPath": "markers/vk/vk_s_maintarmor.png"
+    },
+    {
+        "markerType": "vk_s_medium",
+        "markerPath": "markers/vk/vk_s_medium.png"
+    },
+    {
+        "markerType": "vk_s_mlrs",
+        "markerPath": "markers/vk/vk_s_mlrs.png"
+    },
+    {
+        "markerType": "vk_s_mortar",
+        "markerPath": "markers/vk/vk_s_mortar.png"
+    },
+    {
+        "markerType": "vk_s_reduced",
+        "markerPath": "markers/vk/vk_s_reduced.png"
+    },
+    {
+        "markerType": "vk_s_reinforced",
+        "markerPath": "markers/vk/vk_s_reinforced.png"
+    },
+    {
+        "markerType": "vk_s_rereduced",
+        "markerPath": "markers/vk/vk_s_rereduced.png"
+    },
+    {
+        "markerType": "vk_s_rescue",
+        "markerPath": "markers/vk/vk_s_rescue.png"
+    },
+    {
+        "markerType": "vk_s_rotary",
+        "markerPath": "markers/vk/vk_s_rotary.png"
+    },
+    {
+        "markerType": "vk_s_sam",
+        "markerPath": "markers/vk/vk_s_sam.png"
+    },
+    {
+        "markerType": "vk_s_SBF",
+        "markerPath": "markers/vk/vk_s_SBF.png"
+    },
+    {
+        "markerType": "vk_s_scout",
+        "markerPath": "markers/vk/vk_s_scout.png"
+    },
+    {
+        "markerType": "vk_s_sf",
+        "markerPath": "markers/vk/vk_s_sf.png"
+    },
+    {
+        "markerType": "vk_s_sof",
+        "markerPath": "markers/vk/vk_s_sof.png"
+    },
+    {
+        "markerType": "vk_s_text",
+        "markerPath": "markers/vk/vk_s_text.png"
+    },
+    {
+        "markerType": "vk_s_uav",
+        "markerPath": "markers/vk/vk_s_uav.png"
+    },
+    {
+        "markerType": "vk_s_utility",
+        "markerPath": "markers/vk/vk_s_utility.png"
+    },
+    {
+        "markerType": "vk_s_V",
+        "markerPath": "markers/vk/vk_s_V.png"
+    },
+    {
+        "markerType": "vk_s_VI",
+        "markerPath": "markers/vk/vk_s_VI.png"
+    },
+    {
+        "markerType": "vk_s_vstol",
+        "markerPath": "markers/vk/vk_s_vstol.png"
+    },
+    {
+        "markerType": "vk_s_wheeled",
+        "markerPath": "markers/vk/vk_s_wheeled.png"
+    },
+    {
+        "markerType": "vk_u_AA",
+        "markerPath": "markers/vk/vk_u_AA.png"
+    },
+    {
+        "markerType": "vk_u_airunit",
+        "markerPath": "markers/vk/vk_u_airunit.png"
+    },
+    {
+        "markerType": "vk_u_Amphib",
+        "markerPath": "markers/vk/vk_u_Amphib.png"
+    },
+    {
+        "markerType": "vk_u_AT",
+        "markerPath": "markers/vk/vk_u_AT.png"
+    },
+    {
+        "markerType": "vk_u_Box",
+        "markerPath": "markers/vk/vk_u_Box.png"
+    },
+    {
+        "markerType": "vk_u_empty",
+        "markerPath": "markers/vk/vk_u_empty.png"
+    },
+    {
+        "markerType": "vk_u_groundunit",
+        "markerPath": "markers/vk/vk_u_groundunit.png"
+    },
+    {
+        "markerType": "vk_u_HQ",
+        "markerPath": "markers/vk/vk_u_HQ.png"
+    },
+    {
+        "markerType": "vk_u_IFV",
+        "markerPath": "markers/vk/vk_u_IFV.png"
+    },
+    {
+        "markerType": "vk_u_Inf",
+        "markerPath": "markers/vk/vk_u_Inf.png"
+    },
+    {
+        "markerType": "vk_u_inst",
+        "markerPath": "markers/vk/vk_u_inst.png"
+    },
+    {
+        "markerType": "vk_u_Medic",
+        "markerPath": "markers/vk/vk_u_Medic.png"
+    },
+    {
+        "markerType": "vk_u_motor",
+        "markerPath": "markers/vk/vk_u_motor.png"
+    },
+    {
+        "markerType": "vk_u_Recon",
+        "markerPath": "markers/vk/vk_u_Recon.png"
+    },
+    {
+        "markerType": "vk_u_Signals",
+        "markerPath": "markers/vk/vk_u_Signals.png"
+    },
+    {
+        "markerType": "vk_u_Supply",
+        "markerPath": "markers/vk/vk_u_Supply.png"
+    },
+    {
+        "markerType": "vk_v_fAttack",
+        "markerPath": "markers/vk/vk_v_fAttack.png"
+    },
+    {
+        "markerType": "vk_v_fCargo",
+        "markerPath": "markers/vk/vk_v_fCargo.png"
+    },
+    {
+        "markerType": "vk_v_Fighter",
+        "markerPath": "markers/vk/vk_v_Fighter.png"
+    },
+    {
+        "markerType": "vk_v_fUAV",
+        "markerPath": "markers/vk/vk_v_fUAV.png"
+    },
+    {
+        "markerType": "vk_v_Rotary",
+        "markerPath": "markers/vk/vk_v_Rotary.png"
+    },
+    {
+        "markerType": "vk_v_uAAA",
+        "markerPath": "markers/vk/vk_v_uAAA.png"
+    },
+    {
+        "markerType": "vk_v_uAAA_sp",
+        "markerPath": "markers/vk/vk_v_uAAA_sp.png"
+    },
+    {
+        "markerType": "vk_v_uAPC",
+        "markerPath": "markers/vk/vk_v_uAPC.png"
+    },
+    {
+        "markerType": "vk_v_uAPC_W",
+        "markerPath": "markers/vk/vk_v_uAPC_W.png"
+    },
+    {
+        "markerType": "vk_v_uArty",
+        "markerPath": "markers/vk/vk_v_uArty.png"
+    },
+    {
+        "markerType": "vk_v_uArty_SP",
+        "markerPath": "markers/vk/vk_v_uArty_SP.png"
+    },
+    {
+        "markerType": "vk_v_uIFV",
+        "markerPath": "markers/vk/vk_v_uIFV.png"
+    },
+    {
+        "markerType": "vk_v_uIFV_W",
+        "markerPath": "markers/vk/vk_v_uIFV_W.png"
+    },
+    {
+        "markerType": "vk_v_uMedic",
+        "markerPath": "markers/vk/vk_v_uMedic.png"
+    },
+    {
+        "markerType": "vk_v_uMLRS",
+        "markerPath": "markers/vk/vk_v_uMLRS.png"
+    },
+    {
+        "markerType": "vk_v_uMortar",
+        "markerPath": "markers/vk/vk_v_uMortar.png"
+    },
+    {
+        "markerType": "vk_v_uMortar_sp",
+        "markerPath": "markers/vk/vk_v_uMortar_sp.png"
+    },
+    {
+        "markerType": "vk_v_uSP",
+        "markerPath": "markers/vk/vk_v_uSP.png"
+    },
+    {
+        "markerType": "vk_v_uTank",
+        "markerPath": "markers/vk/vk_v_uTank.png"
+    },
+    {
+        "markerType": "vk_v_uTank_H",
+        "markerPath": "markers/vk/vk_v_uTank_H.png"
+    },
+    {
+        "markerType": "vk_v_uTank_L",
+        "markerPath": "markers/vk/vk_v_uTank_L.png"
+    },
+    {
+        "markerType": "vk_v_uTank_M",
+        "markerPath": "markers/vk/vk_v_uTank_M.png"
+    },
+    {
+        "markerType": "vk_v_uUtility",
+        "markerPath": "markers/vk/vk_v_uUtility.png"
+    },
+    {
+        "markerType": "vk_v_uWheeled",
+        "markerPath": "markers/vk/vk_v_uWheeled.png"
+    },
+    {
+        "markerType": "Airport",
+        "markerPath": "markers/ww2/Airport.png"
+    },
+    {
+        "markerType": "I44_Act_Clear",
+        "markerPath": "markers/ww2/I44_Act_Clear.png"
+    },
+    {
+        "markerType": "I44_Act_Contain",
+        "markerPath": "markers/ww2/I44_Act_Contain.png"
+    },
+    {
+        "markerType": "I44_Act_Destroy",
+        "markerPath": "markers/ww2/I44_Act_Destroy.png"
+    },
+    {
+        "markerType": "I44_Act_Fix",
+        "markerPath": "markers/ww2/I44_Act_Fix.png"
+    },
+    {
+        "markerType": "I44_Act_Interdict",
+        "markerPath": "markers/ww2/I44_Act_Interdict.png"
+    },
+    {
+        "markerType": "I44_Act_Isolate",
+        "markerPath": "markers/ww2/I44_Act_Isolate.png"
+    },
+    {
+        "markerType": "I44_Act_Landing_AB",
+        "markerPath": "markers/ww2/I44_Act_Landing_AB.png"
+    },
+    {
+        "markerType": "I44_Act_March",
+        "markerPath": "markers/ww2/I44_Act_March.png"
+    },
+    {
+        "markerType": "I44_Act_MarchOld",
+        "markerPath": "markers/ww2/I44_Act_MarchOld.png"
+    },
+    {
+        "markerType": "I44_Act_Neutralize",
+        "markerPath": "markers/ww2/I44_Act_Neutralize.png"
+    },
+    {
+        "markerType": "I44_Act_Occupy",
+        "markerPath": "markers/ww2/I44_Act_Occupy.png"
+    },
+    {
+        "markerType": "I44_Act_Secure",
+        "markerPath": "markers/ww2/I44_Act_Secure.png"
+    },
+    {
+        "markerType": "I44_A_AAF_Flt",
+        "markerPath": "markers/ww2/I44_A_AAF_Flt.png"
+    },
+    {
+        "markerType": "I44_A_AAF_Sqdr",
+        "markerPath": "markers/ww2/I44_A_AAF_Sqdr.png"
+    },
+    {
+        "markerType": "I44_A_AAF_Wing",
+        "markerPath": "markers/ww2/I44_A_AAF_Wing.png"
+    },
+    {
+        "markerType": "I44_A_Armor_Co",
+        "markerPath": "markers/ww2/I44_A_Armor_Co.png"
+    },
+    {
+        "markerType": "I44_A_Armor_Div",
+        "markerPath": "markers/ww2/I44_A_Armor_Div.png"
+    },
+    {
+        "markerType": "I44_A_Armor_Pltn",
+        "markerPath": "markers/ww2/I44_A_Armor_Pltn.png"
+    },
+    {
+        "markerType": "I44_A_Armor_Reg",
+        "markerPath": "markers/ww2/I44_A_Armor_Reg.png"
+    },
+    {
+        "markerType": "I44_A_Art_Co",
+        "markerPath": "markers/ww2/I44_A_Art_Co.png"
+    },
+    {
+        "markerType": "I44_A_Art_Pltn",
+        "markerPath": "markers/ww2/I44_A_Art_Pltn.png"
+    },
+    {
+        "markerType": "I44_A_Art_Sqd",
+        "markerPath": "markers/ww2/I44_A_Art_Sqd.png"
+    },
+    {
+        "markerType": "I44_A_Cav_Armor_Co",
+        "markerPath": "markers/ww2/I44_A_Cav_Armor_Co.png"
+    },
+    {
+        "markerType": "I44_A_Cav_Armor_Pltn",
+        "markerPath": "markers/ww2/I44_A_Cav_Armor_Pltn.png"
+    },
+    {
+        "markerType": "I44_A_Cav_Armor_Reg",
+        "markerPath": "markers/ww2/I44_A_Cav_Armor_Reg.png"
+    },
+    {
+        "markerType": "I44_A_Cav_Co",
+        "markerPath": "markers/ww2/I44_A_Cav_Co.png"
+    },
+    {
+        "markerType": "I44_A_Cav_Div",
+        "markerPath": "markers/ww2/I44_A_Cav_Div.png"
+    },
+    {
+        "markerType": "I44_A_Cav_Mot_Co",
+        "markerPath": "markers/ww2/I44_A_Cav_Mot_Co.png"
+    },
+    {
+        "markerType": "I44_A_Cav_Mot_Pltn",
+        "markerPath": "markers/ww2/I44_A_Cav_Mot_Pltn.png"
+    },
+    {
+        "markerType": "I44_A_Cav_Mot_Reg",
+        "markerPath": "markers/ww2/I44_A_Cav_Mot_Reg.png"
+    },
+    {
+        "markerType": "I44_A_Cav_Mot_Sqd",
+        "markerPath": "markers/ww2/I44_A_Cav_Mot_Sqd.png"
+    },
+    {
+        "markerType": "I44_A_Cav_Pltn",
+        "markerPath": "markers/ww2/I44_A_Cav_Pltn.png"
+    },
+    {
+        "markerType": "I44_A_Cav_Reg",
+        "markerPath": "markers/ww2/I44_A_Cav_Reg.png"
+    },
+    {
+        "markerType": "I44_A_Cav_Sqd",
+        "markerPath": "markers/ww2/I44_A_Cav_Sqd.png"
+    },
+    {
+        "markerType": "I44_A_Eng_Co",
+        "markerPath": "markers/ww2/I44_A_Eng_Co.png"
+    },
+    {
+        "markerType": "I44_A_Eng_Pltn",
+        "markerPath": "markers/ww2/I44_A_Eng_Pltn.png"
+    },
+    {
+        "markerType": "I44_A_Eng_Reg",
+        "markerPath": "markers/ww2/I44_A_Eng_Reg.png"
+    },
+    {
+        "markerType": "I44_A_Eng_Sqd",
+        "markerPath": "markers/ww2/I44_A_Eng_Sqd.png"
+    },
+    {
+        "markerType": "I44_A_Gun_MG",
+        "markerPath": "markers/ww2/I44_A_Gun_MG.png"
+    },
+    {
+        "markerType": "I44_A_Gun_Mortar",
+        "markerPath": "markers/ww2/I44_A_Gun_Mortar.png"
+    },
+    {
+        "markerType": "I44_A_Inf_Abn_Co",
+        "markerPath": "markers/ww2/I44_A_Inf_Abn_Co.png"
+    },
+    {
+        "markerType": "I44_A_Inf_Abn_Div",
+        "markerPath": "markers/ww2/I44_A_Inf_Abn_Div.png"
+    },
+    {
+        "markerType": "I44_A_Inf_Abn_Pltn",
+        "markerPath": "markers/ww2/I44_A_Inf_Abn_Pltn.png"
+    },
+    {
+        "markerType": "I44_A_Inf_Abn_Reg",
+        "markerPath": "markers/ww2/I44_A_Inf_Abn_Reg.png"
+    },
+    {
+        "markerType": "I44_A_Inf_Abn_Sqd",
+        "markerPath": "markers/ww2/I44_A_Inf_Abn_Sqd.png"
+    },
+    {
+        "markerType": "I44_A_Inf_Armor_Co",
+        "markerPath": "markers/ww2/I44_A_Inf_Armor_Co.png"
+    },
+    {
+        "markerType": "I44_A_Inf_Armor_Div",
+        "markerPath": "markers/ww2/I44_A_Inf_Armor_Div.png"
+    },
+    {
+        "markerType": "I44_A_Inf_Armor_Pltn",
+        "markerPath": "markers/ww2/I44_A_Inf_Armor_Pltn.png"
+    },
+    {
+        "markerType": "I44_A_Inf_Armor_Reg",
+        "markerPath": "markers/ww2/I44_A_Inf_Armor_Reg.png"
+    },
+    {
+        "markerType": "I44_A_Inf_Armor_Sqd",
+        "markerPath": "markers/ww2/I44_A_Inf_Armor_Sqd.png"
+    },
+    {
+        "markerType": "I44_A_Inf_Co",
+        "markerPath": "markers/ww2/I44_A_Inf_Co.png"
+    },
+    {
+        "markerType": "I44_A_Inf_Div",
+        "markerPath": "markers/ww2/I44_A_Inf_Div.png"
+    },
+    {
+        "markerType": "I44_A_Inf_Pltn",
+        "markerPath": "markers/ww2/I44_A_Inf_Pltn.png"
+    },
+    {
+        "markerType": "I44_A_Inf_Reg",
+        "markerPath": "markers/ww2/I44_A_Inf_Reg.png"
+    },
+    {
+        "markerType": "I44_A_Inf_Sqd",
+        "markerPath": "markers/ww2/I44_A_Inf_Sqd.png"
+    },
+    {
+        "markerType": "I44_A_Veh_Car",
+        "markerPath": "markers/ww2/I44_A_Veh_Car.png"
+    },
+    {
+        "markerType": "I44_A_Veh_Tank",
+        "markerPath": "markers/ww2/I44_A_Veh_Tank.png"
+    },
+    {
+        "markerType": "I44_B_Armor_Co",
+        "markerPath": "markers/ww2/I44_B_Armor_Co.png"
+    },
+    {
+        "markerType": "I44_B_Armor_Div",
+        "markerPath": "markers/ww2/I44_B_Armor_Div.png"
+    },
+    {
+        "markerType": "I44_B_Armor_Pltn",
+        "markerPath": "markers/ww2/I44_B_Armor_Pltn.png"
+    },
+    {
+        "markerType": "I44_B_Armor_Reg",
+        "markerPath": "markers/ww2/I44_B_Armor_Reg.png"
+    },
+    {
+        "markerType": "I44_B_Art_Co",
+        "markerPath": "markers/ww2/I44_B_Art_Co.png"
+    },
+    {
+        "markerType": "I44_B_Eng_Co",
+        "markerPath": "markers/ww2/I44_B_Eng_Co.png"
+    },
+    {
+        "markerType": "I44_B_Eng_Pltn",
+        "markerPath": "markers/ww2/I44_B_Eng_Pltn.png"
+    },
+    {
+        "markerType": "I44_B_Gun_AA",
+        "markerPath": "markers/ww2/I44_B_Gun_AA.png"
+    },
+    {
+        "markerType": "I44_B_Gun_AT",
+        "markerPath": "markers/ww2/I44_B_Gun_AT.png"
+    },
+    {
+        "markerType": "I44_B_Gun_ATR",
+        "markerPath": "markers/ww2/I44_B_Gun_ATR.png"
+    },
+    {
+        "markerType": "I44_B_Gun_H",
+        "markerPath": "markers/ww2/I44_B_Gun_H.png"
+    },
+    {
+        "markerType": "I44_B_Gun_MG",
+        "markerPath": "markers/ww2/I44_B_Gun_MG.png"
+    },
+    {
+        "markerType": "I44_B_Gun_Mortar",
+        "markerPath": "markers/ww2/I44_B_Gun_Mortar.png"
+    },
+    {
+        "markerType": "I44_B_Inf_AbnG_Co",
+        "markerPath": "markers/ww2/I44_B_Inf_AbnG_Co.png"
+    },
+    {
+        "markerType": "I44_B_Inf_AbnG_Pltn",
+        "markerPath": "markers/ww2/I44_B_Inf_AbnG_Pltn.png"
+    },
+    {
+        "markerType": "I44_B_Inf_AbnG_Reg",
+        "markerPath": "markers/ww2/I44_B_Inf_AbnG_Reg.png"
+    },
+    {
+        "markerType": "I44_B_Inf_Abn_Co",
+        "markerPath": "markers/ww2/I44_B_Inf_Abn_Co.png"
+    },
+    {
+        "markerType": "I44_B_Inf_Abn_Div",
+        "markerPath": "markers/ww2/I44_B_Inf_Abn_Div.png"
+    },
+    {
+        "markerType": "I44_B_Inf_Abn_Pltn",
+        "markerPath": "markers/ww2/I44_B_Inf_Abn_Pltn.png"
+    },
+    {
+        "markerType": "I44_B_Inf_Abn_Reg",
+        "markerPath": "markers/ww2/I44_B_Inf_Abn_Reg.png"
+    },
+    {
+        "markerType": "I44_B_Inf_Co",
+        "markerPath": "markers/ww2/I44_B_Inf_Co.png"
+    },
+    {
+        "markerType": "I44_B_Inf_Corps",
+        "markerPath": "markers/ww2/I44_B_Inf_Corps.png"
+    },
+    {
+        "markerType": "I44_B_Inf_Div",
+        "markerPath": "markers/ww2/I44_B_Inf_Div.png"
+    },
+    {
+        "markerType": "I44_B_Inf_Mot_Co",
+        "markerPath": "markers/ww2/I44_B_Inf_Mot_Co.png"
+    },
+    {
+        "markerType": "I44_B_Inf_Mot_Pltn",
+        "markerPath": "markers/ww2/I44_B_Inf_Mot_Pltn.png"
+    },
+    {
+        "markerType": "I44_B_Inf_Pltn",
+        "markerPath": "markers/ww2/I44_B_Inf_Pltn.png"
+    },
+    {
+        "markerType": "I44_B_Inf_Reg",
+        "markerPath": "markers/ww2/I44_B_Inf_Reg.png"
+    },
+    {
+        "markerType": "I44_B_RAF_Flt",
+        "markerPath": "markers/ww2/I44_B_RAF_Flt.png"
+    },
+    {
+        "markerType": "I44_B_RAF_Sqdr",
+        "markerPath": "markers/ww2/I44_B_RAF_Sqdr.png"
+    },
+    {
+        "markerType": "I44_B_Veh_Car",
+        "markerPath": "markers/ww2/I44_B_Veh_Car.png"
+    },
+    {
+        "markerType": "I44_B_Veh_Tank",
+        "markerPath": "markers/ww2/I44_B_Veh_Tank.png"
+    },
+    {
+        "markerType": "I44_G_Armor_AG_Pltn",
+        "markerPath": "markers/ww2/I44_G_Armor_AG_Pltn.png"
+    },
+    {
+        "markerType": "I44_G_Armor_AT_Pltn",
+        "markerPath": "markers/ww2/I44_G_Armor_AT_Pltn.png"
+    },
+    {
+        "markerType": "I44_G_Armor_Co",
+        "markerPath": "markers/ww2/I44_G_Armor_Co.png"
+    },
+    {
+        "markerType": "I44_G_Armor_Div",
+        "markerPath": "markers/ww2/I44_G_Armor_Div.png"
+    },
+    {
+        "markerType": "I44_G_Armor_Pltn",
+        "markerPath": "markers/ww2/I44_G_Armor_Pltn.png"
+    },
+    {
+        "markerType": "I44_G_Armor_Reg",
+        "markerPath": "markers/ww2/I44_G_Armor_Reg.png"
+    },
+    {
+        "markerType": "I44_G_Art_Co",
+        "markerPath": "markers/ww2/I44_G_Art_Co.png"
+    },
+    {
+        "markerType": "I44_G_Art_Pltn",
+        "markerPath": "markers/ww2/I44_G_Art_Pltn.png"
+    },
+    {
+        "markerType": "I44_G_Gun_AA",
+        "markerPath": "markers/ww2/I44_G_Gun_AA.png"
+    },
+    {
+        "markerType": "I44_G_Gun_AT",
+        "markerPath": "markers/ww2/I44_G_Gun_AT.png"
+    },
+    {
+        "markerType": "I44_G_Gun_ATs",
+        "markerPath": "markers/ww2/I44_G_Gun_ATs.png"
+    },
+    {
+        "markerType": "I44_G_Gun_H",
+        "markerPath": "markers/ww2/I44_G_Gun_H.png"
+    },
+    {
+        "markerType": "I44_G_Gun_IG",
+        "markerPath": "markers/ww2/I44_G_Gun_IG.png"
+    },
+    {
+        "markerType": "I44_G_Gun_MG",
+        "markerPath": "markers/ww2/I44_G_Gun_MG.png"
+    },
+    {
+        "markerType": "I44_G_Gun_Mortar",
+        "markerPath": "markers/ww2/I44_G_Gun_Mortar.png"
+    },
+    {
+        "markerType": "I44_G_Gun_Rocket",
+        "markerPath": "markers/ww2/I44_G_Gun_Rocket.png"
+    },
+    {
+        "markerType": "I44_G_Inf_Co",
+        "markerPath": "markers/ww2/I44_G_Inf_Co.png"
+    },
+    {
+        "markerType": "I44_G_Inf_Div",
+        "markerPath": "markers/ww2/I44_G_Inf_Div.png"
+    },
+    {
+        "markerType": "I44_G_Inf_Mech_Co",
+        "markerPath": "markers/ww2/I44_G_Inf_Mech_Co.png"
+    },
+    {
+        "markerType": "I44_G_Inf_Mech_Div",
+        "markerPath": "markers/ww2/I44_G_Inf_Mech_Div.png"
+    },
+    {
+        "markerType": "I44_G_Inf_Mech_Pltn",
+        "markerPath": "markers/ww2/I44_G_Inf_Mech_Pltn.png"
+    },
+    {
+        "markerType": "I44_G_Inf_Mech_Reg",
+        "markerPath": "markers/ww2/I44_G_Inf_Mech_Reg.png"
+    },
+    {
+        "markerType": "I44_G_Inf_Mot_Co",
+        "markerPath": "markers/ww2/I44_G_Inf_Mot_Co.png"
+    },
+    {
+        "markerType": "I44_G_Inf_Mot_Div",
+        "markerPath": "markers/ww2/I44_G_Inf_Mot_Div.png"
+    },
+    {
+        "markerType": "I44_G_Inf_Mot_Pltn",
+        "markerPath": "markers/ww2/I44_G_Inf_Mot_Pltn.png"
+    },
+    {
+        "markerType": "I44_G_Inf_Mot_Reg",
+        "markerPath": "markers/ww2/I44_G_Inf_Mot_Reg.png"
+    },
+    {
+        "markerType": "I44_G_Inf_Pltn",
+        "markerPath": "markers/ww2/I44_G_Inf_Pltn.png"
+    },
+    {
+        "markerType": "I44_G_Inf_Reg",
+        "markerPath": "markers/ww2/I44_G_Inf_Reg.png"
+    },
+    {
+        "markerType": "I44_Mrk_FieldWorks",
+        "markerPath": "markers/ww2/I44_Mrk_FieldWorks.png"
+    },
+    {
+        "markerType": "I44_Mrk_FieldWorksU",
+        "markerPath": "markers/ww2/I44_Mrk_FieldWorksU.png"
+    },
+    {
+        "markerType": "I44_Mrk_Minefield",
+        "markerPath": "markers/ww2/I44_Mrk_Minefield.png"
+    },
+    {
+        "markerType": "I44_Mrk_OP",
+        "markerPath": "markers/ww2/I44_Mrk_OP.png"
+    },
+    {
+        "markerType": "I44_Mrk_PrepPos",
+        "markerPath": "markers/ww2/I44_Mrk_PrepPos.png"
+    },
+    {
+        "markerType": "I44_Mrk_PrepPosU",
+        "markerPath": "markers/ww2/I44_Mrk_PrepPosU.png"
+    },
+    {
+        "markerType": "I44_Mrk_TRP",
+        "markerPath": "markers/ww2/I44_Mrk_TRP.png"
+    },
+    {
+        "markerType": "I44_Mrk_WP",
+        "markerPath": "markers/ww2/I44_Mrk_WP.png"
+    },
+    {
+        "markerType": "LIB_b_air",
+        "markerPath": "markers/ww2/LIB_b_air.png"
+    },
+    {
+        "markerType": "LIB_b_armor",
+        "markerPath": "markers/ww2/LIB_b_armor.png"
+    },
+    {
+        "markerType": "LIB_b_art",
+        "markerPath": "markers/ww2/LIB_b_art.png"
+    },
+    {
+        "markerType": "LIB_b_hq",
+        "markerPath": "markers/ww2/LIB_b_hq.png"
+    },
+    {
+        "markerType": "LIB_b_inf",
+        "markerPath": "markers/ww2/LIB_b_inf.png"
+    },
+    {
+        "markerType": "LIB_b_maint",
+        "markerPath": "markers/ww2/LIB_b_maint.png"
+    },
+    {
+        "markerType": "LIB_b_mech_inf",
+        "markerPath": "markers/ww2/LIB_b_mech_inf.png"
+    },
+    {
+        "markerType": "LIB_b_med",
+        "markerPath": "markers/ww2/LIB_b_med.png"
+    },
+    {
+        "markerType": "LIB_b_mortar",
+        "markerPath": "markers/ww2/LIB_b_mortar.png"
+    },
+    {
+        "markerType": "LIB_b_motor_inf",
+        "markerPath": "markers/ww2/LIB_b_motor_inf.png"
+    },
+    {
+        "markerType": "LIB_b_plane",
+        "markerPath": "markers/ww2/LIB_b_plane.png"
+    },
+    {
+        "markerType": "LIB_b_recon",
+        "markerPath": "markers/ww2/LIB_b_recon.png"
+    },
+    {
+        "markerType": "LIB_b_service",
+        "markerPath": "markers/ww2/LIB_b_service.png"
+    },
+    {
+        "markerType": "LIB_b_support",
+        "markerPath": "markers/ww2/LIB_b_support.png"
+    },
+    {
+        "markerType": "LIB_b_uav",
+        "markerPath": "markers/ww2/LIB_b_uav.png"
+    },
+    {
+        "markerType": "LIB_b_unknown",
+        "markerPath": "markers/ww2/LIB_b_unknown.png"
+    },
+    {
+        "markerType": "LIB_Empty",
+        "markerPath": "markers/ww2/LIB_Empty.png"
+    },
+    {
+        "markerType": "LIB_Faction_RKKA",
+        "markerPath": "markers/ww2/LIB_Faction_RKKA.png"
+    },
+    {
+        "markerType": "LIB_Faction_US_ARMY",
+        "markerPath": "markers/ww2/LIB_Faction_US_ARMY.png"
+    },
+    {
+        "markerType": "LIB_Faction_WEHRMACHT",
+        "markerPath": "markers/ww2/LIB_Faction_WEHRMACHT.png"
+    },
+    {
+        "markerType": "LIB_Flag",
+        "markerPath": "markers/ww2/LIB_Flag.png"
+    },
+    {
+        "markerType": "LIB_group_0",
+        "markerPath": "markers/ww2/LIB_group_0.png"
+    },
+    {
+        "markerType": "LIB_group_1",
+        "markerPath": "markers/ww2/LIB_group_1.png"
+    },
+    {
+        "markerType": "LIB_group_10",
+        "markerPath": "markers/ww2/LIB_group_10.png"
+    },
+    {
+        "markerType": "LIB_group_11",
+        "markerPath": "markers/ww2/LIB_group_11.png"
+    },
+    {
+        "markerType": "LIB_group_2",
+        "markerPath": "markers/ww2/LIB_group_2.png"
+    },
+    {
+        "markerType": "LIB_group_3",
+        "markerPath": "markers/ww2/LIB_group_3.png"
+    },
+    {
+        "markerType": "LIB_group_4",
+        "markerPath": "markers/ww2/LIB_group_4.png"
+    },
+    {
+        "markerType": "LIB_group_5",
+        "markerPath": "markers/ww2/LIB_group_5.png"
+    },
+    {
+        "markerType": "LIB_group_6",
+        "markerPath": "markers/ww2/LIB_group_6.png"
+    },
+    {
+        "markerType": "LIB_group_7",
+        "markerPath": "markers/ww2/LIB_group_7.png"
+    },
+    {
+        "markerType": "LIB_group_8",
+        "markerPath": "markers/ww2/LIB_group_8.png"
+    },
+    {
+        "markerType": "LIB_group_9",
+        "markerPath": "markers/ww2/LIB_group_9.png"
+    },
+    {
+        "markerType": "LIB_hd_ambush",
+        "markerPath": "markers/ww2/LIB_hd_ambush.png"
+    },
+    {
+        "markerType": "LIB_hd_arrow",
+        "markerPath": "markers/ww2/LIB_hd_arrow.png"
+    },
+    {
+        "markerType": "LIB_hd_destroy",
+        "markerPath": "markers/ww2/LIB_hd_destroy.png"
+    },
+    {
+        "markerType": "LIB_hd_dot",
+        "markerPath": "markers/ww2/LIB_hd_dot.png"
+    },
+    {
+        "markerType": "LIB_hd_end",
+        "markerPath": "markers/ww2/LIB_hd_end.png"
+    },
+    {
+        "markerType": "LIB_hd_flag",
+        "markerPath": "markers/ww2/LIB_hd_flag.png"
+    },
+    {
+        "markerType": "LIB_hd_join",
+        "markerPath": "markers/ww2/LIB_hd_join.png"
+    },
+    {
+        "markerType": "LIB_hd_objective",
+        "markerPath": "markers/ww2/LIB_hd_objective.png"
+    },
+    {
+        "markerType": "LIB_hd_pickup",
+        "markerPath": "markers/ww2/LIB_hd_pickup.png"
+    },
+    {
+        "markerType": "LIB_hd_start",
+        "markerPath": "markers/ww2/LIB_hd_start.png"
+    },
+    {
+        "markerType": "LIB_hd_unknown",
+        "markerPath": "markers/ww2/LIB_hd_unknown.png"
+    },
+    {
+        "markerType": "LIB_hd_warning",
+        "markerPath": "markers/ww2/LIB_hd_warning.png"
+    },
+    {
+        "markerType": "LIB_mil_ambush",
+        "markerPath": "markers/ww2/LIB_mil_ambush.png"
+    },
+    {
+        "markerType": "LIB_mil_arrow",
+        "markerPath": "markers/ww2/LIB_mil_arrow.png"
+    },
+    {
+        "markerType": "LIB_mil_arrow2",
+        "markerPath": "markers/ww2/LIB_mil_arrow2.png"
+    },
+    {
+        "markerType": "LIB_mil_box",
+        "markerPath": "markers/ww2/LIB_mil_box.png"
+    },
+    {
+        "markerType": "LIB_mil_circle",
+        "markerPath": "markers/ww2/LIB_mil_circle.png"
+    },
+    {
+        "markerType": "LIB_mil_destroy",
+        "markerPath": "markers/ww2/LIB_mil_destroy.png"
+    },
+    {
+        "markerType": "LIB_mil_dot",
+        "markerPath": "markers/ww2/LIB_mil_dot.png"
+    },
+    {
+        "markerType": "LIB_mil_end",
+        "markerPath": "markers/ww2/LIB_mil_end.png"
+    },
+    {
+        "markerType": "LIB_mil_flag",
+        "markerPath": "markers/ww2/LIB_mil_flag.png"
+    },
+    {
+        "markerType": "LIB_mil_join",
+        "markerPath": "markers/ww2/LIB_mil_join.png"
+    },
+    {
+        "markerType": "LIB_mil_marker",
+        "markerPath": "markers/ww2/LIB_mil_marker.png"
+    },
+    {
+        "markerType": "LIB_mil_objective",
+        "markerPath": "markers/ww2/LIB_mil_objective.png"
+    },
+    {
+        "markerType": "LIB_mil_pickup",
+        "markerPath": "markers/ww2/LIB_mil_pickup.png"
+    },
+    {
+        "markerType": "LIB_mil_start",
+        "markerPath": "markers/ww2/LIB_mil_start.png"
+    },
+    {
+        "markerType": "LIB_mil_triangle",
+        "markerPath": "markers/ww2/LIB_mil_triangle.png"
+    },
+    {
+        "markerType": "LIB_mil_unknown",
+        "markerPath": "markers/ww2/LIB_mil_unknown.png"
+    },
+    {
+        "markerType": "LIB_mil_warning",
+        "markerPath": "markers/ww2/LIB_mil_warning.png"
+    },
+    {
+        "markerType": "LIB_n_air",
+        "markerPath": "markers/ww2/LIB_n_air.png"
+    },
+    {
+        "markerType": "LIB_n_armor",
+        "markerPath": "markers/ww2/LIB_n_armor.png"
+    },
+    {
+        "markerType": "LIB_n_art",
+        "markerPath": "markers/ww2/LIB_n_art.png"
+    },
+    {
+        "markerType": "LIB_n_hq",
+        "markerPath": "markers/ww2/LIB_n_hq.png"
+    },
+    {
+        "markerType": "LIB_n_inf",
+        "markerPath": "markers/ww2/LIB_n_inf.png"
+    },
+    {
+        "markerType": "LIB_n_maint",
+        "markerPath": "markers/ww2/LIB_n_maint.png"
+    },
+    {
+        "markerType": "LIB_n_mech_inf",
+        "markerPath": "markers/ww2/LIB_n_mech_inf.png"
+    },
+    {
+        "markerType": "LIB_n_med",
+        "markerPath": "markers/ww2/LIB_n_med.png"
+    },
+    {
+        "markerType": "LIB_n_mortar",
+        "markerPath": "markers/ww2/LIB_n_mortar.png"
+    },
+    {
+        "markerType": "LIB_n_motor_inf",
+        "markerPath": "markers/ww2/LIB_n_motor_inf.png"
+    },
+    {
+        "markerType": "LIB_n_plane",
+        "markerPath": "markers/ww2/LIB_n_plane.png"
+    },
+    {
+        "markerType": "LIB_n_recon",
+        "markerPath": "markers/ww2/LIB_n_recon.png"
+    },
+    {
+        "markerType": "LIB_n_service",
+        "markerPath": "markers/ww2/LIB_n_service.png"
+    },
+    {
+        "markerType": "LIB_n_support",
+        "markerPath": "markers/ww2/LIB_n_support.png"
+    },
+    {
+        "markerType": "LIB_n_uav",
+        "markerPath": "markers/ww2/LIB_n_uav.png"
+    },
+    {
+        "markerType": "LIB_n_unknown",
+        "markerPath": "markers/ww2/LIB_n_unknown.png"
+    },
+    {
+        "markerType": "LIB_o_air",
+        "markerPath": "markers/ww2/LIB_o_air.png"
+    },
+    {
+        "markerType": "LIB_o_armor",
+        "markerPath": "markers/ww2/LIB_o_armor.png"
+    },
+    {
+        "markerType": "LIB_o_art",
+        "markerPath": "markers/ww2/LIB_o_art.png"
+    },
+    {
+        "markerType": "LIB_o_hq",
+        "markerPath": "markers/ww2/LIB_o_hq.png"
+    },
+    {
+        "markerType": "LIB_o_inf",
+        "markerPath": "markers/ww2/LIB_o_inf.png"
+    },
+    {
+        "markerType": "LIB_o_maint",
+        "markerPath": "markers/ww2/LIB_o_maint.png"
+    },
+    {
+        "markerType": "LIB_o_mech_inf",
+        "markerPath": "markers/ww2/LIB_o_mech_inf.png"
+    },
+    {
+        "markerType": "LIB_o_med",
+        "markerPath": "markers/ww2/LIB_o_med.png"
+    },
+    {
+        "markerType": "LIB_o_mortar",
+        "markerPath": "markers/ww2/LIB_o_mortar.png"
+    },
+    {
+        "markerType": "LIB_o_motor_inf",
+        "markerPath": "markers/ww2/LIB_o_motor_inf.png"
+    },
+    {
+        "markerType": "LIB_o_plane",
+        "markerPath": "markers/ww2/LIB_o_plane.png"
+    },
+    {
+        "markerType": "LIB_o_recon",
+        "markerPath": "markers/ww2/LIB_o_recon.png"
+    },
+    {
+        "markerType": "LIB_o_service",
+        "markerPath": "markers/ww2/LIB_o_service.png"
+    },
+    {
+        "markerType": "LIB_o_support",
+        "markerPath": "markers/ww2/LIB_o_support.png"
+    },
+    {
+        "markerType": "LIB_o_uav",
+        "markerPath": "markers/ww2/LIB_o_uav.png"
+    },
+    {
+        "markerType": "LIB_o_unknown",
+        "markerPath": "markers/ww2/LIB_o_unknown.png"
+    },
+    {
+        "markerType": "LIB_Select",
+        "markerPath": "markers/ww2/LIB_Select.png"
+    },
+    {
+        "markerType": "LIB_selector_selectable",
+        "markerPath": "markers/ww2/LIB_selector_selectable.png"
+    },
+    {
+        "markerType": "LIB_selector_selectedEnemy",
+        "markerPath": "markers/ww2/LIB_selector_selectedEnemy.png"
+    },
+    {
+        "markerType": "LIB_selector_selectedFriendly",
+        "markerPath": "markers/ww2/LIB_selector_selectedFriendly.png"
+    },
+    {
+        "markerType": "LIB_selector_selectedMission",
+        "markerPath": "markers/ww2/LIB_selector_selectedMission.png"
+    },
+    {
+        "markerType": "LIB_waypoint",
+        "markerPath": "markers/ww2/LIB_waypoint.png"
+    },
+    {
+        "markerType": "new_approachment",
+        "markerPath": "markers/ww2/new_approachment.png"
+    },
+    {
+        "markerType": "new_armorassault",
+        "markerPath": "markers/ww2/new_armorassault.png"
+    },
+    {
+        "markerType": "new_artfiresec",
+        "markerPath": "markers/ww2/new_artfiresec.png"
+    },
+    {
+        "markerType": "new_assaultretr",
+        "markerPath": "markers/ww2/new_assaultretr.png"
+    },
+    {
+        "markerType": "new_controledter",
+        "markerPath": "markers/ww2/new_controledter.png"
+    },
+    {
+        "markerType": "new_defencepositions",
+        "markerPath": "markers/ww2/new_defencepositions.png"
+    },
+    {
+        "markerType": "new_desant",
+        "markerPath": "markers/ww2/new_desant.png"
+    },
+    {
+        "markerType": "new_divideassault",
+        "markerPath": "markers/ww2/new_divideassault.png"
+    },
+    {
+        "markerType": "new_flankleftass",
+        "markerPath": "markers/ww2/new_flankleftass.png"
+    },
+    {
+        "markerType": "new_flankrightass",
+        "markerPath": "markers/ww2/new_flankrightass.png"
+    },
+    {
+        "markerType": "new_frontlinedef",
+        "markerPath": "markers/ww2/new_frontlinedef.png"
+    },
+    {
+        "markerType": "new_frontlinelong",
+        "markerPath": "markers/ww2/new_frontlinelong.png"
+    },
+    {
+        "markerType": "new_germanaa",
+        "markerPath": "markers/ww2/new_germanaa.png"
+    },
+    {
+        "markerType": "new_germanmg",
+        "markerPath": "markers/ww2/new_germanmg.png"
+    },
+    {
+        "markerType": "new_germechaa",
+        "markerPath": "markers/ww2/new_germechaa.png"
+    },
+    {
+        "markerType": "new_massiveassault",
+        "markerPath": "markers/ww2/new_massiveassault.png"
+    },
+    {
+        "markerType": "new_nabludpunkt",
+        "markerPath": "markers/ww2/new_nabludpunkt.png"
+    },
+    {
+        "markerType": "new_overflanking",
+        "markerPath": "markers/ww2/new_overflanking.png"
+    },
+    {
+        "markerType": "new_sovietaa",
+        "markerPath": "markers/ww2/new_sovietaa.png"
+    },
+    {
+        "markerType": "new_sovietmg",
+        "markerPath": "markers/ww2/new_sovietmg.png"
+    }
+]

@@ -28,6 +28,40 @@
       "selectWorld": "Select World"
     }
   },
+  "playback": {
+    "playbackSpeed": "Speed",
+    "targetFrameRate": "Target",
+    "actualFrameRate": "Render Prf.",
+    "skippingFrames": "SKIPPING FRAMES",
+    "notSkippingFrames": "OK",
+    "currentFrame": "Frame",
+    "currentTimestamp": "Timestamp",
+    "controls": {
+      "speed": {
+        "legend": "Speed Controls",
+        "real": "Real (1x)",
+        "normal": "Normal ({speed}x)",
+        "fast": "Fast ({speed}x)",
+        "veryFast": "Very Fast ({speed}x)"
+      },
+      "action": {
+        "legend": "Playback Controls",
+        "play": "Play",
+        "pause": "Pause",
+        "stop": "Stop",
+        "stepBack": "Step Back",
+        "stepForward": "Step Forward"
+      },
+      "visible": {
+        "legend": "Visibility Controls",
+        "showUnitMarkers": "Unit Markers",
+        "showUnitLabels": "Unit Labels",
+        "showVehicleMarkers": "Vehicle Markers",
+        "showVehicleLabels": "Vehicle Labels",
+        "showAILabels": "All AI Labels"
+      }
+    }
+  },
   "mainMap": {
     "windowTitle": "Main Map",
     "layerControlsTitle": "Layer Controls",
@@ -41,6 +75,12 @@
   },
   "miniMap": {
     "windowTitle": "Minimap"
+  },
+  "eventsList": {
+    "windowTitle": "Events"
+  },
+  "playerList": {
+    "windowTitle": "Players"
   },
   "windowTitles": {
     "recordingViewer": "Recording Viewer",

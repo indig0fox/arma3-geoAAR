@@ -14,14 +14,14 @@
     <p
       class="status-bar-field"
       v-if="mapIsLoaded"
-      v-html="playbackMap?.getSource('features').attribution"
+      v-html="mainMap?.getSource('features')?.attribution"
     ></p>
   </div>
 </template>
 
 <script>
 import { mapState, mapWritableState } from 'pinia'
-import { useRecordingDataStore } from '@/stores/recordings.js'
+import { useRecordingDataStore } from '@/stores/dataStore.js'
 
 import ClockComponent from '@/components/ClockComponent.vue'
 
@@ -35,14 +35,14 @@ export default {
   mounted() {
     // wait for map to load
     this.mapIsLoaded = false
-    this.playbackMap.once('styledata', () => {
+    this.mainMap.once('styledata', () => {
       setTimeout(() => {
         this.mapIsLoaded = true
       }, 750)
     })
   },
   computed: {
-    ...mapState(useRecordingDataStore, ['playbackMap']),
+    ...mapState(useRecordingDataStore, ['mainMap']),
     ...mapState(useRecordingDataStore, [
       'viewBounds',
       'currentZoom',

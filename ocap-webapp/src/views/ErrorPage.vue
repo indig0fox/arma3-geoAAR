@@ -33,7 +33,7 @@
 
 <script>
 import { mapState, mapWritableState } from 'pinia'
-import { useRecordingDataStore } from '@/stores/recordings.js'
+import { useRecordingDataStore } from '@/stores/dataStore.js'
 export default {
   name: 'ErrorPage',
   computed: {

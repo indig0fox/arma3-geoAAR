@@ -1,16 +1,11 @@
 <script>
-import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
-import * as pmtiles from 'pmtiles'
-import { minimapControl } from '@/assets/maplibregl.minimap'
-import * as turf from '@turf/turf'
-import proj4 from 'proj4'
 import MainMap from '@/components/MainMap.vue'
 import MapStateStatusBar from '@/components/MapStateStatusBar.vue'
 import MiniMap from '@/components/MiniMap.vue'
 
 import { mapState, mapWritableState } from 'pinia'
-import { useRecordingDataStore } from '@/stores/recordings.js'
+import { useRecordingDataStore } from '@/stores/dataStore.js'
 
 export default {
   name: 'WorldViewer',
@@ -25,7 +20,7 @@ export default {
   },
   computed: {
     ...mapState(useRecordingDataStore, ['recordingData', 'activeWorld']),
-    ...mapState(useRecordingDataStore, ['playbackMap']),
+    ...mapState(useRecordingDataStore, ['mainMap']),
     ...mapState(useRecordingDataStore, [
       'viewBounds',
       'currentZoom',

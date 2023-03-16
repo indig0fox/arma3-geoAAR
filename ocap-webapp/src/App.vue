@@ -2,7 +2,7 @@
 import { RouterView } from 'vue-router'
 
 // pinia
-import { useRecordingDataStore } from '@/stores/recordings.js'
+import { useRecordingDataStore } from '@/stores/dataStore.js'
 import { mapState, mapWritableState } from 'pinia'
 
 import LocaleChanger from '@/components/LocaleChanger.vue'

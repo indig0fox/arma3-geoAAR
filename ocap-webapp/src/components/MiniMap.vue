@@ -18,7 +18,7 @@ import proj4 from 'proj4'
 
 <script>
 import { mapState, mapWritableState } from 'pinia'
-import { useRecordingDataStore } from '@/stores/recordings.js'
+import { useRecordingDataStore } from '@/stores/dataStore.js'
 export default {
   name: 'MiniMap',
   data() {
@@ -37,7 +37,7 @@ export default {
       'mousePositionXY',
       'mousePositionMGRS',
       // 'maplibreVersion',
-      'playbackMap'
+      'mainMap'
     ])
   },
   unmounted() {
@@ -116,7 +116,7 @@ export default {
 
       this.map.on('click', (e) => {
         const newCenter = e.lngLat
-        this.playbackMap.setCenter(newCenter)
+        this.mainMap.setCenter(newCenter)
       })
     })
   },
@@ -183,7 +183,7 @@ export default {
   },
   watch: {
     viewBounds: function (newBounds) {
-      if (this.viewBounds === {}) return
+      if (this.viewBounds === {} || !this.map?.loaded()) return
       const source = this.map.getSource('trackingRect')
 
       // maplibre bounds object

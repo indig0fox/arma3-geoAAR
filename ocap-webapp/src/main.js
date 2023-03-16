@@ -17,8 +17,6 @@ const app = createApp(App)
 const pinia = createPinia()
 app.use(pinia)
 
-import { useRecordingDataStore } from './stores/recordings.js'
-
 
 import i18n from '@/i18n'
 app.use(i18n)

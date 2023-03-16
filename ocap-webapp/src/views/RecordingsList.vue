@@ -40,8 +40,8 @@
             type="file"
             id="file"
             ref="file"
-            @change="recordingFile = $event.target.files[0]"
-            accept=".json.gz"
+            @change="processUploadedRecording"
+            accept=".json"
             disabled
           />
         </div>
@@ -86,12 +86,12 @@
 
 <script setup>
 import { mapState, mapWritableState } from 'pinia'
-import { useRecordingDataStore } from '../stores/recordings.js'
+import { useRecordingDataStore } from '@/stores/dataStore.js'
 </script>
 
 <script>
 export default {
-  name: 'RecordingsModal',
+  name: 'RecordingsList',
   components: {},
   props: {},
   methods: {
@@ -100,8 +100,29 @@ export default {
       const seconds = Math.floor(duration % 60)
       return `${minutes}m ${seconds}s`
     },
-    closeModal() {
-      this.$emit('close')
+    processUploadedRecording(e) {
+      // * load local recording
+      this.activeRecordingData = e.target.files[0]
+      var filename = e.target.files[0].name
+      var nowDate = new Date()
+      var dateStr = nowDate.getFullYear() + '-' + (nowDate.getMonth() + 1) + '-' + nowDate.getDate()
+      this.activeRecording = {
+        id: 'local',
+        mission_name: this.activeRecordingData.missionName,
+        world_name: this.activeRecordingData.worldName,
+        date: dateStr,
+        mission_duration: this.activeRecordingData.endFrame,
+        tag: 'local',
+        filename: filename
+      }
+
+      // * save to local storage
+      localStorage.setItem('localUpload_' + filename, JSON.stringify(this.activeRecordingData))
+
+      this.$router.push({
+        name: 'recordingViewer',
+        query: { world: this.activeRecordingData.worldName }
+      })
     }
   },
   mounted() {},
@@ -117,7 +138,9 @@ export default {
     ...mapWritableState(useRecordingDataStore, ['searchFilterTag']),
     ...mapWritableState(useRecordingDataStore, ['searchFilterOldest']),
     ...mapWritableState(useRecordingDataStore, ['searchFilterNewest']),
+    ...mapWritableState(useRecordingDataStore, ['activeRecordingData']),
     ...mapState(useRecordingDataStore, ['availableRecordings']),
+    ...mapWritableState(useRecordingDataStore, ['activeRecording', 'activeRecordingData']),
     recordingsUrl() {
       // get current web path
       return window.location.origin

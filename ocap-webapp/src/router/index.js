@@ -28,7 +28,7 @@ const router = createRouter({
     {
       path: "/playback",
       name: "recordingViewer",
-      component: () => import("../views/OCAPView.vue"),
+      component: () => import("../views/RecordingViewer.vue"),
       props: true,
     },
     {
@@ -44,8 +44,10 @@ const router = createRouter({
   ],
 });
 
-import { useRecordingDataStore } from '@/stores/recordings.js'
+import { useRecordingDataStore } from '@/stores/dataStore.js'
 router.beforeEach(async (to, from) => {
+  if (to.name === from.name) { return true }
+
   const recordingData = useRecordingDataStore()
 
   if (to.name === 'error' && recordingData.error) { return true }
@@ -105,6 +107,12 @@ router.beforeEach(async (to, from) => {
 
   if (to.query.id) {
     // * load recording from provided ID
+    recordingData.activeRecordingReady = false
+
+    if (to.query.id === 'local') {
+
+    }
+
     // console.log(this.availableRecordings)
     var recordingObj = recordingData.availableRecordings.get(parseInt(to.query.id))
 
@@ -112,6 +120,12 @@ router.beforeEach(async (to, from) => {
       // console.log(recordingObj)
       recordingData.activeRecording = recordingObj
       recordingData.getRecordingData(recordingObj)
+        .then(() => {
+          recordingData.activeRecordingReady = true
+        })
+        .catch((error) => {
+          alert('Error loading recording data\n' + error)
+        })
     } else {
       recordingData.activeRecording = null
       alert('Recording id ' + to.query.id + ' not found')
@@ -119,10 +133,6 @@ router.beforeEach(async (to, from) => {
   } else {
     recordingData.activeRecording = null
   }
-
-  // if (to.query.mapHash) {
-  //   recordingData.activeMapHash = to.query.mapHash
-  // }
 })
 
 

@@ -86,7 +86,8 @@ import { forward } from 'mgrs'
 
 <script>
 import { mapState, mapWritableState } from 'pinia'
-import { useRecordingDataStore } from '@/stores/recordings.js'
+import { useRecordingDataStore } from '@/stores/dataStore.js'
+import { usePlaybackDataStore } from '@/stores/playbackStore.js'
 export default {
   name: 'MainMap',
   data() {
@@ -98,29 +99,22 @@ export default {
       showSatellite: false,
       showHouseExtrusion: true,
       showContourLines: true,
-      showGridlines: false,
-      queryString: ''
+      showGridlines: false
     }
   },
   unmounted() {
-    this.playbackMap.remove()
+    this.mapReady = false
+    this.mainMap.remove()
   },
   mounted() {
-    var items = []
-    Object.entries(this.$route.query).forEach(([key, value]) => {
-      items.push(`${key}=${value}`)
-    })
-    this.queryString = items.join('&')
-
     let protocol = new pmtiles.Protocol()
     addProtocol('pmtiles', protocol.tile)
     const map = new Map({
       container: this.$refs.maplibre,
       style: `https://styles.ocap2.com/${this.activeWorld.worldName}.json`,
-      attributionControl: false
+      attributionControl: false,
+      zoom: 14
     })
-
-    console.log(this.queryString)
 
     map.addControl(new NavigationControl())
 
@@ -137,45 +131,85 @@ export default {
       'bottom-right'
     )
 
-    this.playbackMap = map
-    this.maplibreVersion = this.playbackMap.version
+    this.mainMap = map
 
-    // this.playbackMap.on('render', () => {
+    // this.mainMap.on('render', () => {
     //   this.centerOnMap()
     //   this.hideLayers()
     // })
 
-    this.playbackMap.once('render', () => {
+    this.mainMap.once('data', () => {
+      // this.mainMap.once('styledata', () => {
       this.centerOnMap()
 
-      this.playbackMap.transform._fov = 1
+      this.currentZoom = this.mainMap.getZoom().toFixed(2)
+      this.currentPitch = this.mainMap.getPitch().toFixed(2)
+      this.currentBearing = this.mainMap.getBearing().toFixed(2)
+      var center = this.mainMap.getCenter()
+      this.currentCenter = [center.lng, center.lat]
+      this.updateMapHash()
 
-      // this.activeWorld = this.playbackMap.getStyle().metadata
+      this.maplibreVersion = this.mainMap.version
 
-      this.currentZoom = this.playbackMap.getZoom().toFixed(2)
+      this.mainMap.transform._fov = 1
 
-      this.playbackMap.on('move', () => {
-        this.viewBounds = this.playbackMap.getBounds()
+      // this.activeWorld = this.mainMap.getStyle().metadata
+
+      this.mainMap.on('move', (e) => {
+        this.viewBounds = this.mainMap.getBounds()
       })
 
-      this.playbackMap.on('moveend', () => {
-        var center = this.playbackMap.getCenter()
-        this.currentCenter = [center.lat, center.lng]
-        this.$router.push({
-          query: this.mapHash ? { ...this.$route.query, ...this.mapHash } : this.$route.query
-        })
+      this.mainMap.on('move', this.updateCurrentCenter)
+      this.mainMap.on('moveend', this.updateMapHash)
+      this.mainMap.on('zoom', this.updateCurrentZoom)
+      this.mainMap.on('mousemove', this.updatemousePositionXY)
+      this.mainMap.on('pitch', this.updatePitchAndBearing)
+      this.mainMap.on('rotate', this.updatePitchAndBearing)
+
+      // this.mainMap.on('load', () => {
+      this.mainMap.addSource('entities-3d', {
+        type: 'geojson',
+        // 'data': recordingData.framePositions[0].positions
+        data: this.playbackEntitiesGeoJSON
       })
 
-      this.playbackMap.on('zoom', this.updateCurrentZoom)
-      this.playbackMap.on('mousemove', this.updatemousePositionXY)
-      this.playbackMap.on('pitch', this.updatePitchAndBearing)
-
+      this.mainMap.addLayer({
+        id: 'entities-3d',
+        type: 'symbol',
+        source: 'entities-3d',
+        layout: {
+          'icon-image': ['get', 'icon'],
+          'icon-pitch-alignment': 'map',
+          'icon-rotate': ['get', 'bearing'],
+          'icon-rotation-alignment': 'map',
+          'icon-size': 1,
+          'symbol-placement': 'point',
+          'icon-ignore-placement': true,
+          'icon-allow-overlap': true,
+          'text-allow-overlap': true,
+          'text-anchor': 'bottom',
+          'text-ignore-placement': true,
+          'text-keep-upright': true,
+          'text-pitch-alignment': 'viewport',
+          'text-size': 12,
+          'text-field': ['concat', ['get', 'name'], ' (', ['get', 'role'], ')']
+        },
+        paint: {
+          'text-color': '#FFF',
+          'text-halo-color': '#000',
+          'text-halo-width': 0.5,
+          'icon-color': ['get', 'color']
+        }
+      })
       setTimeout(() => {
-        this.playbackMap.resize()
-        this.playbackMap.setPaintProperty('background', 'background-color', '#c0c0c0')
+        this.mainMap.resize()
+        this.mainMap.setPaintProperty('background', 'background-color', '#c0c0c0')
         this.generateGrids()
       }, 1000)
     })
+    // })
+
+    this.mapReady = true
   },
   computed: {
     worldOrigin4326() {
@@ -188,8 +222,13 @@ export default {
       if (!this.worldOrigin4326) return
       return proj4('EPSG:4326', 'EPSG:3857', this.worldOrigin4326)
     },
-    ...mapWritableState(useRecordingDataStore, ['playbackMap']),
-    ...mapState(useRecordingDataStore, ['recordingData', 'availableWorlds', 'mapHash']),
+    ...mapWritableState(useRecordingDataStore, ['mainMap']),
+    ...mapState(useRecordingDataStore, [
+      'recordingData',
+      'availableWorlds',
+      'activeWorld',
+      'mapHash'
+    ]),
     ...mapWritableState(useRecordingDataStore, [
       'viewBounds',
       'currentCenter',
@@ -199,19 +238,21 @@ export default {
       'mousePositionXY',
       'mousePositionMGRS',
       'maplibreVersion',
-      'activeWorld'
-    ])
+      'mapReady'
+    ]),
+    ...mapState(usePlaybackDataStore, ['playbackEntitiesGeoJSON'])
   },
   methods: {
-    centerOnMap: function () {
-      const bounds = this.playbackMap.getStyle().metadata.bounds
+    async centerOnMap() {
+      // console.log(this.activeWorld)
+      const bounds = this.activeWorld.bounds
       var poly = turf.bboxPolygon(bounds)
-      if (!this.playbackMap.getSource('boundary')) {
-        this.playbackMap.addSource('boundary', {
+      if (!this.mainMap.getSource('boundary')) {
+        this.mainMap.addSource('boundary', {
           type: 'geojson',
           data: poly
         })
-        this.playbackMap.addLayer({
+        this.mainMap.addLayer({
           id: 'boundary',
           type: 'line',
           source: 'boundary',
@@ -222,7 +263,7 @@ export default {
           }
         })
       } else {
-        this.playbackMap.getSource('boundary').setData(poly)
+        this.mainMap.getSource('boundary').setData(poly)
       }
 
       const polyBounds = turf.bbox(poly)
@@ -233,45 +274,56 @@ export default {
 
       if (this.$route.query.z) {
         customQuery = true
-        this.playbackMap.setZoom(this.$route.query.z)
+        this.mainMap.setZoom(this.$route.query.z)
       }
 
       if (this.$route.query.cnt) {
         customQuery = true
         var cnt = this.$route.query.cnt.split(',')
-        this.playbackMap.setCenter([cnt[1], cnt[0]])
+        this.mainMap.setCenter([cnt[0], cnt[1]])
       }
 
       if (this.$route.query.b) {
         customQuery = true
-        this.playbackMap.setBearing(this.$route.query.b)
+        this.mainMap.setBearing(this.$route.query.b)
       }
 
       if (this.$route.query.p) {
         customQuery = true
-        this.playbackMap.setPitch(this.$route.query.p)
+        this.mainMap.setPitch(this.$route.query.p)
       }
 
       if (customQuery) {
         return
       }
 
-      var newCameraTransform = this.playbackMap.cameraForBounds(polyBounds, {
+      var newCameraTransform = this.mainMap.cameraForBounds(polyBounds, {
         padding: { top: 15, bottom: 15, left: 15, right: 15 }
       })
       // console.log(newCameraTransform)
-      this.playbackMap.jumpTo(newCameraTransform)
+      this.mainMap.jumpTo(newCameraTransform)
+    },
+    async updateMapHash() {
+      this.$router.replace({
+        query: this.mapHash ? { ...this.$route.query, ...this.mapHash } : this.$route.query
+      })
     },
     async updateCurrentZoom(e) {
       var zoom = e.target.getZoom()
       this.currentZoom = zoom.toFixed(2)
     },
+    async updateCurrentCenter(e) {
+      var center = e.target.getCenter()
+      this.currentCenter = [center.lng, center.lat]
+    },
+    async updatePitchAndBearing(e) {
+      var pitch = e.target.getPitch()
+      this.currentPitch = pitch.toFixed(2)
+      var bearing = e.target.getBearing()
+      this.currentBearing = bearing.toFixed(2)
+    },
     async updatemousePositionXY(e) {
-      if (
-        this.playbackMap.isMoving() ||
-        this.playbackMap.isZooming() ||
-        this.playbackMap.isRotating()
-      ) {
+      if (this.mainMap.isMoving() || this.mainMap.isZooming() || this.mainMap.isRotating()) {
         return
       }
       var coord_4326 = e.lngLat
@@ -335,69 +387,63 @@ export default {
       return mgrsZone + ' ' + mgrsGridZone + ' ' + mgrsGrid
       return mgrs
     },
-    async updatePitchAndBearing(e) {
-      var pitch = e.target.getPitch()
-      this.currentPitch = pitch.toFixed(2)
-      var bearing = e.target.getBearing()
-      this.currentBearing = bearing.toFixed(2)
-    },
     resetTerrain: function () {
-      if (this.playbackMap.getTerrain()) {
-        this.playbackMap.setTerrain()
-        this.playbackMap.setTerrain({ source: 'heightmap' })
+      if (this.mainMap.getTerrain()) {
+        this.mainMap.setTerrain()
+        this.mainMap.setTerrain({ source: 'heightmap' })
         this.toggleTerrain()
       }
     },
     toggleColorRelief: function () {
       if (this.showColorRelief) {
-        this.playbackMap.setLayoutProperty('color-relief', 'visibility', 'visible')
+        this.mainMap.setLayoutProperty('color-relief', 'visibility', 'visible')
       } else {
-        this.playbackMap.setLayoutProperty('color-relief', 'visibility', 'none')
+        this.mainMap.setLayoutProperty('color-relief', 'visibility', 'none')
       }
       this.resetTerrain()
     },
     toggleHillshade: function () {
       if (this.showHillshade) {
-        this.playbackMap.setLayoutProperty('hillshade', 'visibility', 'visible')
+        this.mainMap.setLayoutProperty('hillshade', 'visibility', 'visible')
       } else {
-        this.playbackMap.setLayoutProperty('hillshade', 'visibility', 'none')
+        this.mainMap.setLayoutProperty('hillshade', 'visibility', 'none')
       }
       this.resetTerrain()
     },
     toggleTerrain: function () {
       if (this.showTerrain) {
-        this.playbackMap.setTerrain({ source: 'heightmap' })
+        this.mainMap.setTerrain({ source: 'heightmap' })
       } else {
-        this.playbackMap.setTerrain()
+        this.mainMap.setTerrain()
       }
     },
     toggleSatellite: function () {
       if (this.showSatellite) {
-        this.playbackMap.setLayoutProperty('satellite', 'visibility', 'visible')
+        this.mainMap.setLayoutProperty('satellite', 'visibility', 'visible')
       } else {
-        this.playbackMap.setLayoutProperty('satellite', 'visibility', 'none')
+        this.mainMap.setLayoutProperty('satellite', 'visibility', 'none')
       }
       this.resetTerrain()
     },
     toggleHouseExtrusion: function () {
       if (this.showHouseExtrusion) {
-        this.playbackMap.setLayoutProperty('house-extrusion', 'visibility', 'visible')
+        this.mainMap.setLayoutProperty('house-extrusion', 'visibility', 'visible')
       } else {
-        this.playbackMap.setLayoutProperty('house-extrusion', 'visibility', 'none')
+        this.mainMap.setLayoutProperty('house-extrusion', 'visibility', 'none')
       }
       this.resetTerrain()
     },
     toggleContourLines: function () {
       if (this.showContourLines) {
-        this.playbackMap.getStyle().layers.forEach((layer) => {
+        this.mainMap.getStyle().layers.forEach((layer) => {
           if (layer.id.startsWith('contours')) {
-            this.playbackMap.setLayoutProperty(layer.id, 'visibility', 'visible')
+            this.mainMap.setLayoutProperty(layer.id, 'visibility', 'visible')
           }
         })
       } else {
-        this.playbackMap.getStyle().layers.forEach((layer) => {
+        this.mainMap.getStyle().layers.forEach((layer) => {
           if (layer.id.startsWith('contours')) {
-            this.playbackMap.setLayoutProperty(layer.id, 'visibility', 'none')
+            this.mainMap.setLayoutProperty(layer.id, 'visibility', 'none')
           }
         })
       }
@@ -405,15 +451,15 @@ export default {
     },
     toggleGridlines: function () {
       if (this.showGridlines) {
-        this.playbackMap.getStyle().layers.forEach((layer) => {
+        this.mainMap.getStyle().layers.forEach((layer) => {
           if (layer.id.startsWith('grid')) {
-            this.playbackMap.setLayoutProperty(layer.id, 'visibility', 'visible')
+            this.mainMap.setLayoutProperty(layer.id, 'visibility', 'visible')
           }
         })
       } else {
-        this.playbackMap.getStyle().layers.forEach((layer) => {
+        this.mainMap.getStyle().layers.forEach((layer) => {
           if (layer.id.startsWith('grid')) {
-            this.playbackMap.setLayoutProperty(layer.id, 'visibility', 'none')
+            this.mainMap.setLayoutProperty(layer.id, 'visibility', 'none')
           }
         })
       }
@@ -422,9 +468,9 @@ export default {
     generateGrids: function () {
       // const gridOffsetX = this.map.getStyle().metadata.gridOffsetX;
       // const gridOffsetY = this.map.getStyle().metadata.gridOffsetY;
-      const worldSize = this.playbackMap.getStyle().metadata.worldSize
+      const worldSize = this.mainMap.getStyle().metadata.worldSize
 
-      this.playbackMap.getStyle().metadata.grids.forEach((grid) => {
+      this.mainMap.getStyle().metadata.grids.forEach((grid) => {
         // create a new multi-line string feature for each grid
         const coords3857 = []
         const labels3857 = []
@@ -506,7 +552,7 @@ export default {
 
         // add the feature to the source
         // add new geojson source to contain grid linestrings
-        this.playbackMap.addSource(`grid-${grid['stepX']}`, {
+        this.mainMap.addSource(`grid-${grid['stepX']}`, {
           type: 'geojson',
           data: featureCollection
         })
@@ -532,7 +578,7 @@ export default {
         }
 
         // add a new lines layer for each grid
-        this.playbackMap.addLayer({
+        this.mainMap.addLayer({
           id: `grid-${grid['stepX']}`,
           type: 'line',
           source: `grid-${grid['stepX']}`,
@@ -548,7 +594,7 @@ export default {
         })
 
         // add labels layer
-        this.playbackMap.addLayer({
+        this.mainMap.addLayer({
           id: `grid-${grid['stepX']}-labels`,
           type: 'symbol',
           source: `grid-${grid['stepX']}`,
