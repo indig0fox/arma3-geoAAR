@@ -3,7 +3,7 @@
     <div class="status-bar-field status-bar-short">
       <span><ClockComponent /></span>
       <br />
-      <span>Running Maplibre v{{ maplibreVersion }}</span>
+      <span><a href="https://maplibre.org/">Maplibre</a> v{{ maplibreVersion }}</span>
     </div>
 
     <!-- <p class="status-bar-field status-bar-short">

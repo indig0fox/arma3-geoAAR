@@ -1,26 +1,40 @@
 <template>
   <div id="worlds">
-    <h2
-      style="
-        padding: 10px;
+    <div id="worlds-list-container" class="window-body">
+      <h3>Featured World</h3>
 
-        color: white;
-        text-shadow: 0 0 2px black, 0 0 2px black, 0 0 10px black, 0 0 10px black;
-      "
-    >
-      {{ $t('headings.availableWorlds.title') }}
-    </h2>
-    <div id="worlds-list" class="window-body">
-      <WorldCard v-for="world in sortedWorlds" :key="world" :world="world" />
-    </div>
-    <div>
-      <p id="footer-text">
-        Map tiles for preview inserts provided by
-        <a href="http://stamen.com">Stamen Design</a>, under
-        <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by
-        <a href="http://openstreetmap.org">OpenStreetMap</a>, under
-        <a href="http://www.openstreetmap.org/copyright">ODbL</a>.
-      </p>
+      <div id="featured-world">
+        <WorldCard
+          :v-if="availableWorlds?.get('brf_sumava')"
+          :key="availableWorlds?.get('brf_sumava')"
+          :world="availableWorlds?.get('brf_sumava')"
+        >
+          <template #titleSuffix
+            >&nbsp;-&nbsp;<a
+              href="https://steamcommunity.com/sharedfiles/filedetails/?id=2947655994"
+              class="lightlink"
+            >
+              New release!
+            </a>
+          </template>
+        </WorldCard>
+      </div>
+
+      <h3>
+        {{ $t('headings.availableWorlds') }}
+      </h3>
+
+      <div id="worlds-list">
+        <WorldCard v-for="world in sortedWorlds" :key="world" :world="world" />
+
+        <p id="footer-text">
+          Map tiles for preview inserts provided by
+          <a href="http://stamen.com" class="lightlink">Stamen Design</a>, under
+          <a href="http://creativecommons.org/licenses/by/3.0" class="lightlink">CC BY 3.0</a>. Data
+          by <a href="http://openstreetmap.org" class="lightlink">OpenStreetMap</a>, under
+          <a href="http://www.openstreetmap.org/copyright" class="lightlink">ODbL</a>.
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -35,6 +49,7 @@ import WorldCard from '../components/WorldCard.vue'
 
 export default {
   name: 'WorldsList',
+  created() {},
   data() {
     return {}
   },
@@ -75,7 +90,8 @@ export default {
   background: url('@/assets/img/arma3_screenshot_20.jpg');
   border: 5px solid #000000;
 }
-#worlds-list {
+#worlds-list,
+#featured-world {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -89,25 +105,5 @@ export default {
   background: black;
   padding: 10px;
   font-style: italic;
-}
-#footer-text > a:link {
-  color: lightseagreen;
-  text-shadow: 0 0 2px black, 0 0 2px black, 0 0 10px black, 0 0 10px black;
-}
-#footer-text > a:visited {
-  color: lightgreen;
-  text-shadow: 0 0 2px black, 0 0 2px black, 0 0 10px black, 0 0 10px black;
-}
-#footer-text > a:hover {
-  color: white;
-  text-shadow: 0 0 2px black, 0 0 2px black, 0 0 10px black, 0 0 10px black;
-}
-#footer-text > a:active {
-  color: white;
-  text-shadow: 0 0 2px black, 0 0 2px black, 0 0 10px black, 0 0 10px black;
-}
-#footer-text > a:focus {
-  color: white;
-  text-shadow: 0 0 2px black, 0 0 2px black, 0 0 10px black, 0 0 10px black;
 }
 </style>

@@ -22,9 +22,11 @@
     "pinia": "^2.0.32",
     "pmtiles": "^2.7.0",
     "proj4": "^2.9.0",
+    "simple-web-worker": "^1.2.0",
     "vue": "^3.2.47",
     "vue-i18n": "^9.2.2",
     "vue-router": "^4.1.6",
+    "vue-worker": "^1.2.1",
     "vue3-spinner": "^0.0.16",
     "xp.css": "^0.2.6"
   },

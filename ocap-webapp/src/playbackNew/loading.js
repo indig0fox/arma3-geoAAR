@@ -1,49 +1,123 @@
 import { Unit, Vehicle } from './entities.js';
-import { getType } from './utils.js';
+import { getType, XY_to_LatLon } from './utils.js';
 
-export function loadEntityData (entities) {
+export async function loadEntityData (entities, endFrame) {
   const playbackUnits = {};
-  for (var i = 0; i < entities.length; i++) {
-    var entity = {};
-    if (entities[i].type == "unit") {
-      entity = {
-        "id": -1,
-        "name": "",
-        "side": "",
-        "type": "",
-        "role": "",
-        "positions": [],
-        "framesFired": [],
-        "startFrameNum": 0,
-      };
-      entity = Object.assign(entity, entities[i]);
-      entity.type = getType(entity.type);
-      playbackUnits[entity.id] = new Unit(entity.id, entity.name, entity.side, entity.type, entity.role, entity.positions, entity.framesFired, entity.startFrameNum);
+  entities.forEach((entityJSON) => {
 
+    const positions = new Map();
+    let hasCondensedFrames = false;
+
+    // * iterate through total frames and precache entity positions
+
+
+    if (entityJSON.type == "unit") {
+      for (var i = 0; i < endFrame; i++) {
+        // unit
+        const position = entityJSON.positions[i - entityJSON.startFrameNum]
+        // console.log(position)
+        if (position == null || position === []) {
+          positions.set(i, positions.get(i - 1))
+          return
+        }
+
+        const pos = position[0];
+        const dir = position[1];
+        const alive = position[2];
+
+        const isInVehicle = position[3] == 1;
+        const isPlayer = position[5] == 1;
+        let name = position[4]
+        if (name == "" && i > 0) {
+          name = positions.get(i - 1).name
+        } else if (name == "" && i == 0) {
+          name = "Unknown"
+        }
+
+        let role = position.length >= 7 ? position[6] : "Man"
+
+        positions.set(i, {
+          position: XY_to_LatLon(pos),
+          direction: dir,
+          alive: alive,
+          isInVehicle: isInVehicle,
+          name: name,
+          isPlayer: isPlayer,
+          role: role
+        })
+      }
     } else {
-      entity = {
-        "id": -1,
-        "name": "",
-        "class": "",
-        "type": "",
-        "positions": [],
-        "framesFired": [],
-        "startFrameNum": 0
-      };
-      entity = Object.assign(entity, entities[i]);
-      entity.type = getType(entity.class);
+      if (entityJSON.positions.length == 0) {
+        return
+      }
 
-      var hasCondensedFrames = true;
-      if (entity.positions[0].length < 4) {
-        hasCondensedFrames = false;
-      };
+      let vehiclePositions = [];
 
-      if (entity.positions.length > 0) {
-        playbackUnits[entity.id] = new Vehicle(entity.id, entity.name, entity.class, entity.type, entity.positions, entity.framesFired, entity.startFrameNum, hasCondensedFrames);
-      };
-    };
-  };
-  return playbackUnits;
+      entityJSON.positions.forEach((position) => {
+        const pos = position[0];
+        const dir = position[1];
+        const alive = position[2];
+
+        const crew = position[3];
+        const newVehiclePos = {
+          position: XY_to_LatLon(pos),
+          direction: dir,
+          alive: alive,
+          crew: crew,
+        }
+        if (position.length >= 5) {
+          newVehiclePos.frames = position[4]
+        }
+        vehiclePositions.push(newVehiclePos)
+      })
+
+      const hasCondensedFrames = vehiclePositions.length > 0 && vehiclePositions[0].frames != null
+
+      for (var i = 0; i < endFrame; i++) {
+        // vehicle
+
+        if (hasCondensedFrames) {
+          const newVehiclePos = vehiclePositions.find((pos) => {
+            return (
+              i >= pos.frames[0] - entityJSON.startFrameNum &&
+              i <= pos.frames[1] - entityJSON.startFrameNum
+            )
+          })
+          if (!newVehiclePos) {
+            positions.set(i, positions.get(i - 1))
+            return
+          } else {
+            positions.set(i, newVehiclePos)
+            continue
+          }
+        } else {
+          const newVehiclePos = vehiclePositions[i - entityJSON.startFrameNum]
+          if (!newVehiclePos) {
+            positions.set(i, positions.get(i - 1))
+            return
+          }
+          positions.set(i, newVehiclePos)
+        }
+
+      }
+    }
+    // console.log(positions)
+
+
+    if (entityJSON.type == "unit") {
+      playbackUnits[entityJSON.id] = new Unit(entityJSON.id, entityJSON.name, entityJSON.side, 'man', entityJSON.role, positions, entityJSON.framesFired, entityJSON.startFrameNum)
+    } else {
+      var vehicleType = getType(entityJSON.class)
+      playbackUnits[entityJSON.id] = new Vehicle(entityJSON.id, entityJSON.name, entityJSON.class, vehicleType, positions, entityJSON.framesFired, entityJSON.startFrameNum, hasCondensedFrames)
+    }
+
+    // console.log(entityJSON.id, playbackUnits[entityJSON.id])
+
+    return
+  })
+
+
+  return Promise.resolve(playbackUnits);
 }
 
 import { entityColors } from '@/arma3data/definitions.js'

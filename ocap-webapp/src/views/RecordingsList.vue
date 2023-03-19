@@ -1,15 +1,7 @@
 <template>
   <div id="component-wrapper">
     <div id="recordings">
-      <h4
-        style="
-          padding: 10px;
-          color: white;
-          text-shadow: 0 0 2px black, 0 0 2px black, 0 0 10px black, 0 0 10px black;
-        "
-      >
-        Available Recordings
-      </h4>
+      <h3>{{ $t('headings.availableRecordings') }}</h3>
       <div id="app-window" class="window">
         <div class="title-bar">
           <span class="title-bar-text">Available recordings from {{ recordingsUrl }}</span>
@@ -87,6 +79,7 @@
 <script setup>
 import { mapState, mapWritableState } from 'pinia'
 import { useRecordingDataStore } from '@/stores/dataStore.js'
+import { usePlaybackDataStore } from '@/stores/playbackStore.js'
 </script>
 
 <script>
@@ -99,6 +92,16 @@ export default {
       const minutes = Math.floor(duration / 60)
       const seconds = Math.floor(duration % 60)
       return `${minutes}m ${seconds}s`
+    },
+    unloadRecordingData() {
+      this.activeRecording = null
+      this.activeRecordingData = null
+      this.activeRecordingReady = false
+      usePlaybackDataStore().$reset()
+      // remove id from query
+      this.$router.replace({
+        name: 'recordings'
+      })
     },
     processUploadedRecording(e) {
       // * load local recording
@@ -125,7 +128,9 @@ export default {
       })
     }
   },
-  mounted() {},
+  mounted() {
+    this.unloadRecordingData()
+  },
   data() {
     return {
       recordingFile: null,
@@ -138,7 +143,6 @@ export default {
     ...mapWritableState(useRecordingDataStore, ['searchFilterTag']),
     ...mapWritableState(useRecordingDataStore, ['searchFilterOldest']),
     ...mapWritableState(useRecordingDataStore, ['searchFilterNewest']),
-    ...mapWritableState(useRecordingDataStore, ['activeRecordingData']),
     ...mapState(useRecordingDataStore, ['availableRecordings']),
     ...mapWritableState(useRecordingDataStore, ['activeRecording', 'activeRecordingData']),
     recordingsUrl() {

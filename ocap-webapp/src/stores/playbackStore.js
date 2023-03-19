@@ -5,6 +5,7 @@ export const usePlaybackDataStore = defineStore('playbackData', {
     return {
       playbackInitialized: false,
       playbackRenderId: null,
+      playbackNextFrame: null,
       playbackEntities: {},
       playbackEntitiesGeoJSON: {
         type: 'FeatureCollection',
@@ -19,6 +20,10 @@ export const usePlaybackDataStore = defineStore('playbackData', {
       showAILabels: false,
       showVehicleMarkers: true,
       showVehicleLabels: true,
+      selectedUnitId: null,
     }
   },
+  actions: {
+
+  }
 })

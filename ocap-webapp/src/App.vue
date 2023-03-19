@@ -1,12 +1,8 @@
 <script setup>
-import { RouterView } from 'vue-router'
+import { RouterView } from "vue-router";
 
-// pinia
-import { useRecordingDataStore } from '@/stores/dataStore.js'
-import { mapState, mapWritableState } from 'pinia'
-
-import LocaleChanger from '@/components/LocaleChanger.vue'
-import { ScaleLoader } from 'vue3-spinner'
+import LocaleChanger from "@/components/LocaleChanger.vue";
+import { ScaleLoader } from "vue3-spinner";
 </script>
 
 <template>
@@ -17,39 +13,45 @@ import { ScaleLoader } from 'vue3-spinner'
           <img src="@/assets/img/a3white.png" />
         </router-link>
         <div class="title-bar-text" style="margin-right: 0px">
-          {{ $t('app.windowTitle') }}
+          {{ $t("app.windowTitle") }}
         </div>
         <div class="title-bar-text" style="margin-right: 0px">
-          {{ $t('app.version') }}{{ $t('app.versionNumber') }}
+          {{ $t("app.version") }}{{ $t("app.versionNumber") }}
         </div>
 
         <LocaleChanger />
 
         <div class="title-bar-text">
-          <span>{{ $t('app.world') }}:&nbsp;</span>
+          <span>{{ $t("app.world") }}:&nbsp;</span>
           <span v-if="activeWorld" style="color: yellow; font-family: monospace">
             {{ activeWorld.displayName }} &lt;{{ activeWorld.worldName }}&gt;
           </span>
           <span v-show="!activeWorld" style="color: yellow; font-family: monospace">
-            {{ $t('app.noWorldLoaded') }}
+            {{ $t("app.noWorldLoaded") }}
           </span>
         </div>
         <div class="title-bar-text">
-          <span>{{ $t('app.recording') }}:&nbsp;</span>
+          <span>{{ $t("app.recording") }}:&nbsp;</span>
           <!-- add mission name, and add author but truncate if too long -->
           <span v-if="activeRecordingData" style="color: yellow; font-family: monospace">
             {{ activeRecordingData.missionName }} &lt;{{
               activeRecordingData.missionAuthor?.length > 30
-                ? activeRecordingData.missionAuthor.substring(0, 30) + '...'
+                ? activeRecordingData.missionAuthor.substring(0, 30) + "..."
                 : activeRecordingData.missionAuthor
             }}&gt;
           </span>
-          <span v-show="!activeRecordingData" style="color: yellow; font-family: monospace">
-            {{ $t('app.noRecordingLoaded') }}
+          <span
+            v-show="!activeRecordingData"
+            style="color: yellow; font-family: monospace"
+          >
+            {{ $t("app.noRecordingLoaded") }}
           </span>
         </div>
       </div>
-      <div id="top-navbar-center" style="display: flex; flex-direction: row; height: 80%"></div>
+      <div
+        id="top-navbar-center"
+        style="display: flex; flex-direction: row; height: 80%"
+      ></div>
       <!-- <div id="top-navbar-right" style="display: flex; flex-direction: row; height: 80%"> -->
 
       <div class="title-bar-controls">
@@ -64,41 +66,50 @@ import { ScaleLoader } from 'vue3-spinner'
         <router-link
           :to="{
             name: 'worlds',
-            query: { id: activeRecording?.id, world: activeWorld?.worldName, ...$route.query },
-            ...$route.query
+            query: {},
           }"
         >
-          <button role="tab" aria-controls="tab-A" :aria-selected="$route.name == 'worlds'">
-            {{ $t('app.tabs.worldsList') }}
+          <button
+            role="tab"
+            aria-controls="tab-A"
+            :aria-selected="$route.name == 'worlds'"
+          >
+            {{ $t("app.tabs.worldsList") }}
           </button>
         </router-link>
         <router-link
           :to="{
             name: 'worldViewer',
-            query: { id: activeRecording?.id, world: activeWorld?.worldName, ...$route.query },
-            ...$route.query
+            query: { world: activeWorld?.worldName },
           }"
         >
-          <button role="tab" aria-controls="tab-B" :aria-selected="$route.name == 'worldViewer'">
-            {{ $t('app.tabs.worldViewer') }}
+          <button
+            role="tab"
+            aria-controls="tab-B"
+            :aria-selected="$route.name == 'worldViewer'"
+          >
+            {{ $t("app.tabs.worldViewer") }}
           </button>
         </router-link>
         <button role="tab" aria-controls="tab-C">Planner</button>
         <router-link
           :to="{
             name: 'recordings',
-            query: { id: activeRecording?.id, world: activeWorld?.worldName, ...$route.query },
-            ...$route.query
+            query: {},
           }"
         >
-          <button role="tab" aria-controls="tab-D" :aria-selected="$route.name == 'recordings'">
-            {{ $t('app.tabs.recordingsList') }}
+          <button
+            role="tab"
+            aria-controls="tab-D"
+            :aria-selected="$route.name == 'recordings'"
+          >
+            {{ $t("app.tabs.recordingsList") }}
           </button>
         </router-link>
         <router-link
           :to="{
             name: 'recordingViewer',
-            query: { id: activeRecording?.id, world: activeWorld?.worldName, ...$route.query }
+            query: { id: activeRecording?.id, world: activeWorld?.worldName },
           }"
         >
           <button
@@ -106,23 +117,29 @@ import { ScaleLoader } from 'vue3-spinner'
             aria-controls="tab-E"
             :aria-selected="$route.name == 'recordingViewer'"
           >
-            {{ $t('app.tabs.recordingViewer') }}
+            {{ $t("app.tabs.recordingViewer") }}
           </button>
         </router-link>
         <router-link
           :to="{
             name: 'about',
-            query: { id: activeRecording?.id, world: activeWorld?.worldName, ...$route.query }
           }"
         >
-          <button role="tab" aria-controls="tab-F" :aria-selected="$route.name == 'about'">
-            {{ $t('app.tabs.about') }}
+          <button
+            role="tab"
+            aria-controls="tab-F"
+            :aria-selected="$route.name == 'about'"
+          >
+            {{ $t("app.tabs.about") }}
           </button>
         </router-link>
       </menu>
 
       <article role="tabpanel" id="main">
-        <ScaleLoader v-if="(!worldsLoaded || !recordingsLoaded) && !error" :color="'#02108a'" />
+        <ScaleLoader
+          v-if="(!worldsLoaded || !recordingsLoaded) && !error"
+          :color="'#02108a'"
+        />
         <RouterView />
       </article>
     </div>
@@ -130,39 +147,47 @@ import { ScaleLoader } from 'vue3-spinner'
 </template>
 
 <script>
+// pinia
+import { useRecordingDataStore } from "@/stores/dataStore.js";
+import { mapState, mapWritableState } from "pinia";
 export default {
-  name: 'App',
-  components: {},
-  // beforeRouteEnter: function (to, from, next) {
-
-  // },
+  name: "App",
+  components: { ScaleLoader },
   data() {
-    return {}
+    return {};
   },
   components: {
-    ScaleLoader
+    ScaleLoader,
   },
   computed: {
     ...mapWritableState(useRecordingDataStore, [
-      'availableWorlds',
-      'availableRecordings',
-      'activeWorld',
-      'activeRecording',
-      'activeRecordingData'
+      "availableWorlds",
+      "availableRecordings",
+      "activeWorld",
+      "activeRecording",
+      "activeRecordingData",
     ]),
-    ...mapState(useRecordingDataStore, ['worldsLoaded', 'recordingsLoaded', 'error'])
+    ...mapWritableState(useRecordingDataStore, [
+      "worldsLoaded",
+      "recordingsLoaded",
+      "error",
+    ]),
   },
   mounted() {},
-  methods: {}
-}
+  methods: {},
+};
 </script>
 
 <style>
+/* title-bar-text where not <a> */
 .title-bar-text {
   pointer-events: none;
   user-select: none;
   display: flex;
   align-items: center;
+}
+.title-bar-text > a {
+  pointer-events: auto;
 }
 .title-bar-icon {
   height: 15px;
@@ -227,11 +252,11 @@ body {
   height: 100%;
 }
 
-menu[role='tablist'] button[aria-selected='true']:first-of-type {
+menu[role="tablist"] button[aria-selected="true"]:first-of-type {
   left: 0;
 }
-menu[role='tablist'] button:first-of-type:before {
-  content: '';
+menu[role="tablist"] button:first-of-type:before {
+  content: "";
   display: block;
   position: absolute;
   z-index: -1;
@@ -242,7 +267,7 @@ menu[role='tablist'] button:first-of-type:before {
   border-left: 1px solid #fff;
   border-right: 1px solid #dfdfdf;
 }
-menu[role='tablist'] button[aria-selected='true'] {
+menu[role="tablist"] button[aria-selected="true"] {
   top: 2px;
   margin-right: -1px;
   margin-top: -4px;
@@ -254,16 +279,17 @@ menu[role='tablist'] button[aria-selected='true'] {
   margin-left: -3px;
   margin-bottom: 1px;
 }
-menu[role='tablist'] button:focus {
+menu[role="tablist"] button:focus {
   outline: 1px dotted #222;
   outline-offset: -4px;
 }
 
-menu[role='tablist'] button {
+menu[role="tablist"] button {
   padding: 3px 12px;
   top: 3px;
   background: silver;
-  box-shadow: inset 1px 1px #fff, inset 2px 2px #dfdfdf, inset -1px 0 #000, inset -2px 0 #7f7f7f;
+  box-shadow: inset 1px 1px #fff, inset 2px 2px #dfdfdf, inset -1px 0 #000,
+    inset -2px 0 #7f7f7f;
   border-top-right-radius: 3px;
   border-top-left-radius: 3px;
   border-bottom: 2px solid transparent;
@@ -273,7 +299,7 @@ menu[role='tablist'] button {
   text-decoration: none;
   min-width: unset;
 }
-menu[role='tablist'] {
+menu[role="tablist"] {
   position: relative;
   margin: 0 0 -2px;
   text-indent: 0;
@@ -282,12 +308,12 @@ menu[role='tablist'] {
   padding-left: 3px;
 }
 
-[role='tabpanel'] {
+[role="tabpanel"] {
   box-shadow: inset 1px 1px #fff, inset 2px 2px #dfdfdf, inset -1px -1px #0a0a0a,
     inset -2px -2px grey;
 }
 
-[role='tabpanel'] {
+[role="tabpanel"] {
   padding: 7px;
   clear: both;
   background: silver;

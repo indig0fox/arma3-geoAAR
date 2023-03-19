@@ -1,8 +1,7 @@
 {
   "headings": {
-    "availableWorlds": {
-      "title": "Available Worlds"
-    }
+    "availableWorlds": "Available Worlds",
+    "availableRecordings": "Available Recordings"
   },
   "app": {
     "version": "v",
@@ -36,6 +35,9 @@
     "notSkippingFrames": "OK",
     "currentFrame": "Frame",
     "currentTimestamp": "Timestamp",
+    "selectedUnit": {
+      "windowTitle": "Selected Unit"
+    },
     "controls": {
       "speed": {
         "legend": "Speed Controls",
@@ -68,10 +70,16 @@
     "colorRelief": "Color Relief",
     "satellite": "Satellite",
     "hillshade": "Hillshade",
+    "hillshadeOpacity": "Hillshade Opacity",
     "contourLines": "Contour Lines",
     "3dTerrain": "3D Terrain",
     "3dBuildings": "3D Buildings",
-    "gridlines": "Gridlines"
+    "gridlines": "Gridlines",
+    "mapFOV": {
+      "legend": "Map FOV",
+      "auto": "Auto",
+      "wide": "Wide"
+    }
   },
   "miniMap": {
     "windowTitle": "Minimap"
@@ -80,7 +88,11 @@
     "windowTitle": "Events"
   },
   "playerList": {
-    "windowTitle": "Players"
+    "windowTitle": "Players",
+    "blufor": "BLUFOR",
+    "opfor": "OPFOR",
+    "indfor": "INDFOR",
+    "civilian": "CIVILIAN"
   },
   "windowTitles": {
     "recordingViewer": "Recording Viewer",

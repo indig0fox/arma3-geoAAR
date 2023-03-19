@@ -58,6 +58,9 @@ export function animateBulletInterval (callback, feature, delay, repetitions) {
 }
 
 export function secondsToTimestamp (seconds) {
+  if (seconds === null || seconds === undefined) {
+    return '';
+  }
   // convert seconds to hh:mm:ss
   var date = new Date(null);
   date.setSeconds(seconds);

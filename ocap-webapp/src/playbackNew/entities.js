@@ -5,6 +5,7 @@ import { Marker as MaplibreMarker, Popup as MaplibrePopup } from 'maplibre-gl';
 import { useRecordingDataStore } from '@/stores/dataStore';
 import { usePlaybackDataStore } from '@/stores/playbackStore.js';
 
+
 export class Unit {
   constructor(id, name, side, type, role, positions, framesFired, startFrameNum) {
     this.id = id;
@@ -15,25 +16,48 @@ export class Unit {
     this.stateColor = this.side.toLowerCase();
     this.colorHex = entityColors[this.side];
     this.role = role;
+
     this.positions = positions;
-    this.position = proj4(proj4.defs('EPSG:3857'), proj4.defs('EPSG:4326'), [positions[0][0][0], positions[0][0][1]]);
-    this.framesFired = framesFired;
+
     this.startFrameNum = startFrameNum;
+
+    // functionalized
+    // this.precachePositions(positions);
+
+    this.framesFired = framesFired;
     this.hasFrame = false;
 
     this.lifestate = 1;
-
-    // Create a DOM element for each marker.
-    const el = document.createElement('div');
-    this.markerElement = el;
-    const width = 14;
-    const height = 14;
-    el.className = 'unit-marker';
-    el.style.backgroundImage = `url(entityMarkers/${this.type}/${this.stateColor}.png)`;
-    el.style.width = `${width}px`;
-    el.style.height = `${height}px`;
-    el.style.backgroundSize = '100%';
   }
+
+  async precachePositions () {
+
+    if (!this.positions) { throw new Error('No positions on entity', this) }
+    // * cache positions into a map
+    // cache positions array into a map for faster lookup
+    // offset the frame number by the startFrameNum
+    // web workers considered but conversion to transferable objects is not trivial
+
+    // console.log('Saving', positions.length, ' positions for entity ' + id + '...');
+
+    // console.log(positions)
+
+
+    const positionsMap = new Map()
+    for (let i = 0; i < this.positions.length; i++) {
+      const translated_pos = XY_to_LatLon(
+        this.positions[i][0]
+      );
+      const newPosFrame = this.positions[i];
+      newPosFrame[0] = translated_pos;
+      positionsMap.set(i + this.startFrameNum, newPosFrame);
+    }
+    this.positions = positionsMap;
+    this.positionsReady = true;
+
+    return Promise.resolve()
+  }
+
 
   getUnitById (unitId) {
     if (unitId in usePlaybackDataStore().playbackEntities) {
@@ -45,36 +69,18 @@ export class Unit {
 
   getPosAtFrame (frameNum) {
 
-    const hasFrame = this.positions.length - 1 >= (frameNum - this.startFrameNum) &&
-      (this.startFrameNum <= frameNum)
-    let thisUnitFrame
-    if (hasFrame) {
-      thisUnitFrame = this.positions[frameNum - this.startFrameNum];
-      this.hasFrame = true;
-    } else {
-      if (this.startFrameNum <= frameNum) {
-        thisUnitFrame = this.positions.slice(-1);
-        this.hasFrame = false;
-      } else {
-        this.hasFrame = false;
-        return
-      }
-    }
+    // console.log(this.positions)
 
-    var position = thisUnitFrame[0];
-    // get first two indexes
-    if (position.length > 3) {
-      this.position = XY_to_LatLon(position[0].slice(0, 2));
-    } else {
-      this.position = XY_to_LatLon(position.slice(0, 2));
-    }
-
-    this.bearing = thisUnitFrame[1];
-    this.lifestate = this.hasFrame ? thisUnitFrame[2] : 0;
-    this.inVehicle = thisUnitFrame[3] == 1 ? true : false;
-    // this.name = thisUnitFrame[4];
-    this.isPlayer = thisUnitFrame[5];
-    this.role = thisUnitFrame[6];
+    // ! moved from Array to Map, comments deprecated with precache step
+    // console.log(this.id, frameNum, this.positions.get(frameNum))
+    const thisFrame = this.positions.get(frameNum);
+    this.position = thisFrame.position;
+    this.bearing = thisFrame.direction;
+    this.lifestate = thisFrame.alive;
+    this.inVehicle = thisFrame.isInVehicle;
+    this.name = thisFrame.name;
+    this.isPlayer = thisFrame.isPlayer;
+    this.role = thisFrame.role;
   };
 
   updateAtFrame (frameNum) {
@@ -86,9 +92,9 @@ export class Unit {
     this.getPosAtFrame(frameNum);
 
     this.setColor(this.lifestate);
-    if (this.hasFrame) {
-      this.updateMarker(frameNum)
-    }
+
+    this.updateMarker(frameNum)
+
   };
 
   setColor (lifestate) {
@@ -110,6 +116,20 @@ export class Unit {
 
   addMarker () {
     if (this.marker) return
+
+    if (!this.markerElement) {
+      // Create a DOM element for each marker.
+      const el = document.createElement('div');
+      this.markerElement = el;
+      const width = 14;
+      const height = 14;
+      el.className = 'unit-marker';
+      el.style.backgroundImage = `url(entityMarkers/${this.type}/${this.stateColor}.png)`;
+      el.style.width = `${width}px`;
+      el.style.height = `${height}px`;
+      el.style.backgroundSize = '100%';
+    }
+
     this.marker = new MaplibreMarker(this.markerElement, {
       color: this.colorHex,
       rotationAlignment: "viewport",
@@ -255,18 +275,40 @@ export class Unit {
   };
 };
 
+
+
+
+
+
+
+
+
+
+
+
 export class Vehicle {
   constructor(id, name, vehicleClass, type, positions, framesFired, startFrameNum, hasCondensedPositions) {
     this.id = id;
     this.name = name;
     this.vehicleClass = vehicleClass;
     this.type = type;
-    this.positions = positions;
-    this.position = proj4(proj4.defs('EPSG:3857'), proj4.defs('EPSG:4326'), [positions[0][0][0], positions[0][0][1]]);
-    this.framesFired = framesFired;
-    this.startFrameNum = startFrameNum;
 
+    this.startFrameNum = startFrameNum;
     this.hasCondensedPositions = hasCondensedPositions;
+
+    this.positions = positions;
+
+    // console.log('positions', positions)
+    if (positions.size > 0) {
+      this.position = positions.get(0).position;
+      this.bearing = positions.get(0).bearing;
+    }
+
+
+    // functionalized
+    // this.precachePositions(positions);
+
+    this.framesFired = framesFired;
 
     this.lifestate = 1;
     this.crew = [];
@@ -275,20 +317,61 @@ export class Vehicle {
     this.side = "UNKNOWN";
     this.stateColor = "unknown";
 
-    // Create a DOM element for each marker.
-    const el = document.createElement('div');
-    this.markerElement = el;
-    var width = 25;
-    var height = 25;
-    if (this.type == "unknown") {
-      width = 10;
-      height = 10;
-    };
-    el.className = 'vehicle-marker';
-    el.style.backgroundImage = `url(entityMarkers/${this.type}/${this.stateColor}.png)`;
-    el.style.width = `${width}px`;
-    el.style.height = `${height}px`;
-    el.style.backgroundSize = '100%';
+  }
+
+  async precachePositions () {
+
+    if (!this.positions) { throw new Error('No positions on entity', this) }
+
+    // * cache positions into a map
+    // cache positions array into a map for faster lookup
+    // offset the frame number by the startFrameNum
+    // web workers considered but conversion to transferable objects is not trivial
+
+    const positionsMap = new Map()
+
+    if (this.hasCondensedPositions) {
+      for (let i = 0; i < useRecordingDataStore().activeRecordingData.endFrame; i++) {
+        // console.log('entity', this.id, 'frame', i)
+
+        var thisUnitFrame = this.positions.find(positionFrame => {
+          if (
+            positionFrame[4][0] <= i + this.startFrameNum &&
+            positionFrame[4][1] >= i + this.startFrameNum
+          ) {
+            return true;
+          }
+        });
+        if (thisUnitFrame == undefined) {
+          console.log('no frame found for', i)
+          continue;
+        }
+        const translated_pos = XY_to_LatLon(
+          thisUnitFrame[0]
+        );
+        const newPosFrame = thisUnitFrame;
+        newPosFrame[0] = translated_pos;
+        positionsMap.set(i, newPosFrame);
+      }
+    } else {
+      for (let i = 0; i < this.positions.length; i++) {
+        const translated_pos = XY_to_LatLon(
+          this.positions[i][0]
+        );
+        // if (positions[0][0][2] !== undefined) {
+        //   translated_pos[2] = positions[0][0][2];
+        // }
+        const newPosFrame = this.positions[i];
+        newPosFrame[0] = translated_pos;
+        positionsMap.set(i + this.startFrameNum, newPosFrame);
+      }
+    }
+    this.positions = positionsMap;
+    this.positionsReady = true;
+
+
+
+    return Promise.resolve()
   }
 
   getUnitById (unitId) {
@@ -300,77 +383,56 @@ export class Vehicle {
   }
 
   getPosAtFrame (frameNum) {
-    var thisUnitFrame = null;
 
-    if (this.hasCondensedPositions) {
-      thisUnitFrame = this.positions.find(positionFrame => {
-        if (
-          positionFrame[4][0] <= frameNum &&
-          positionFrame[4][1] >= frameNum
-        ) {
-          return true;
-        }
-      });
+    // if (this.hasCondensedPositions) {
+    // ! moved from Array to Map, comments deprecated with precache step
 
-      if (!thisUnitFrame) {
-        if (this.startFrameNum <= frameNum) {
-          this.showMarker()
-          this.lifestate = 0;
-        } else {
-          this.remove()
-        }
-        return
-      };
-
-      var position = thisUnitFrame[0];
-      this.position = XY_to_LatLon(position);
-
-      this.bearing = thisUnitFrame[1];
-      this.lifestate = thisUnitFrame[2];
-      this.crew = thisUnitFrame[3].map((crewMember) => {
-        var unit = this.getUnitById(crewMember);
-        if (unit instanceof Unit) {
-          return unit
-        };
-      });
+    var hasFrame = (this.positions.get(frameNum)).hasOwnProperty('position');
+    if (!hasFrame) {
       return
-    };
+    }
+    var thisFrame = this.positions.get(frameNum);
 
-    if (!this.hasCondensedPositions) {
-      var thisUnitFrame = this.positions[frameNum - this.startFrameNum];
-      if (!thisUnitFrame) {
-        if (this.startFrameNum <= frameNum) {
-          this.showMarker()
-          this.lifestate = 0;
-        } else {
-          this.remove()
-        }
-        return
+    this.position = thisFrame.position;
+    this.bearing = thisFrame.direction;
+    this.lifestate = thisFrame.alive;
+    this.crew = thisFrame.crew.map((crewMember) => {
+      var unit = this.getUnitById(crewMember);
+      if (unit instanceof Unit) {
+        return unit
+      } else {
+        return null
+      }
+    }).filter((unit) => {
+      if (unit !== null) {
+        return true
+      }
+    });
+    return
+    // };
+
+    // if (!this.hasCondensedPositions) {
+    // ! moved from Array to Map, comments deprecated with precache step
+
+    thisUnitFrame = this.positions.get(frameNum);
+
+    this.position = thisFrame.position;
+    this.bearing = thisFrame.direction;
+    this.lifestate = thisFrame.alive;
+    this.crew = thisFrame.crew.map((crewMember) => {
+      var unit = this.getUnitById(crewMember);
+      if (unit instanceof Unit) {
+        return unit
       };
-
-      var position = thisUnitFrame[0];
-      // if (position.length > 2) {
-      //   this.position = proj4(proj4.defs('EPSG:3857'), proj4.defs('EPSG:4326'), [position[0], position[1] - worldsize, position[2]]);
-      // } else {
-      this.position = proj4(proj4.defs('EPSG:3857'), proj4.defs('EPSG:4326'), [position[0], position[1]]);
-      // };
-
-      this.bearing = thisUnitFrame[1];
-      this.lifestate = thisUnitFrame[2];
-      this.crew = thisUnitFrame[3].map((crewMember) => {
-        var unit = this.getUnitById(crewMember);
-        if (unit instanceof Unit) {
-          return unit
-        };
-      });
-    };
+    });
+    // };
   };
 
   updateAtFrame (frameNum) {
-    if (frameNum < this.startFrameNum) {
-      this.remove()
-      return
-    };
+    // if (frameNum < this.startFrameNum) {
+    //   this.remove()
+    //   return
+    // };
 
     this.getPosAtFrame(frameNum);
 
@@ -397,9 +459,9 @@ export class Vehicle {
 
   setColor (lifestate) {
     // if (this.type != "apc") { this.type = "apc" };
-    var entityColor = this.side.toLowerCase();
+    var entityColor = "unknown"
     if (this.crew.length > 0) {
-      entityColor = this.crew[0].side.toLowerCase();
+      entityColor = this.crew[0]?.side.toLowerCase();
     } else {
       entityColor = "unknown";
     };
@@ -421,6 +483,24 @@ export class Vehicle {
 
 
   addMarker () {
+    if (!this.position) return;
+    if (!this.markerElement) {
+      // Create a DOM element for each marker.
+      const el = document.createElement('div');
+      this.markerElement = el;
+      var width = 25;
+      var height = 25;
+      if (this.type == "unknown") {
+        width = 10;
+        height = 10;
+      };
+      el.className = 'vehicle-marker';
+      el.style.backgroundImage = `url(entityMarkers/${this.type}/${this.stateColor}.png)`;
+      el.style.width = `${width}px`;
+      el.style.height = `${height}px`;
+      el.style.backgroundSize = '100%';
+    }
+
     this.marker = new MaplibreMarker(this.markerElement, {
       color: this.colorHex,
       rotationAlignment: "viewport",

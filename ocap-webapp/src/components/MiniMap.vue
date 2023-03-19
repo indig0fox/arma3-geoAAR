@@ -183,7 +183,7 @@ export default {
   },
   watch: {
     viewBounds: function (newBounds) {
-      if (this.viewBounds === {} || !this.map?.loaded()) return
+      // if (this.viewBounds === {} || !this.map?.loaded()) return
       const source = this.map.getSource('trackingRect')
 
       // maplibre bounds object

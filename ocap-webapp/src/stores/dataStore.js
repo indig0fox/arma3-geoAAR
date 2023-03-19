@@ -1,8 +1,16 @@
 import { defineStore } from 'pinia'
+import { usePlaybackDataStore } from "@/stores/playbackStore.js";
 
 export const useRecordingDataStore = defineStore('dataStore', {
+  init ({ dispatch }) {
+    return Promise.all(
+      // dispatch('getWorlds'),
+      // dispatch('getRecordings'),
+    )
+  },
   state: () => {
     return {
+      playbackLoadingWorker: null,
       availableWorlds: new Map(),
       worldsLoaded: false,
       availableRecordings: new Map(),
@@ -33,7 +41,7 @@ export const useRecordingDataStore = defineStore('dataStore', {
     }
   },
   getters: {
-    mapHash (state) {
+    mapQuery (state) {
       if (!state.currentCenter) {
         return {}
       }
@@ -43,12 +51,22 @@ export const useRecordingDataStore = defineStore('dataStore', {
         b: state.currentBearing,
         p: state.currentPitch
       }
+    },
+    mapHash (state) {
+      if (!state.currentCenter) {
+        return ''
+      }
+      const playbackStore = usePlaybackDataStore();
+      var hashStr = '#' + state.currentZoom + '/' + state.currentCenter[0].toFixed(4) + '/' + state.currentCenter[1].toFixed(4) + '/' + state.currentBearing + '/' + state.currentPitch
+
+      return hashStr
     }
   },
 
   // could also be defined as
   // state: () => ({ count: 0 })
   actions: {
+
     async getWorlds () {
       let response, data
       try {
@@ -73,7 +91,7 @@ export const useRecordingDataStore = defineStore('dataStore', {
       // console.log('worlds', this.availableWorlds.size, this.availableWorlds)
 
       // load world previews async
-      this.availableWorlds.forEach(async (value, key, map) => {
+      this.availableWorlds.forEach((value, key, map) => {
         var previewUri = 'https://styles.ocap2.com/previews/' + key + '_256px.png'
         fetch(previewUri, {
           method: 'GET',

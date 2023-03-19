@@ -1,7 +1,7 @@
 <template>
   <div class="world-item window">
     <div class="title-bar">
-      <span class="title-bar-text">{{ world.displayName }}</span>
+      <span class="title-bar-text">{{ world.displayName }}<slot name="titleSuffix"></slot></span>
     </div>
     <div class="world-info window-body">
       <div class="world-info-left">
@@ -68,6 +68,10 @@ export default {
     world: {
       type: Object,
       required: true
+    },
+    extraTitle: {
+      type: String,
+      default: ''
     }
   }
 }
