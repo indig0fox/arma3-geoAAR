@@ -1,2 +1,0 @@
-docker build -t ocap-web-testing .
-docker run -d --rm -p 5001:5000/tcp --name ocap-web-testing -e OCAP_SECRET="anamaya23" --mount type=bind,src="$(pwd)/static",target=/usr/local/ocap/static --mount type=bind,src="$(pwd)/data",target=/var/lib/ocap/data --mount type=bind,src="$(pwd)/data.db",target=/var/lib/ocap/db/data.db --log-driver=syslog --log-opt syslog-address="udp://logs6.papertrailapp.com:31782" --log-opt syslog-format=rfc3164 --log-opt tag="ocap-web" ocap-web-testing:latest

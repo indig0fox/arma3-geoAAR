@@ -1,73 +1,43 @@
-# OCAP Web component
+# Arma 3 GeoAAR
 
-## Configuration
-The configuration file is called `setting.json`
+This project is a Vue.js based web viewer for vector terrain data of Arma 3 maps. It will also provide a new front-end for OCAP2 recording data. At the moment, further development is paused due to lack of time.
 
-**"listen"**: Listener for the web server, change to "0.0.0.0:5000" to listen on all interfaces   
-**"secret"**: Secret used for authenticate on record upload   
-**"logger"**: Enables request logging to STDOUT
+## Setup
 
-## Docker
+### Vue BaseURL
 
-### Environment Variables
+The Vue base URL is set in the `vite.config.js` file. This is used to set the base URL for the Vue router. You MUST customize this if it won't be served from the root of the domain.
 
-**OCAP_SECRET**
+### OCAP2
 
-This specifies the secret that will be used to authorize record to be uploaded.
+[Source](https://github.com/OCAP2)
 
-**OCAP_CUSTOMIZE_WEBSITEURL**
+It's currently **REQUIRED** to be running an OCAP server at the same origin as the viewer. Error page redirect will fail if a request for the recordings list fails and you'll experience a load loop.
 
-Link on the logo to your website
+To set up a demo server, run the following commands from the project root using Docker.
 
-**OCAP_CUSTOMIZE_WEBSITELOGO**
-
-URL to your website logo
-
-**OCAP_CUSTOMIZE_WEBSITELOGOSIZE**
-
-Size of the logo shown on the page, default 32px
-
-### Volumes
-
-**/var/lib/ocap/data**
-
-This is the folder where all the records is being stored in a gzipped json format `json.gz`.
-
-**/var/lib/ocap/maps**
-
-All maps are stored here. Maps can be downloaded from [here](https://drive.google.com/drive/folders/1qtT0Fr4Dfwd48ihZNc8YN-xgxHchKoiu).
-
-**/var/lib/ocap/db**
-
-Database location stored in SQLite3 format.
-
-### Start an OCAP webserver instance
-
-```
-docker run --name ocap-web -d \
-  -p 5000:5000/tcp \
-  -e OCAP_SECRET="same-secret"
-  -v ocap-records:/var/lib/ocap/data \
-  -v ocap-maps:/var/lib/ocap/maps \
-  -v ocap-database:/var/lib/ocap/db \
-  ghcr.io/ocap2/web:latest
+```shell
+cd ocap2
+docker build -t ocap-web-testing .
+docker run -d --rm -p 5001:5000/tcp --name ocap-web-testing -e OCAP_SECRET="anamaya23" --mount type=bind,src="$(pwd)/static",target=/usr/local/ocap/static --mount type=bind,src="$(pwd)/data",target=/var/lib/ocap/data --mount type=bind,src="$(pwd)/data.db",target=/var/lib/ocap/db/data.db ocap-web-testing:latest
 ```
 
-## Build from source
+A small selection of missions has been provided for demo purposes.
 
-This Project is based on [Golang](https://golang.org/dl/)
+## License
 
-### Windows
-```bash
-go build -o ocap-webserver.exe ./src/web
-```
+Arma3-GeoAAR, a viewer for Arma 3 map vector tiles and game playback.
+Copyright (C) 2023 indigo@indigofox.dev
 
-### Linux
-```
-go build -o ocap-webserver ./src/web
-```
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-### Docker
-```
-docker build -t ocap-webserver .
-```
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
