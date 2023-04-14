@@ -36,7 +36,16 @@
     "currentFrame": "Frame",
     "currentTimestamp": "Timestamp",
     "selectedUnit": {
-      "windowTitle": "Selected Unit"
+      "windowTitle": "Selected Unit",
+      "unitId": "ID",
+      "unitName": "Name",
+      "unitType": "Type",
+      "unitSide": "Side",
+      "unitGroup": "Group",
+      "unitRole": "Role",
+      "unitPosition": "Position",
+      "showPath": "Show Path",
+      "follow": "Follow"
     },
     "controls": {
       "speed": {

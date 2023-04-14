@@ -107,37 +107,47 @@ export default {
       this.mainMap.addSource("entities-3d", {
         type: "geojson",
         // 'data': recordingData.framePositions[0].positions
-        data: this.playbackEntitiesGeoJSON,
+        data: {
+          type: "FeatureCollection",
+          features: [],
+        },
       });
 
       this.mainMap.addLayer({
         id: "entities-3d",
-        type: "symbol",
+        type: "fill-extrusion",
         source: "entities-3d",
         layout: {
-          "icon-image": ["get", "icon"],
-          "icon-pitch-alignment": "map",
-          "icon-rotate": ["get", "bearing"],
-          "icon-rotation-alignment": "map",
-          "icon-size": 1,
-          "symbol-placement": "point",
-          "icon-ignore-placement": true,
-          "icon-allow-overlap": true,
-          "text-allow-overlap": true,
-          "text-anchor": "bottom",
-          "text-ignore-placement": true,
-          "text-keep-upright": true,
-          "text-pitch-alignment": "viewport",
-          "text-size": 12,
-          "text-field": ["concat", ["get", "name"], " (", ["get", "role"], ")"],
+          visibility: "visible",
         },
         paint: {
-          "text-color": "#FFF",
-          "text-halo-color": "#000",
-          "text-halo-width": 0.5,
-          "icon-color": ["get", "color"],
+          "fill-extrusion-color": ["get", "color"],
+          "fill-extrusion-height": 2.7,
+          // 'fill-extrusion-height': 20,
+          "fill-extrusion-opacity": 1,
         },
       });
+
+      this.mainMap.addSource("selected-unit-path", {
+        type: "geojson",
+        // 'data': recordingData.framePositions[0].positions
+        data: this.selectedUnitPathGeoJSON,
+      });
+
+      this.mainMap.addLayer({
+        id: "selected-unit-path",
+        type: "line",
+        source: "selected-unit-path",
+        layout: {
+          "line-join": "round",
+          "line-cap": "round",
+        },
+        paint: {
+          "line-color": "#F00",
+          "line-width": 2,
+        },
+      });
+
       setTimeout(() => {
         this.mainMap.resize();
         this.mainMap.setPaintProperty("background", "background-color", "#c0c0c0");
@@ -177,10 +187,12 @@ export default {
       "maplibreVersion",
       "mapReady",
     ]),
-    ...mapState(usePlaybackDataStore, [
-      "playbackEntitiesGeoJSON",
+    ...mapWritableState(usePlaybackDataStore, [
+      "selectedUnitId",
+      "selectedUnitPathGeoJSON",
       "playbackCurrentFrame",
     ]),
+    ...mapState(usePlaybackDataStore, ["showSelectedUnitPath", "followSelectedUnit"]),
   },
 
   watch: {
@@ -188,10 +200,65 @@ export default {
       // skip if newVal is not a number
       if (isNaN(newVal)) return;
       this.updateMapHash();
+
+      if (this.mainMap.getSource("entities-3d")) {
+        this.mainMap
+          .getSource("entities-3d")
+          .setData(usePlaybackDataStore().getPlaybackEntitiesGeoJSON());
+      }
+
+      if (this.selectedUnitId) {
+        if (this.showSelectedUnitPath) {
+          this.updateSelectedUnitPath();
+        }
+        if (this.followSelectedUnit) {
+          this.moveCameraToSelectedUnit();
+        }
+      }
+    },
+    selectedUnitId(newVal, oldVal) {
+      if (newVal) {
+        this.updateSelectedUnitPath();
+        this.moveCameraToSelectedUnit();
+      }
+    },
+    showSelectedUnitPath(newVal, oldVal) {
+      if (!this.mainMap.getLayer("selected-unit-path")) return;
+      if (newVal) {
+        this.mainMap.setLayoutProperty("selected-unit-path", "visibility", "visible");
+      } else {
+        this.mainMap.setLayoutProperty("selected-unit-path", "visibility", "none");
+      }
     },
   },
 
   methods: {
+    moveCameraToSelectedUnit() {
+      if (!this.selectedUnitId) return;
+      this.mainMap.flyTo({
+        center: usePlaybackDataStore().getUnitById(this.selectedUnitId).position,
+      });
+    },
+
+    updateSelectedUnitPath() {
+      if (!this.mainMap.getSource("selected-unit-path")) return;
+      // get the last 30 frames of the unit's history
+      const history = usePlaybackDataStore().getUnitHistory(this.selectedUnitId, 30);
+      this.selectedUnitPathGeoJSON = {
+        type: "FeatureCollection",
+        features: [
+          {
+            type: "Feature",
+            properties: {},
+            geometry: {
+              type: "LineString",
+              coordinates: history.map((frame) => frame.position),
+            },
+          },
+        ],
+      };
+      this.mainMap.getSource("selected-unit-path").setData(this.selectedUnitPathGeoJSON);
+    },
     async centerOnMap() {
       // console.log(this.activeWorld)
       const bounds = this.activeWorld.bounds;
@@ -228,7 +295,7 @@ export default {
           customQuery = false;
         } else {
           customQuery = true;
-          console.log(customHash);
+          // console.log(customHash);
           // customHash = customHash
           // var hashParts = customHash.split("/");
           this.mainMap.setZoom(customHash[0]);
@@ -269,6 +336,7 @@ export default {
       var bearing = e.target.getBearing();
       this.currentBearing = bearing.toFixed(2);
     },
+
     async updatemousePositionXY(e) {
       if (
         this.mainMap.isMoving() ||

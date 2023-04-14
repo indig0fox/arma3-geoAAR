@@ -104,7 +104,10 @@ import { ScaleLoader } from "vue3-spinner";
               </div>
             </div>
             <div id="selected-unit-info-body" class="window-body">
-              <!-- <UnitList v-if="playbackInitialized" /> -->
+              <SelectedUnitInfo
+                v-if="playbackInitialized && selectedUnitId"
+                :unitId="selectedUnitId"
+              />
             </div>
           </div>
         </div>
@@ -222,6 +225,7 @@ import { useRecordingDataStore } from "@/stores/dataStore.js";
 import { usePlaybackDataStore } from "@/stores/playbackStore.js";
 const showRecordingModal = ref(false);
 import UnitList from "@/components/UnitList.vue";
+import SelectedUnitInfo from "@/components/SelectedUnitInfo.vue";
 
 export default {
   components: {
@@ -232,6 +236,7 @@ export default {
     PlaybackManager,
     ScaleLoader,
     UnitList,
+    SelectedUnitInfo,
   },
   name: "RecordingViewer",
   data() {
@@ -261,7 +266,11 @@ export default {
       "mapReady",
     ]),
     ...mapState(useRecordingDataStore, ["activeWorld"]),
-    ...mapState(usePlaybackDataStore, ["playbackInitialized"]),
+    ...mapState(usePlaybackDataStore, [
+      "playbackInitialized",
+      "playbackEntities",
+      "selectedUnitId",
+    ]),
   },
   methods: {
     adjustActiveState(e) {
@@ -333,7 +342,8 @@ export default {
 #map-container,
 #map-container-body,
 #playback-container,
-#playback-container-body {
+#playback-container-body,
+#selected-unit-info-body {
   width: auto;
   height: 100%;
   display: flex;

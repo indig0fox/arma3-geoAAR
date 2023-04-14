@@ -10,181 +10,181 @@
 </template>
 
 <script setup>
-import { Map, addProtocol, addControl, NavigationControl } from 'maplibre-gl'
-import * as pmtiles from 'pmtiles'
-import * as turf from '@turf/turf'
-import proj4 from 'proj4'
+import { Map, addProtocol, addControl, NavigationControl } from "maplibre-gl";
+import * as pmtiles from "pmtiles";
+import * as turf from "@turf/turf";
+import proj4 from "proj4";
 </script>
 
 <script>
-import { mapState, mapWritableState } from 'pinia'
-import { useRecordingDataStore } from '@/stores/dataStore.js'
+import { mapState, mapWritableState } from "pinia";
+import { useRecordingDataStore } from "@/stores/dataStore.js";
 export default {
-  name: 'MiniMap',
+  name: "MiniMap",
   data() {
     return {
       map: null,
-      trackingRectCoordinates: [[[], [], [], [], []]]
-    }
+      trackingRectCoordinates: [[[], [], [], [], []]],
+    };
   },
   computed: {
-    ...mapState(useRecordingDataStore, ['recordingData', 'activeWorld']),
+    ...mapState(useRecordingDataStore, ["recordingData", "activeWorld"]),
     ...mapState(useRecordingDataStore, [
-      'viewBounds',
-      'currentZoom',
+      "viewBounds",
+      "currentZoom",
       // 'currentPitch',
       // 'currentBearing',
-      'mousePositionXY',
-      'mousePositionMGRS',
+      "mousePositionXY",
+      "mousePositionMGRS",
       // 'maplibreVersion',
-      'mainMap'
-    ])
+      "mainMap",
+    ]),
   },
   unmounted() {
-    this.map.remove()
+    this.map.remove();
   },
   mounted() {
     // const initialState = { lng: 0, lat: 0, zoom: 14 }
 
-    let protocol = new pmtiles.Protocol()
-    addProtocol('pmtiles', protocol.tile)
+    let protocol = new pmtiles.Protocol();
+    addProtocol("pmtiles", protocol.tile);
     const map = new Map({
       container: this.$refs.minimapContainer,
       style: `https://styles.ocap2.com/${this.activeWorld.worldName}.json`,
       attributionControl: false,
       interactive: false,
-      antialias: false
-    })
-    this.map = map
+      antialias: false,
+    });
+    this.map = map;
 
-    this.map.once('render', () => {
-      this.centerOnMap()
-      this.hideLayers()
+    this.map.once("render", () => {
+      this.centerOnMap();
+      this.hideLayers();
 
       setTimeout(() => {
-        this.map.resize()
-        this.map.setPaintProperty('background', 'background-color', '#c0c0c0')
-      }, 1000)
+        this.map.resize();
+        this.map.setPaintProperty("background", "background-color", "#c0c0c0");
+      }, 1000);
 
-      if (this.map.getSource('trackingRect')) {
-        this.map.removeLayer('trackingRectOutline')
-        this.map.removeLayer('trackingRectFill')
-        this.map.removeSource('trackingRect')
+      if (this.map.getSource("trackingRect")) {
+        this.map.removeLayer("trackingRectOutline");
+        this.map.removeLayer("trackingRectFill");
+        this.map.removeSource("trackingRect");
       }
-      this.map.addSource('trackingRect', {
-        type: 'geojson',
+      this.map.addSource("trackingRect", {
+        type: "geojson",
         data: {
-          type: 'Feature',
+          type: "Feature",
           geometry: {
-            type: 'Polygon',
+            type: "Polygon",
             coordinates: [
               [
                 [0, 0],
                 [0, 0.15],
                 [0.15, 0.15],
                 [0.15, 0],
-                [0, 0]
-              ]
-            ]
-          }
-        }
-      })
+                [0, 0],
+              ],
+            ],
+          },
+        },
+      });
 
       this.map.addLayer({
-        id: 'trackingRectOutline',
-        type: 'line',
-        source: 'trackingRect',
+        id: "trackingRectOutline",
+        type: "line",
+        source: "trackingRect",
         layout: {},
         paint: {
-          'line-color': '#F00',
-          'line-width': 2,
-          'line-opacity': 1
-        }
-      })
+          "line-color": "#F00",
+          "line-width": 2,
+          "line-opacity": 1,
+        },
+      });
 
       // needed for dragging
       this.map.addLayer({
-        id: 'trackingRectFill',
-        type: 'fill',
-        source: 'trackingRect',
+        id: "trackingRectFill",
+        type: "fill",
+        source: "trackingRect",
         layout: {},
         paint: {
-          'fill-color': '#F80',
-          'fill-opacity': 0.25
-        }
-      })
+          "fill-color": "#F80",
+          "fill-opacity": 0.25,
+        },
+      });
 
-      this.map.on('click', (e) => {
-        const newCenter = e.lngLat
-        this.mainMap.setCenter(newCenter)
-      })
-    })
+      this.map.on("click", (e) => {
+        const newCenter = e.lngLat;
+        this.mainMap.setCenter(newCenter);
+      });
+    });
   },
   methods: {
     centerOnMap: function () {
-      const bounds = this.map.getStyle().metadata.bounds
+      const bounds = this.activeWorld.bounds;
       // console.log(bounds);
-      var poly = turf.bboxPolygon(bounds)
-      if (!this.map.getSource('boundary')) {
-        this.map.addSource('boundary', {
-          type: 'geojson',
-          data: poly
-        })
+      var poly = turf.bboxPolygon(bounds);
+      if (!this.map.getSource("boundary")) {
+        this.map.addSource("boundary", {
+          type: "geojson",
+          data: poly,
+        });
         this.map.addLayer({
-          id: 'boundary',
-          type: 'line',
-          source: 'boundary',
+          id: "boundary",
+          type: "line",
+          source: "boundary",
           layout: {},
           paint: {
-            'line-color': '#000',
-            'line-width': 2
-          }
-        })
+            "line-color": "#000",
+            "line-width": 2,
+          },
+        });
       } else {
-        this.map.getSource('boundary').setData(poly)
+        this.map.getSource("boundary").setData(poly);
       }
 
-      const polyBounds = turf.bbox(poly)
-      this.worldBounds = polyBounds
+      const polyBounds = turf.bbox(poly);
+      this.worldBounds = polyBounds;
       // console.log(polyBounds);
 
       var newCameraTransform = this.map.cameraForBounds(polyBounds, {
-        padding: { top: 5, bottom: 5, left: 5, right: 5 }
-      })
+        padding: { top: 5, bottom: 5, left: 5, right: 5 },
+      });
       // console.log(newCameraTransform)
-      this.map.jumpTo(newCameraTransform)
+      this.map.jumpTo(newCameraTransform);
     },
     hideLayers: function () {
       // hide all layers except background, land, sea, hillshade
-      this.map.on('render', () => {
+      this.map.on("render", () => {
         this.map.getStyle().layers.forEach((layer) => {
           if (
             [
-              'background',
-              'land',
-              'sea',
-              'hillshade',
-              'forest',
-              'runway',
-              'road',
-              'main_road',
-              'trackingRectFill',
-              'trackingRectOutline'
+              "background",
+              "land",
+              "sea",
+              "hillshade",
+              "forest",
+              "runway",
+              "road",
+              "main_road",
+              "trackingRectFill",
+              "trackingRectOutline",
             ].includes(layer.id)
           ) {
-            this.map.setLayerZoomRange(layer.id, 0, 24)
-            return
+            this.map.setLayerZoomRange(layer.id, 0, 24);
+            return;
           }
-          this.map.setLayoutProperty(layer.id, 'visibility', 'none')
-        })
-        this.map.setPaintProperty('background', 'background-color', '#c0c0c0')
-      })
-    }
+          this.map.setLayoutProperty(layer.id, "visibility", "none");
+        });
+        this.map.setPaintProperty("background", "background-color", "#c0c0c0");
+      });
+    },
   },
   watch: {
     viewBounds: function (newBounds) {
       // if (this.viewBounds === {} || !this.map?.loaded()) return
-      const source = this.map.getSource('trackingRect')
+      const source = this.map.getSource("trackingRect");
 
       // maplibre bounds object
       const boundsCoords = [
@@ -192,25 +192,25 @@ export default {
         [newBounds._ne.lng, newBounds._sw.lat],
         [newBounds._sw.lng, newBounds._sw.lat],
         [newBounds._sw.lng, newBounds._ne.lat],
-        [newBounds._ne.lng, newBounds._ne.lat]
-      ]
+        [newBounds._ne.lng, newBounds._ne.lat],
+      ];
 
       const tgt = {
-        type: 'Feature',
+        type: "Feature",
         geometry: {
-          type: 'Polygon',
-          coordinates: [boundsCoords]
-        }
-      }
+          type: "Polygon",
+          coordinates: [boundsCoords],
+        },
+      };
 
-      source.setData(tgt)
-    }
-  }
-}
+      source.setData(tgt);
+    },
+  },
+};
 </script>
 
 <style scoped>
-@import 'maplibre-gl/dist/maplibre-gl.css';
+@import "maplibre-gl/dist/maplibre-gl.css";
 
 #minimap {
   width: 100%;

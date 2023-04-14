@@ -8,6 +8,26 @@ export function XY_to_LatLon (coords) {
   };
 };
 
+export function lonLatToGridXY (coord_4326) {
+  // * takes array of 4326
+  var coord_3857 = proj4("EPSG:4326", "EPSG:3857", coord_4326);
+
+  var mercatorStr = [
+    Math.abs(coord_3857[0]).toFixed(0).toString().padStart(5, "0"),
+    Math.abs(coord_3857[1]).toFixed(0).toString().padStart(5, "0"),
+  ];
+
+  // * add negative sign if needed
+  coord_3857[0] < 0
+    ? (mercatorStr[0] = "-" + mercatorStr[0])
+    : (mercatorStr[0] = mercatorStr[0]);
+  coord_3857[1] < 0
+    ? (mercatorStr[1] = "-" + mercatorStr[1])
+    : (mercatorStr[1] = mercatorStr[1]);
+
+  return mercatorStr[0] + " " + mercatorStr[1];
+}
+
 export function getType (type) {
   switch (type) {
     case "unit":

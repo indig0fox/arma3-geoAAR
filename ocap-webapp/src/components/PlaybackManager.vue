@@ -378,7 +378,7 @@ export default {
         this.activeRecordingData.endFrame
       ).then((entities) => {
         this.playbackEntities = entities;
-        console.log(entities);
+        // console.log(entities)
         this.status = "Ready";
         this.playbackInitialized = true;
       });
@@ -468,10 +468,11 @@ export default {
       }
 
       // only update every 0.25s
-      // if (timestamp - this.lastUpdate < 250) {
-      //   recordingData.playbackRenderId = window.requestAnimationFrame(this.renderLoop)
-      //   return
-      // }
+      if (timestamp - this.lastUpdate < 250) {
+        return (usePlaybackDataStore().playbackRenderId = window.requestAnimationFrame(
+          this.renderLoop
+        ));
+      }
 
       try {
         this.updateEntities();
@@ -483,9 +484,9 @@ export default {
       this.calculateFPSNormal();
 
       // request next frame
-      usePlaybackDataStore().playbackRenderId = window.requestAnimationFrame(
+      return (usePlaybackDataStore().playbackRenderId = window.requestAnimationFrame(
         this.renderLoop
-      );
+      ));
     },
 
     calculateFPSNormal() {
@@ -548,38 +549,6 @@ export default {
   },
 };
 </script>
-
-<style>
-.entity-popup .maplibregl-popup-content {
-  background: none;
-  background-color: transparent;
-  font-family: "Pixelated MS Sans Serif", Arial;
-  line-height: 1;
-  /* outline */
-  color: black;
-  /* -webkit-text-stroke: 0.2px white; */
-  /* -webkit-text-fill-color: black; */
-  /* text-shadow: -1px 1px 0 #000; */
-  /* 1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000; */
-
-  box-shadow: none;
-  border: none;
-  padding: none;
-  margin: none;
-}
-
-.maplibregl-popup-tip {
-  display: none;
-}
-
-/* allow scroll through popups */
-.maplibregl-popup,
-.maplibregl-popup-content,
-.entity-popup {
-  pointer-events: none;
-  user-select: none;
-}
-</style>
 
 <style scoped>
 #panel-rows {

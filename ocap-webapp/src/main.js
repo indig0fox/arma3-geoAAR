@@ -4,9 +4,9 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 
-import './assets/main.css'
-// import './assets/common.css'
-// import './assets/index.css'
+import '@/assets/main.css'
+import '@/assets/playback.css'
+
 
 // import "xp.css";
 import "98.css";

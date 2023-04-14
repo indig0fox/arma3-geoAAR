@@ -9,7 +9,7 @@
             :key="unit.id"
             :unit="unit"
             :selected="unit.id === selectedUnitId"
-            @click="selectUnit(unit)"
+            @click="selectUnit(unit.id)"
           />
         </ul>
       </li>
@@ -21,7 +21,7 @@
             :key="unit.id"
             :unit="unit"
             :selected="unit.id === selectedUnitId"
-            @click="selectUnit(unit)"
+            @click="selectUnit(unit.id)"
           />
         </ul>
       </li>
@@ -53,12 +53,16 @@ export default {
   computed: {
     ...mapState(useRecordingDataStore, ["mainMap"]),
     ...mapState(usePlaybackDataStore, ["playbackEntities", "playbackCurrentFrame"]),
-    ...mapWritableState(usePlaybackDataStore, ["selectedUnitId"]),
+    ...mapWritableState(usePlaybackDataStore, [
+      "selectedUnitId",
+      "selectedUnitPathGeoJSON",
+    ]),
   },
   methods: {
-    selectUnit(unit) {
-      this.selectedUnitId = unit.id;
-      this.mainMap.panTo(unit.position);
+    selectUnit(id) {
+      this.selectedUnitId = id;
+
+      this.mainMap.panTo(usePlaybackDataStore().getUnitById(id).position);
     },
     updateUnitLists() {
       this.bluforUnits = [];
@@ -98,11 +102,5 @@ export default {
   height: 300px;
   width: auto;
   overflow-y: auto;
-}
-li.selected {
-  background-color: #000784;
-  color: white;
-  padding: 2px;
-  border: 1px dotted;
 }
 </style>

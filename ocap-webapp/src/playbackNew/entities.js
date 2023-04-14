@@ -58,15 +58,6 @@ export class Unit {
     return Promise.resolve()
   }
 
-
-  getUnitById (unitId) {
-    if (unitId in usePlaybackDataStore().playbackEntities) {
-      return usePlaybackDataStore().playbackEntities[unitId]
-    } else {
-      return -1
-    }
-  }
-
   getPosAtFrame (frameNum) {
 
     // console.log(this.positions)
@@ -138,7 +129,7 @@ export class Unit {
       .setPopup(
         new MaplibrePopup({
           anchor: "bottom",
-          className: "entity-popup",
+          className: "unit-popup",
           closeButton: false,
           closeOnClick: false
         })
@@ -374,14 +365,6 @@ export class Vehicle {
     return Promise.resolve()
   }
 
-  getUnitById (unitId) {
-    if (unitId in usePlaybackDataStore().playbackEntities) {
-      return usePlaybackDataStore().playbackEntities[unitId]
-    } else {
-      return -1
-    }
-  }
-
   getPosAtFrame (frameNum) {
 
     // if (this.hasCondensedPositions) {
@@ -397,7 +380,7 @@ export class Vehicle {
     this.bearing = thisFrame.direction;
     this.lifestate = thisFrame.alive;
     this.crew = thisFrame.crew.map((crewMember) => {
-      var unit = this.getUnitById(crewMember);
+      var unit = usePlaybackDataStore().getUnitById(crewMember);
       if (unit instanceof Unit) {
         return unit
       } else {
@@ -436,7 +419,7 @@ export class Vehicle {
 
     this.getPosAtFrame(frameNum);
 
-    if (this.marker == undefined) {
+    if (!this.marker) {
       this.addMarker();
     };
 
@@ -459,9 +442,9 @@ export class Vehicle {
 
   setColor (lifestate) {
     // if (this.type != "apc") { this.type = "apc" };
-    var entityColor = "unknown"
+    var entityColor
     if (this.crew.length > 0) {
-      entityColor = this.crew[0]?.side.toLowerCase();
+      entityColor = this.crew[0].side.toLowerCase();
     } else {
       entityColor = "unknown";
     };
@@ -509,7 +492,7 @@ export class Vehicle {
       .addTo(useRecordingDataStore().mainMap);
     this.marker.setPopup(new MaplibrePopup({
       anchor: "bottom",
-      className: "entity-popup",
+      className: "vehicle-popup",
       closeButton: false,
       closeOnClick: false
     }).setHTML(`<p>${this.name}<p>`)).togglePopup();
@@ -528,8 +511,11 @@ export class Vehicle {
     var markerElement = this.marker.getElement();
     var popup = this.marker.getPopup();
 
-    this.marker.getPopup().setHTML(`<p>${this.name} ${this.crewTag}</p>`);
-    this.setColor(this.lifestate);
+    if (['parachute', 'heli', 'plane'].includes(this.type)) {
+      popup.setHTML(`<p>${this.name}<br/>(${Math.floor(this.position[2])}m ASL)${this.crewTag}</p>`);
+    } else {
+      popup.setHTML(`<p>${this.name} ${this.crewTag}</p>`);
+    };
 
     // if (!window.lastFrame || now - window.lastFrame >= window.heavyProcessDelay * 1000) {
     var bgImage = `url(entityMarkers/${this.type}/${this.stateColor}.png)`;

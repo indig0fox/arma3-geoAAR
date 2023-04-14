@@ -17,4 +17,11 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+li.selected {
+  background-color: #000784;
+  color: white;
+  padding: 2px;
+  border: 1px dotted;
+}
+</style>
